@@ -45,6 +45,7 @@ public class Inicio extends javax.swing.JFrame {
         lblListContrato.hide();
         lblListProfesional.hide();
         lblPlanificacion.hide();
+        setColor(panelInicio);
     }
 
     /**
@@ -76,6 +77,9 @@ public class Inicio extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
+        panelInicio = new javax.swing.JPanel();
+        jLabel18 = new javax.swing.JLabel();
+        Inicio = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
@@ -160,7 +164,7 @@ public class Inicio extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        sidepane.add(panelContrato, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 310, 50));
+        sidepane.add(panelContrato, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 310, 50));
 
         panelProfesional.setBackground(new java.awt.Color(47, 46, 157));
         panelProfesional.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -197,7 +201,7 @@ public class Inicio extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        sidepane.add(panelProfesional, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, -1, 50));
+        sidepane.add(panelProfesional, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, -1, 50));
 
         panelCliente.setBackground(new java.awt.Color(47, 46, 157));
         panelCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -234,7 +238,7 @@ public class Inicio extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        sidepane.add(panelCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 310, 50));
+        sidepane.add(panelCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 310, 50));
 
         panelPagos.setBackground(new java.awt.Color(47, 46, 157));
         panelPagos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -271,7 +275,7 @@ public class Inicio extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        sidepane.add(panelPagos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 280, 310, 50));
+        sidepane.add(panelPagos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, 310, 50));
 
         panelActividades.setBackground(new java.awt.Color(47, 46, 157));
         panelActividades.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -308,7 +312,7 @@ public class Inicio extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        sidepane.add(panelActividades, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 330, 310, 50));
+        sidepane.add(panelActividades, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 390, 310, 50));
         sidepane.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 250, 20));
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -320,6 +324,43 @@ public class Inicio extends javax.swing.JFrame {
         jLabel15.setForeground(new java.awt.Color(204, 204, 204));
         jLabel15.setText("No Mas Accidentes");
         sidepane.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, 200, 20));
+
+        panelInicio.setBackground(new java.awt.Color(47, 46, 157));
+        panelInicio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        panelInicio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                panelInicioMousePressed(evt);
+            }
+        });
+
+        jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icons8_home_32px.png"))); // NOI18N
+
+        Inicio.setBackground(new java.awt.Color(255, 255, 255));
+        Inicio.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        Inicio.setForeground(new java.awt.Color(204, 204, 204));
+        Inicio.setText("Inicio");
+
+        javax.swing.GroupLayout panelInicioLayout = new javax.swing.GroupLayout(panelInicio);
+        panelInicio.setLayout(panelInicioLayout);
+        panelInicioLayout.setHorizontalGroup(
+            panelInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelInicioLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(89, Short.MAX_VALUE))
+        );
+        panelInicioLayout.setVerticalGroup(
+            panelInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelInicioLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(Inicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        sidepane.add(panelInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 310, 50));
 
         bg.add(sidepane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 600));
 
@@ -420,6 +461,11 @@ public class Inicio extends javax.swing.JFrame {
         addContratro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/bc4fc0b3-7894-47b3-a45b-d969c49b73ba.png"))); // NOI18N
         addContratro.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         addContratro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        addContratro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                addContratroMousePressed(evt);
+            }
+        });
         bg.add(addContratro, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 240, 160, 160));
 
         listarContratos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -568,6 +614,7 @@ public class Inicio extends javax.swing.JFrame {
         resetColor(panelContrato);
         resetColor(panelPagos);
         resetColor(panelActividades);
+        resetColor(panelInicio);
     }//GEN-LAST:event_panelClienteMousePressed
 
     private void panelProfesionalMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelProfesionalMousePressed
@@ -600,6 +647,7 @@ public class Inicio extends javax.swing.JFrame {
         resetColor(panelContrato);
         resetColor(panelPagos);
         resetColor(panelActividades);
+        resetColor(panelInicio);
     }//GEN-LAST:event_panelProfesionalMousePressed
 
     private void panelContratoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelContratoMousePressed
@@ -632,6 +680,7 @@ public class Inicio extends javax.swing.JFrame {
         resetColor(panelProfesional);
         resetColor(panelPagos);
         resetColor(panelActividades);
+        resetColor(panelInicio);
     }//GEN-LAST:event_panelContratoMousePressed
 
     private void panelPagosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelPagosMousePressed
@@ -664,6 +713,7 @@ public class Inicio extends javax.swing.JFrame {
         resetColor(panelProfesional);
         resetColor(panelContrato);
         resetColor(panelActividades);
+        resetColor(panelInicio);
     }//GEN-LAST:event_panelPagosMousePressed
 
     private void panelActividadesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelActividadesMousePressed
@@ -696,6 +746,7 @@ public class Inicio extends javax.swing.JFrame {
         resetColor(panelProfesional);
         resetColor(panelContrato);
         resetColor(panelPagos);
+        resetColor(panelInicio);
     }//GEN-LAST:event_panelActividadesMousePressed
 
     private void addClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addClienteMouseClicked
@@ -730,42 +781,81 @@ public class Inicio extends javax.swing.JFrame {
         
     }//GEN-LAST:event_formMousePressed
 
+    private void panelInicioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelInicioMousePressed
+        listarProfesional.hide();
+        listarContratos.hide();
+        addCliente.hide();
+        listarCliente.hide();
+        eliminarCliente.hide();
+        addProfesional.hide();
+        eliminarProfesional.hide();
+        eliminarContratos.hide();
+        addContratro.hide();
+        agregarPago.hide();
+        estadoPago.hide();
+        lblAddCliente.hide();
+        lblAddContrato.hide();
+        lblAddProfesional.hide();
+        lblCargoExtra.hide();
+        lblDeshabilitarCliente.hide();
+        lblDeshabilitarContrato.hide();
+        lblDeshabilitarProfesional.hide();
+        lblEstadoPago.hide();
+        lblListCliente.hide();
+        lblListContrato.hide();
+        lblListProfesional.hide();
+        lblPlanificacion.hide();
+        planificacionCapacitacion.hide();
+        setColor(panelInicio);
+        resetColor(panelCliente);
+        resetColor(panelProfesional);
+        resetColor(panelContrato);
+        resetColor(panelPagos);
+        resetColor(panelActividades);
+    }//GEN-LAST:event_panelInicioMousePressed
+
+    private void addContratroMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addContratroMousePressed
+        agregarContrato ac = new agregarContrato();
+        ac.setVisible(true);
+    }//GEN-LAST:event_addContratroMousePressed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Windows".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Inicio().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Windows".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new Inicio().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Inicio;
     private javax.swing.JLabel addCliente;
     private javax.swing.JLabel addContratro;
     private javax.swing.JLabel addProfesional;
@@ -784,6 +874,7 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -810,6 +901,7 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JPanel panelActividades;
     private javax.swing.JPanel panelCliente;
     private javax.swing.JPanel panelContrato;
+    private javax.swing.JPanel panelInicio;
     private javax.swing.JPanel panelPagos;
     private javax.swing.JPanel panelProfesional;
     private javax.swing.JLabel planificacionCapacitacion;

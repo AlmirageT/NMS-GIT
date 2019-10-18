@@ -36,9 +36,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Contratos.findByFechaTermino", query = "SELECT c FROM Contratos c WHERE c.fechaTermino = :fechaTermino")
     , @NamedQuery(name = "Contratos.findByCreado", query = "SELECT c FROM Contratos c WHERE c.creado = :creado")
     , @NamedQuery(name = "Contratos.findByModificado", query = "SELECT c FROM Contratos c WHERE c.modificado = :modificado")
-    , @NamedQuery(name = "Contratos.findByMonto", query = "SELECT c FROM Contratos c WHERE c.monto = :monto")
-    , @NamedQuery(name = "Contratos.findByAprobadoAdministrador", query = "SELECT c FROM Contratos c WHERE c.aprobadoAdministrador = :aprobadoAdministrador")
-    , @NamedQuery(name = "Contratos.findByAprobadoCliente", query = "SELECT c FROM Contratos c WHERE c.aprobadoCliente = :aprobadoCliente")})
+    , @NamedQuery(name = "Contratos.findByMonto", query = "SELECT c FROM Contratos c WHERE c.monto = :monto")})
 public class Contratos implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -65,12 +63,6 @@ public class Contratos implements Serializable {
     @Basic(optional = false)
     @Column(name = "MONTO")
     private long monto;
-    @Basic(optional = false)
-    @Column(name = "APROBADO_ADMINISTRADOR")
-    private short aprobadoAdministrador;
-    @Basic(optional = false)
-    @Column(name = "APROBADO_CLIENTE")
-    private short aprobadoCliente;
     @JoinColumn(name = "ID_CONTRATO_ESTADO_FK", referencedColumnName = "ID_CONTRATO_ESTADO")
     @ManyToOne(optional = false)
     private ContratoEstados idContratoEstadoFk;
@@ -91,14 +83,12 @@ public class Contratos implements Serializable {
         this.idContrato = idContrato;
     }
 
-    public Contratos(BigDecimal idContrato, Date fechaInicio, Date fechaTermino, Date creado, long monto, short aprobadoAdministrador, short aprobadoCliente) {
+    public Contratos(BigDecimal idContrato, Date fechaInicio, Date fechaTermino, Date creado, long monto) {
         this.idContrato = idContrato;
         this.fechaInicio = fechaInicio;
         this.fechaTermino = fechaTermino;
         this.creado = creado;
         this.monto = monto;
-        this.aprobadoAdministrador = aprobadoAdministrador;
-        this.aprobadoCliente = aprobadoCliente;
     }
 
     public BigDecimal getIdContrato() {
@@ -149,21 +139,6 @@ public class Contratos implements Serializable {
         this.monto = monto;
     }
 
-    public short getAprobadoAdministrador() {
-        return aprobadoAdministrador;
-    }
-
-    public void setAprobadoAdministrador(short aprobadoAdministrador) {
-        this.aprobadoAdministrador = aprobadoAdministrador;
-    }
-
-    public short getAprobadoCliente() {
-        return aprobadoCliente;
-    }
-
-    public void setAprobadoCliente(short aprobadoCliente) {
-        this.aprobadoCliente = aprobadoCliente;
-    }
 
     public ContratoEstados getIdContratoEstadoFk() {
         return idContratoEstadoFk;
