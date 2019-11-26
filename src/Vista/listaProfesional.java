@@ -7,8 +7,10 @@ package Vista;
 
 import Controlador.UsuariosJpaController;
 import Modelo.Usuarios;
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -17,9 +19,10 @@ import javax.swing.table.DefaultTableModel;
  */
 public class listaProfesional extends javax.swing.JFrame {
 
-    private Usuarios usuario;
     private UsuariosJpaController controller;
     DefaultTableModel modelo;
+    private Usuarios usuario;
+    Date fecha = new Date();
     int mousepX;
     int mousepY;
     public listaProfesional() {
@@ -37,15 +40,33 @@ public class listaProfesional extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLayeredPane1 = new javax.swing.JLayeredPane();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        txtBuscadorProfesional = new javax.swing.JTextField();
+        btnBuscadorContrato = new javax.swing.JButton();
+        btnBorrar = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         lstUsuario = new javax.swing.JTable();
+        btnBaja = new javax.swing.JButton();
+        btnActivar = new javax.swing.JButton();
+
+        javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
+        jLayeredPane1.setLayout(jLayeredPane1Layout);
+        jLayeredPane1Layout.setHorizontalGroup(
+            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jLayeredPane1Layout.setVerticalGroup(
+            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -101,15 +122,52 @@ public class listaProfesional extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(96, 95, 249));
 
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel1.setText("Buscador por Rut de Profesional:");
+
+        btnBuscadorContrato.setText("Buscar");
+        btnBuscadorContrato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscadorContratoActionPerformed(evt);
+            }
+        });
+
+        btnBorrar.setText("Limpiar");
+        btnBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 855, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(75, 75, 75)
+                        .addComponent(txtBuscadorProfesional, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(56, 56, 56)
+                        .addComponent(btnBuscadorContrato)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnBorrar))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(59, 59, 59)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(346, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 126, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtBuscadorProfesional, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscadorContrato)
+                    .addComponent(btnBorrar))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         jLabel13.setBackground(new java.awt.Color(255, 255, 255));
@@ -142,6 +200,20 @@ public class listaProfesional extends javax.swing.JFrame {
         lstUsuario.setSelectionBackground(new java.awt.Color(15, 14, 140));
         jScrollPane1.setViewportView(lstUsuario);
 
+        btnBaja.setText("Dar de baja");
+        btnBaja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBajaActionPerformed(evt);
+            }
+        });
+
+        btnActivar.setText("Activar");
+        btnActivar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActivarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -151,15 +223,21 @@ public class listaProfesional extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 824, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap())
-                            .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel13)
-                        .addContainerGap())))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel13)
+                                .addContainerGap())
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 806, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(24, 24, 24))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(btnActivar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(60, 60, 60))))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -169,9 +247,13 @@ public class listaProfesional extends javax.swing.JFrame {
                 .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 418, Short.MAX_VALUE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnBaja)
+                    .addComponent(btnActivar))
+                .addGap(27, 27, 27))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -204,6 +286,84 @@ public class listaProfesional extends javax.swing.JFrame {
         mousepX = evt.getX();
         mousepY = evt.getY();
     }//GEN-LAST:event_formMousePressed
+
+    private void btnBuscadorContratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscadorContratoActionPerformed
+        String rut = txtBuscadorProfesional.getText();
+        cargarTablarPorCodigo(rut);
+    }//GEN-LAST:event_btnBuscadorContratoActionPerformed
+
+    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
+        cargarTabla();
+        limpiar();
+    }//GEN-LAST:event_btnBorrarActionPerformed
+
+    private void btnBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBajaActionPerformed
+        int fila = lstUsuario.getSelectedRow();
+        if (fila != -1) {
+            Object codigo = lstUsuario.getValueAt(fila, 0);
+            String cod = String.valueOf(codigo);
+            int codigoC = Integer.parseInt(cod);
+            try {
+                usuario = controller.findUsuarios(BigDecimal.valueOf(codigoC));
+                usuario.getIdUsuario();
+                usuario.getRut();
+                usuario.getPaterno();
+                usuario.getMaterno();
+                usuario.getNombres();
+                usuario.getFechaNacimiento();
+                usuario.getEmail();
+                usuario.getClave();
+                usuario.getCelular();
+                usuario.getTelefono();
+                usuario.getDireccion();
+                usuario.setEstado(Short.parseShort("0"));
+                usuario.getFechaCreacion();
+                usuario.setFechaModificacion(fecha);
+                usuario.getRolesIdRol();
+                controller.edit(usuario);
+                JOptionPane.showMessageDialog(this, "Se ha Desactivado el Usuario", "Confirmación", JOptionPane.INFORMATION_MESSAGE);
+                cargarTabla();
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage(), "Validación", 0);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Favor seleccionar la fila que desea desactivar", "Validación", 0);
+        }
+    }//GEN-LAST:event_btnBajaActionPerformed
+
+    private void btnActivarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActivarActionPerformed
+        int fila = lstUsuario.getSelectedRow();
+        if (fila != -1) {
+            Object codigo = lstUsuario.getValueAt(fila, 0);
+            String cod = String.valueOf(codigo);
+            int codigoC = Integer.parseInt(cod);
+            try {
+                usuario = controller.findUsuarios(BigDecimal.valueOf(codigoC));
+                usuario.getIdUsuario();
+                usuario.getRut();
+                usuario.getPaterno();
+                usuario.getMaterno();
+                usuario.getNombres();
+                usuario.getFechaNacimiento();
+                usuario.getEmail();
+                usuario.getClave();
+                usuario.getCelular();
+                usuario.getTelefono();
+                usuario.getDireccion();
+                usuario.setEstado(Short.parseShort("1"));
+                usuario.getFechaCreacion();
+                usuario.setFechaModificacion(fecha);
+                usuario.getRolesIdRol();
+                controller.edit(usuario);
+                JOptionPane.showMessageDialog(this, "Se ha Activado el Usuario", "Confirmación", JOptionPane.INFORMATION_MESSAGE);
+                cargarTabla();
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage(), "Validación", 0);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Favor seleccionar la fila que desea re activar", "Validación", 0);
+        }
+    }//GEN-LAST:event_btnActivarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -241,15 +401,22 @@ public class listaProfesional extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnActivar;
+    private javax.swing.JButton btnBaja;
+    private javax.swing.JButton btnBorrar;
+    private javax.swing.JButton btnBuscadorContrato;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable lstUsuario;
+    private javax.swing.JTextField txtBuscadorProfesional;
     // End of variables declaration//GEN-END:variables
         private void cargarTabla(){
         cargarColumna();
@@ -262,13 +429,37 @@ public class listaProfesional extends javax.swing.JFrame {
             if (u.getEstado() == 1) {
                 estado = "Activo";
             }else{
-                estado = "Desactivado";
+                estado = "Dado de Baja";
             }
-            modelo.addRow(new Object[]{u.getRut(),u.getNombres(), apellido, fechaTexto, u.getEmail(), u.getCelular(), u.getTelefono(), u.getDireccion(), estado});
+            modelo.addRow(new Object[]{u.getIdUsuario(), u.getRut(),u.getNombres(), apellido, fechaTexto, u.getEmail(), u.getCelular(), u.getTelefono(), u.getDireccion(), estado});
         }
+    }
+        private void cargarTablarPorCodigo(String rut) {
+        cargarColumna();
+        if (!rut.equals("")) {   
+        for (Usuarios u : controller.buscarUsuario(rut)) {
+            String apellido = u.getPaterno() +" "+ u.getMaterno();
+            String estado = "";
+            Date fecha = u.getFechaNacimiento();
+            SimpleDateFormat form = new SimpleDateFormat("dd/MM/yyyy");
+            String fechaTexto = form.format(fecha);
+            if (u.getEstado() == 1) {
+                estado = "Activo";
+            }else{
+                estado = "Dado de Baja";
+            }
+            modelo.addRow(new Object[]{u.getIdUsuario(),u.getRut(),u.getNombres(), apellido, fechaTexto, u.getEmail(), u.getCelular(), u.getTelefono(), u.getDireccion(), estado});
+        }
+        }else{
+            JOptionPane.showMessageDialog(this, "No se encontro el rut ingresado en la base de datos.");
+            cargarTabla();
+            limpiar();
+        }
+
     }
     private void cargarColumna(){
         modelo = new DefaultTableModel();
+        modelo.addColumn("Codigo");
         modelo.addColumn("Rut");
         modelo.addColumn("Nombre");
         modelo.addColumn("Apellido");
@@ -279,5 +470,8 @@ public class listaProfesional extends javax.swing.JFrame {
         modelo.addColumn("Direccion");
         modelo.addColumn("Estado");
         lstUsuario.setModel(modelo);
+    }
+    private void limpiar(){
+        txtBuscadorProfesional.setText("");
     }
 }

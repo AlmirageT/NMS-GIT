@@ -7,7 +7,6 @@ package Modelo;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -20,7 +19,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -50,7 +48,6 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Usuarios.findByEstado", query = "SELECT u FROM Usuarios u WHERE u.estado = :estado")
     , @NamedQuery(name = "Usuarios.findByFechaCreacion", query = "SELECT u FROM Usuarios u WHERE u.fechaCreacion = :fechaCreacion")
     , @NamedQuery(name = "Usuarios.findByFechaModificacion", query = "SELECT u FROM Usuarios u WHERE u.fechaModificacion = :fechaModificacion")
-    , @NamedQuery(name = "Usuarios.findByContratosIdContrato", query = "SELECT u FROM Usuarios u WHERE u.contratosIdContrato = :contratosIdContrato")
     , @NamedQuery(name = "Usuarios.findUser", query = "SELECT u FROM Usuarios u WHERE u.email = :email AND u.clave = :clave AND u.rolesIdRol = :rolesIdRol")
 })
 public class Usuarios implements Serializable {
@@ -97,16 +94,11 @@ public class Usuarios implements Serializable {
     @Column(name = "FECHA_MODIFICACION")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaModificacion;
-    @Basic(optional = false)
-    @Column(name = "CONTRATOS_ID_CONTRATO")
-    private BigInteger contratosIdContrato;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuariosIdUsuario")
     private Collection<Checklist> checklistCollection;
     @JoinColumn(name = "ROLES_ID_ROL", referencedColumnName = "ID_ROL")
     @ManyToOne(optional = false)
     private Roles rolesIdRol;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "usuariosIdUsuario")
-    private Contratos contratos;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuariosIdUsuario")
     private Collection<Servicios> serviciosCollection;
 
@@ -117,7 +109,7 @@ public class Usuarios implements Serializable {
         this.idUsuario = idUsuario;
     }
 
-    public Usuarios(BigDecimal idUsuario, String rut, String paterno, String nombres, String email, String clave, short estado, Date fechaCreacion, BigInteger contratosIdContrato) {
+    public Usuarios(BigDecimal idUsuario, String rut, String paterno, String nombres, String email, String clave, short estado, Date fechaCreacion) {
         this.idUsuario = idUsuario;
         this.rut = rut;
         this.paterno = paterno;
@@ -126,7 +118,6 @@ public class Usuarios implements Serializable {
         this.clave = clave;
         this.estado = estado;
         this.fechaCreacion = fechaCreacion;
-        this.contratosIdContrato = contratosIdContrato;
     }
 
     public BigDecimal getIdUsuario() {
@@ -241,14 +232,6 @@ public class Usuarios implements Serializable {
         this.fechaModificacion = fechaModificacion;
     }
 
-    public BigInteger getContratosIdContrato() {
-        return contratosIdContrato;
-    }
-
-    public void setContratosIdContrato(BigInteger contratosIdContrato) {
-        this.contratosIdContrato = contratosIdContrato;
-    }
-
     @XmlTransient
     public Collection<Checklist> getChecklistCollection() {
         return checklistCollection;
@@ -264,14 +247,6 @@ public class Usuarios implements Serializable {
 
     public void setRolesIdRol(Roles rolesIdRol) {
         this.rolesIdRol = rolesIdRol;
-    }
-
-    public Contratos getContratos() {
-        return contratos;
-    }
-
-    public void setContratos(Contratos contratos) {
-        this.contratos = contratos;
     }
 
     @XmlTransient

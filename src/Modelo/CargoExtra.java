@@ -7,6 +7,7 @@ package Modelo;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -44,7 +45,7 @@ public class CargoExtra implements Serializable {
     private String tipo;
     @Basic(optional = false)
     @Column(name = "MONTO")
-    private long monto;
+    private BigInteger monto;
     @Basic(optional = false)
     @Column(name = "DESCRIPCION")
     private String descripcion;
@@ -59,7 +60,7 @@ public class CargoExtra implements Serializable {
         this.idCargoExtra = idCargoExtra;
     }
 
-    public CargoExtra(BigDecimal idCargoExtra, String tipo, long monto, String descripcion) {
+    public CargoExtra(BigDecimal idCargoExtra, String tipo, BigInteger monto, String descripcion) {
         this.idCargoExtra = idCargoExtra;
         this.tipo = tipo;
         this.monto = monto;
@@ -82,11 +83,11 @@ public class CargoExtra implements Serializable {
         this.tipo = tipo;
     }
 
-    public long getMonto() {
+    public BigInteger getMonto() {
         return monto;
     }
 
-    public void setMonto(long monto) {
+    public void setMonto(BigInteger monto) {
         this.monto = monto;
     }
 

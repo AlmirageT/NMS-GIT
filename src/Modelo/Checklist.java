@@ -7,6 +7,7 @@ package Modelo;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -28,8 +29,16 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Checklist.findAll", query = "SELECT c FROM Checklist c")
     , @NamedQuery(name = "Checklist.findByIdChecklist", query = "SELECT c FROM Checklist c WHERE c.idChecklist = :idChecklist")
-    , @NamedQuery(name = "Checklist.findByItem", query = "SELECT c FROM Checklist c WHERE c.item = :item")
-    , @NamedQuery(name = "Checklist.findByAprovado", query = "SELECT c FROM Checklist c WHERE c.aprovado = :aprovado")})
+    , @NamedQuery(name = "Checklist.findByItem1", query = "SELECT c FROM Checklist c WHERE c.item1 = :item1")
+    , @NamedQuery(name = "Checklist.findByAprovado1", query = "SELECT c FROM Checklist c WHERE c.aprovado1 = :aprovado1")
+    , @NamedQuery(name = "Checklist.findByItem2", query = "SELECT c FROM Checklist c WHERE c.item2 = :item2")
+    , @NamedQuery(name = "Checklist.findByAprovado2", query = "SELECT c FROM Checklist c WHERE c.aprovado2 = :aprovado2")
+    , @NamedQuery(name = "Checklist.findByItem3", query = "SELECT c FROM Checklist c WHERE c.item3 = :item3")
+    , @NamedQuery(name = "Checklist.findByAprovado3", query = "SELECT c FROM Checklist c WHERE c.aprovado3 = :aprovado3")
+    , @NamedQuery(name = "Checklist.findByItem4", query = "SELECT c FROM Checklist c WHERE c.item4 = :item4")
+    , @NamedQuery(name = "Checklist.findByAprovado4", query = "SELECT c FROM Checklist c WHERE c.aprovado4 = :aprovado4")
+    , @NamedQuery(name = "Checklist.findByItem5", query = "SELECT c FROM Checklist c WHERE c.item5 = :item5")
+    , @NamedQuery(name = "Checklist.findByAprovado5", query = "SELECT c FROM Checklist c WHERE c.aprovado5 = :aprovado5")})
 public class Checklist implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -39,11 +48,35 @@ public class Checklist implements Serializable {
     @Column(name = "ID_CHECKLIST")
     private BigDecimal idChecklist;
     @Basic(optional = false)
-    @Column(name = "ITEM")
-    private String item;
+    @Column(name = "ITEM_1")
+    private String item1;
     @Basic(optional = false)
-    @Column(name = "APROVADO")
-    private short aprovado;
+    @Column(name = "APROVADO_1")
+    private BigInteger aprovado1;
+    @Basic(optional = false)
+    @Column(name = "ITEM_2")
+    private String item2;
+    @Basic(optional = false)
+    @Column(name = "APROVADO_2")
+    private BigInteger aprovado2;
+    @Basic(optional = false)
+    @Column(name = "ITEM_3")
+    private String item3;
+    @Basic(optional = false)
+    @Column(name = "APROVADO_3")
+    private BigInteger aprovado3;
+    @Basic(optional = false)
+    @Column(name = "ITEM_4")
+    private String item4;
+    @Basic(optional = false)
+    @Column(name = "APROVADO_4")
+    private BigInteger aprovado4;
+    @Basic(optional = false)
+    @Column(name = "ITEM_5")
+    private String item5;
+    @Basic(optional = false)
+    @Column(name = "APROVADO_5")
+    private BigInteger aprovado5;
     @JoinColumn(name = "EMPRESAS_ID_EMPRESA", referencedColumnName = "ID_EMPRESA")
     @ManyToOne(optional = false)
     private Empresas empresasIdEmpresa;
@@ -58,10 +91,18 @@ public class Checklist implements Serializable {
         this.idChecklist = idChecklist;
     }
 
-    public Checklist(BigDecimal idChecklist, String item, short aprovado) {
+    public Checklist(BigDecimal idChecklist, String item1, BigInteger aprovado1, String item2, BigInteger aprovado2, String item3, BigInteger aprovado3, String item4, BigInteger aprovado4, String item5, BigInteger aprovado5) {
         this.idChecklist = idChecklist;
-        this.item = item;
-        this.aprovado = aprovado;
+        this.item1 = item1;
+        this.aprovado1 = aprovado1;
+        this.item2 = item2;
+        this.aprovado2 = aprovado2;
+        this.item3 = item3;
+        this.aprovado3 = aprovado3;
+        this.item4 = item4;
+        this.aprovado4 = aprovado4;
+        this.item5 = item5;
+        this.aprovado5 = aprovado5;
     }
 
     public BigDecimal getIdChecklist() {
@@ -72,20 +113,84 @@ public class Checklist implements Serializable {
         this.idChecklist = idChecklist;
     }
 
-    public String getItem() {
-        return item;
+    public String getItem1() {
+        return item1;
     }
 
-    public void setItem(String item) {
-        this.item = item;
+    public void setItem1(String item1) {
+        this.item1 = item1;
     }
 
-    public short getAprovado() {
-        return aprovado;
+    public BigInteger getAprovado1() {
+        return aprovado1;
     }
 
-    public void setAprovado(short aprovado) {
-        this.aprovado = aprovado;
+    public void setAprovado1(BigInteger aprovado1) {
+        this.aprovado1 = aprovado1;
+    }
+
+    public String getItem2() {
+        return item2;
+    }
+
+    public void setItem2(String item2) {
+        this.item2 = item2;
+    }
+
+    public BigInteger getAprovado2() {
+        return aprovado2;
+    }
+
+    public void setAprovado2(BigInteger aprovado2) {
+        this.aprovado2 = aprovado2;
+    }
+
+    public String getItem3() {
+        return item3;
+    }
+
+    public void setItem3(String item3) {
+        this.item3 = item3;
+    }
+
+    public BigInteger getAprovado3() {
+        return aprovado3;
+    }
+
+    public void setAprovado3(BigInteger aprovado3) {
+        this.aprovado3 = aprovado3;
+    }
+
+    public String getItem4() {
+        return item4;
+    }
+
+    public void setItem4(String item4) {
+        this.item4 = item4;
+    }
+
+    public BigInteger getAprovado4() {
+        return aprovado4;
+    }
+
+    public void setAprovado4(BigInteger aprovado4) {
+        this.aprovado4 = aprovado4;
+    }
+
+    public String getItem5() {
+        return item5;
+    }
+
+    public void setItem5(String item5) {
+        this.item5 = item5;
+    }
+
+    public BigInteger getAprovado5() {
+        return aprovado5;
+    }
+
+    public void setAprovado5(BigInteger aprovado5) {
+        this.aprovado5 = aprovado5;
     }
 
     public Empresas getEmpresasIdEmpresa() {

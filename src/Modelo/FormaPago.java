@@ -30,7 +30,8 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "FormaPago.findAll", query = "SELECT f FROM FormaPago f")
     , @NamedQuery(name = "FormaPago.findByIdFormaPago", query = "SELECT f FROM FormaPago f WHERE f.idFormaPago = :idFormaPago")
-    , @NamedQuery(name = "FormaPago.findByNombre", query = "SELECT f FROM FormaPago f WHERE f.nombre = :nombre")})
+    , @NamedQuery(name = "FormaPago.findByNombre", query = "SELECT f FROM FormaPago f WHERE f.nombre = :nombre")
+    , @NamedQuery(name = "FormaPago.findByCantidadCuotas", query = "SELECT f FROM FormaPago f WHERE f.cantidadCuotas = :cantidadCuotas")})
 public class FormaPago implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -42,6 +43,9 @@ public class FormaPago implements Serializable {
     @Basic(optional = false)
     @Column(name = "NOMBRE")
     private String nombre;
+    @Basic(optional = false)
+    @Column(name = "CANTIDAD_CUOTAS")
+    private long cantidadCuotas;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "formaPagoIdFormaPago")
     private Collection<Pagos> pagosCollection;
 
@@ -52,9 +56,14 @@ public class FormaPago implements Serializable {
         this.idFormaPago = idFormaPago;
     }
 
-    public FormaPago(BigDecimal idFormaPago, String nombre) {
+    public FormaPago(BigDecimal idFormaPago, String nombre){
         this.idFormaPago = idFormaPago;
         this.nombre = nombre;
+    }
+    public FormaPago(BigDecimal idFormaPago, String nombre, long cantidadCuotas) {
+        this.idFormaPago = idFormaPago;
+        this.nombre = nombre;
+        this.cantidadCuotas = cantidadCuotas;
     }
 
     public BigDecimal getIdFormaPago() {
@@ -71,6 +80,14 @@ public class FormaPago implements Serializable {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public long getCantidadCuotas() {
+        return cantidadCuotas;
+    }
+
+    public void setCantidadCuotas(long cantidadCuotas) {
+        this.cantidadCuotas = cantidadCuotas;
     }
 
     @XmlTransient

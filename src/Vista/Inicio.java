@@ -581,7 +581,9 @@ public class Inicio extends javax.swing.JFrame {
     }
 
     private void jLabel13MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MousePressed
-        System.exit(0);
+        dispose();
+        login lg = new login();
+        lg.setVisible(true);
     }//GEN-LAST:event_jLabel13MousePressed
 
     private void panelClienteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelClienteMousePressed

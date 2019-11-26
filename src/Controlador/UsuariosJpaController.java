@@ -14,7 +14,6 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import Modelo.Roles;
-import Modelo.Contratos;
 import Modelo.Checklist;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -33,7 +32,7 @@ import javax.persistence.Persistence;
 public class UsuariosJpaController implements Serializable {
 
     public UsuariosJpaController() {
-        this.emf = Persistence.createEntityManagerFactory("NMSPU");
+        this.emf = Persistence.createEntityManagerFactory("NoMasAccidentesPU");
     }
     private EntityManagerFactory emf = null;
 
@@ -57,11 +56,6 @@ public class UsuariosJpaController implements Serializable {
                 rolesIdRol = em.getReference(rolesIdRol.getClass(), rolesIdRol.getIdRol());
                 usuarios.setRolesIdRol(rolesIdRol);
             }
-            Contratos contratos = usuarios.getContratos();
-            if (contratos != null) {
-                contratos = em.getReference(contratos.getClass(), contratos.getIdContrato());
-                usuarios.setContratos(contratos);
-            }
             Collection<Checklist> attachedChecklistCollection = new ArrayList<Checklist>();
             for (Checklist checklistCollectionChecklistToAttach : usuarios.getChecklistCollection()) {
                 checklistCollectionChecklistToAttach = em.getReference(checklistCollectionChecklistToAttach.getClass(), checklistCollectionChecklistToAttach.getIdChecklist());
@@ -78,15 +72,6 @@ public class UsuariosJpaController implements Serializable {
             if (rolesIdRol != null) {
                 rolesIdRol.getUsuariosCollection().add(usuarios);
                 rolesIdRol = em.merge(rolesIdRol);
-            }
-            if (contratos != null) {
-                Usuarios oldUsuariosIdUsuarioOfContratos = contratos.getUsuariosIdUsuario();
-                if (oldUsuariosIdUsuarioOfContratos != null) {
-                    oldUsuariosIdUsuarioOfContratos.setContratos(null);
-                    oldUsuariosIdUsuarioOfContratos = em.merge(oldUsuariosIdUsuarioOfContratos);
-                }
-                contratos.setUsuariosIdUsuario(usuarios);
-                contratos = em.merge(contratos);
             }
             for (Checklist checklistCollectionChecklist : usuarios.getChecklistCollection()) {
                 Usuarios oldUsuariosIdUsuarioOfChecklistCollectionChecklist = checklistCollectionChecklist.getUsuariosIdUsuario();
@@ -127,19 +112,11 @@ public class UsuariosJpaController implements Serializable {
             Usuarios persistentUsuarios = em.find(Usuarios.class, usuarios.getIdUsuario());
             Roles rolesIdRolOld = persistentUsuarios.getRolesIdRol();
             Roles rolesIdRolNew = usuarios.getRolesIdRol();
-            Contratos contratosOld = persistentUsuarios.getContratos();
-            Contratos contratosNew = usuarios.getContratos();
             Collection<Checklist> checklistCollectionOld = persistentUsuarios.getChecklistCollection();
             Collection<Checklist> checklistCollectionNew = usuarios.getChecklistCollection();
             Collection<Servicios> serviciosCollectionOld = persistentUsuarios.getServiciosCollection();
             Collection<Servicios> serviciosCollectionNew = usuarios.getServiciosCollection();
             List<String> illegalOrphanMessages = null;
-            if (contratosOld != null && !contratosOld.equals(contratosNew)) {
-                if (illegalOrphanMessages == null) {
-                    illegalOrphanMessages = new ArrayList<String>();
-                }
-                illegalOrphanMessages.add("You must retain Contratos " + contratosOld + " since its usuariosIdUsuario field is not nullable.");
-            }
             for (Checklist checklistCollectionOldChecklist : checklistCollectionOld) {
                 if (!checklistCollectionNew.contains(checklistCollectionOldChecklist)) {
                     if (illegalOrphanMessages == null) {
@@ -163,10 +140,6 @@ public class UsuariosJpaController implements Serializable {
                 rolesIdRolNew = em.getReference(rolesIdRolNew.getClass(), rolesIdRolNew.getIdRol());
                 usuarios.setRolesIdRol(rolesIdRolNew);
             }
-            if (contratosNew != null) {
-                contratosNew = em.getReference(contratosNew.getClass(), contratosNew.getIdContrato());
-                usuarios.setContratos(contratosNew);
-            }
             Collection<Checklist> attachedChecklistCollectionNew = new ArrayList<Checklist>();
             for (Checklist checklistCollectionNewChecklistToAttach : checklistCollectionNew) {
                 checklistCollectionNewChecklistToAttach = em.getReference(checklistCollectionNewChecklistToAttach.getClass(), checklistCollectionNewChecklistToAttach.getIdChecklist());
@@ -189,15 +162,6 @@ public class UsuariosJpaController implements Serializable {
             if (rolesIdRolNew != null && !rolesIdRolNew.equals(rolesIdRolOld)) {
                 rolesIdRolNew.getUsuariosCollection().add(usuarios);
                 rolesIdRolNew = em.merge(rolesIdRolNew);
-            }
-            if (contratosNew != null && !contratosNew.equals(contratosOld)) {
-                Usuarios oldUsuariosIdUsuarioOfContratos = contratosNew.getUsuariosIdUsuario();
-                if (oldUsuariosIdUsuarioOfContratos != null) {
-                    oldUsuariosIdUsuarioOfContratos.setContratos(null);
-                    oldUsuariosIdUsuarioOfContratos = em.merge(oldUsuariosIdUsuarioOfContratos);
-                }
-                contratosNew.setUsuariosIdUsuario(usuarios);
-                contratosNew = em.merge(contratosNew);
             }
             for (Checklist checklistCollectionNewChecklist : checklistCollectionNew) {
                 if (!checklistCollectionOld.contains(checklistCollectionNewChecklist)) {
@@ -251,13 +215,6 @@ public class UsuariosJpaController implements Serializable {
                 throw new NonexistentEntityException("The usuarios with id " + id + " no longer exists.", enfe);
             }
             List<String> illegalOrphanMessages = null;
-            Contratos contratosOrphanCheck = usuarios.getContratos();
-            if (contratosOrphanCheck != null) {
-                if (illegalOrphanMessages == null) {
-                    illegalOrphanMessages = new ArrayList<String>();
-                }
-                illegalOrphanMessages.add("This Usuarios (" + usuarios + ") cannot be destroyed since the Contratos " + contratosOrphanCheck + " in its contratos field has a non-nullable usuariosIdUsuario field.");
-            }
             Collection<Checklist> checklistCollectionOrphanCheck = usuarios.getChecklistCollection();
             for (Checklist checklistCollectionOrphanCheckChecklist : checklistCollectionOrphanCheck) {
                 if (illegalOrphanMessages == null) {
@@ -312,44 +269,46 @@ public class UsuariosJpaController implements Serializable {
 //            em.close();
 //        }
 //    }
-        private List<Usuarios> findUsuariosEntities(boolean all, int maxResults, int firstResult) {
+    private List<Usuarios> findUsuariosEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         String query = "SELECT * FROM USUARIOS WHERE ROLES_ID_ROL = 2";
         List<Usuarios> listEntrada = null;
-        
+
         try {
             listEntrada = em.createNativeQuery(query, Usuarios.class).getResultList();
-        } catch (Exception ex){
+        } catch (Exception ex) {
             ex.getMessage();
         }
-            if (listEntrada == null) {
-                listEntrada = new ArrayList<>();
-            }
+        if (listEntrada == null) {
+            listEntrada = new ArrayList<>();
+        }
         return listEntrada;
     }
-        public List<Usuarios> findUsuariosEntitiesCliente() {
+
+    public List<Usuarios> findUsuariosEntitiesCliente() {
         return findUsuariosEntitiesCliente(true, -1, -1);
     }
 
     public List<Usuarios> findUsuariosEntitiesCliente(int maxResults, int firstResult) {
         return findUsuariosEntitiesCliente(false, maxResults, firstResult);
     }
-        private List<Usuarios> findUsuariosEntitiesCliente(boolean all, int maxResults, int firstResult) {
+
+    private List<Usuarios> findUsuariosEntitiesCliente(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         String query = "SELECT * FROM USUARIOS WHERE ROLES_ID_ROL = 3";
         List<Usuarios> listEntrada = null;
-        
+
         try {
             listEntrada = em.createNativeQuery(query, Usuarios.class).getResultList();
-        } catch (Exception ex){
+        } catch (Exception ex) {
             ex.getMessage();
         }
-            if (listEntrada == null) {
-                listEntrada = new ArrayList<>();
-            }
+        if (listEntrada == null) {
+            listEntrada = new ArrayList<>();
+        }
         return listEntrada;
     }
-        
+
     public Usuarios findUsuarios(BigDecimal id) {
         EntityManager em = getEntityManager();
         try {
@@ -371,8 +330,8 @@ public class UsuariosJpaController implements Serializable {
             em.close();
         }
     }
-    
-    public boolean login (String email, String clave, Roles rolesIdRol){
+
+    public boolean login(String email, String clave, Roles rolesIdRol) {
         EntityManager em = getEntityManager();
         boolean valor;
         try {
@@ -382,11 +341,10 @@ public class UsuariosJpaController implements Serializable {
             query.setParameter("clave", clave);
             query.setParameter("rolesIdRol", rolesIdRol);
             
-            
             List rs = query.getResultList();
             if (!rs.isEmpty()) {
                 valor = true;
-            }else{
+            } else {
                 valor = false;
             }
         } catch (Exception e) {
@@ -394,7 +352,13 @@ public class UsuariosJpaController implements Serializable {
             e.getMessage();
         }
         return valor;
-        
+
     }
-    
+    public List<Usuarios> buscarUsuario(String rut){
+        EntityManager em = getEntityManager();
+        Query query = em.createNamedQuery("Usuarios.findByRut");
+        query.setParameter("rut", rut);
+        List<Usuarios> lista = query.getResultList();
+        return lista;
+    }
 }

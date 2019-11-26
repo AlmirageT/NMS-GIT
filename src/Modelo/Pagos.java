@@ -11,7 +11,6 @@ import java.math.BigInteger;
 import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -69,7 +68,7 @@ public class Pagos implements Serializable {
     private BigInteger contratosIdContrato;
     @OneToMany(mappedBy = "pagosIdPago")
     private Collection<CargoExtra> cargoExtraCollection;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "pagosIdPago")
+    @OneToOne(mappedBy = "pagosIdPago")
     private Contratos contratos;
     @JoinColumn(name = "FORMA_PAGO_ID_FORMA_PAGO", referencedColumnName = "ID_FORMA_PAGO")
     @ManyToOne(optional = false)

@@ -5,7 +5,6 @@
  */
 package Controlador;
 
-import Controlador.exceptions.IllegalOrphanException;
 import Controlador.exceptions.NonexistentEntityException;
 import Controlador.exceptions.PreexistingEntityException;
 import java.io.Serializable;
@@ -15,14 +14,12 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import Modelo.ContratoEstados;
 import Modelo.Contratos;
-import Modelo.Empresas;
 import Modelo.Pagos;
-import Modelo.Usuarios;
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 /**
  *
@@ -30,8 +27,8 @@ import javax.persistence.EntityManagerFactory;
  */
 public class ContratosJpaController implements Serializable {
 
-    public ContratosJpaController(EntityManagerFactory emf) {
-        this.emf = emf;
+    public ContratosJpaController() {
+        this.emf = Persistence.createEntityManagerFactory("NoMasAccidentesPU");
     }
     private EntityManagerFactory emf = null;
 
@@ -39,41 +36,7 @@ public class ContratosJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Contratos contratos) throws IllegalOrphanException, PreexistingEntityException, Exception {
-        List<String> illegalOrphanMessages = null;
-        Empresas empresasIdEmpresaOrphanCheck = contratos.getEmpresasIdEmpresa();
-        if (empresasIdEmpresaOrphanCheck != null) {
-            Contratos oldContratosOfEmpresasIdEmpresa = empresasIdEmpresaOrphanCheck.getContratos();
-            if (oldContratosOfEmpresasIdEmpresa != null) {
-                if (illegalOrphanMessages == null) {
-                    illegalOrphanMessages = new ArrayList<String>();
-                }
-                illegalOrphanMessages.add("The Empresas " + empresasIdEmpresaOrphanCheck + " already has an item of type Contratos whose empresasIdEmpresa column cannot be null. Please make another selection for the empresasIdEmpresa field.");
-            }
-        }
-        Pagos pagosIdPagoOrphanCheck = contratos.getPagosIdPago();
-        if (pagosIdPagoOrphanCheck != null) {
-            Contratos oldContratosOfPagosIdPago = pagosIdPagoOrphanCheck.getContratos();
-            if (oldContratosOfPagosIdPago != null) {
-                if (illegalOrphanMessages == null) {
-                    illegalOrphanMessages = new ArrayList<String>();
-                }
-                illegalOrphanMessages.add("The Pagos " + pagosIdPagoOrphanCheck + " already has an item of type Contratos whose pagosIdPago column cannot be null. Please make another selection for the pagosIdPago field.");
-            }
-        }
-        Usuarios usuariosIdUsuarioOrphanCheck = contratos.getUsuariosIdUsuario();
-        if (usuariosIdUsuarioOrphanCheck != null) {
-            Contratos oldContratosOfUsuariosIdUsuario = usuariosIdUsuarioOrphanCheck.getContratos();
-            if (oldContratosOfUsuariosIdUsuario != null) {
-                if (illegalOrphanMessages == null) {
-                    illegalOrphanMessages = new ArrayList<String>();
-                }
-                illegalOrphanMessages.add("The Usuarios " + usuariosIdUsuarioOrphanCheck + " already has an item of type Contratos whose usuariosIdUsuario column cannot be null. Please make another selection for the usuariosIdUsuario field.");
-            }
-        }
-        if (illegalOrphanMessages != null) {
-            throw new IllegalOrphanException(illegalOrphanMessages);
-        }
+    public void create(Contratos contratos) throws PreexistingEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -83,37 +46,24 @@ public class ContratosJpaController implements Serializable {
                 idContratoEstadoFk = em.getReference(idContratoEstadoFk.getClass(), idContratoEstadoFk.getIdContratoEstado());
                 contratos.setIdContratoEstadoFk(idContratoEstadoFk);
             }
-            Empresas empresasIdEmpresa = contratos.getEmpresasIdEmpresa();
-            if (empresasIdEmpresa != null) {
-                empresasIdEmpresa = em.getReference(empresasIdEmpresa.getClass(), empresasIdEmpresa.getIdEmpresa());
-                contratos.setEmpresasIdEmpresa(empresasIdEmpresa);
-            }
             Pagos pagosIdPago = contratos.getPagosIdPago();
             if (pagosIdPago != null) {
                 pagosIdPago = em.getReference(pagosIdPago.getClass(), pagosIdPago.getIdPago());
                 contratos.setPagosIdPago(pagosIdPago);
-            }
-            Usuarios usuariosIdUsuario = contratos.getUsuariosIdUsuario();
-            if (usuariosIdUsuario != null) {
-                usuariosIdUsuario = em.getReference(usuariosIdUsuario.getClass(), usuariosIdUsuario.getIdUsuario());
-                contratos.setUsuariosIdUsuario(usuariosIdUsuario);
             }
             em.persist(contratos);
             if (idContratoEstadoFk != null) {
                 idContratoEstadoFk.getContratosCollection().add(contratos);
                 idContratoEstadoFk = em.merge(idContratoEstadoFk);
             }
-            if (empresasIdEmpresa != null) {
-                empresasIdEmpresa.setContratos(contratos);
-                empresasIdEmpresa = em.merge(empresasIdEmpresa);
-            }
             if (pagosIdPago != null) {
+                Contratos oldContratosOfPagosIdPago = pagosIdPago.getContratos();
+                if (oldContratosOfPagosIdPago != null) {
+                    oldContratosOfPagosIdPago.setPagosIdPago(null);
+                    oldContratosOfPagosIdPago = em.merge(oldContratosOfPagosIdPago);
+                }
                 pagosIdPago.setContratos(contratos);
                 pagosIdPago = em.merge(pagosIdPago);
-            }
-            if (usuariosIdUsuario != null) {
-                usuariosIdUsuario.setContratos(contratos);
-                usuariosIdUsuario = em.merge(usuariosIdUsuario);
             }
             em.getTransaction().commit();
         } catch (Exception ex) {
@@ -128,7 +78,7 @@ public class ContratosJpaController implements Serializable {
         }
     }
 
-    public void edit(Contratos contratos) throws IllegalOrphanException, NonexistentEntityException, Exception {
+    public void edit(Contratos contratos) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -136,58 +86,15 @@ public class ContratosJpaController implements Serializable {
             Contratos persistentContratos = em.find(Contratos.class, contratos.getIdContrato());
             ContratoEstados idContratoEstadoFkOld = persistentContratos.getIdContratoEstadoFk();
             ContratoEstados idContratoEstadoFkNew = contratos.getIdContratoEstadoFk();
-            Empresas empresasIdEmpresaOld = persistentContratos.getEmpresasIdEmpresa();
-            Empresas empresasIdEmpresaNew = contratos.getEmpresasIdEmpresa();
             Pagos pagosIdPagoOld = persistentContratos.getPagosIdPago();
             Pagos pagosIdPagoNew = contratos.getPagosIdPago();
-            Usuarios usuariosIdUsuarioOld = persistentContratos.getUsuariosIdUsuario();
-            Usuarios usuariosIdUsuarioNew = contratos.getUsuariosIdUsuario();
-            List<String> illegalOrphanMessages = null;
-            if (empresasIdEmpresaNew != null && !empresasIdEmpresaNew.equals(empresasIdEmpresaOld)) {
-                Contratos oldContratosOfEmpresasIdEmpresa = empresasIdEmpresaNew.getContratos();
-                if (oldContratosOfEmpresasIdEmpresa != null) {
-                    if (illegalOrphanMessages == null) {
-                        illegalOrphanMessages = new ArrayList<String>();
-                    }
-                    illegalOrphanMessages.add("The Empresas " + empresasIdEmpresaNew + " already has an item of type Contratos whose empresasIdEmpresa column cannot be null. Please make another selection for the empresasIdEmpresa field.");
-                }
-            }
-            if (pagosIdPagoNew != null && !pagosIdPagoNew.equals(pagosIdPagoOld)) {
-                Contratos oldContratosOfPagosIdPago = pagosIdPagoNew.getContratos();
-                if (oldContratosOfPagosIdPago != null) {
-                    if (illegalOrphanMessages == null) {
-                        illegalOrphanMessages = new ArrayList<String>();
-                    }
-                    illegalOrphanMessages.add("The Pagos " + pagosIdPagoNew + " already has an item of type Contratos whose pagosIdPago column cannot be null. Please make another selection for the pagosIdPago field.");
-                }
-            }
-            if (usuariosIdUsuarioNew != null && !usuariosIdUsuarioNew.equals(usuariosIdUsuarioOld)) {
-                Contratos oldContratosOfUsuariosIdUsuario = usuariosIdUsuarioNew.getContratos();
-                if (oldContratosOfUsuariosIdUsuario != null) {
-                    if (illegalOrphanMessages == null) {
-                        illegalOrphanMessages = new ArrayList<String>();
-                    }
-                    illegalOrphanMessages.add("The Usuarios " + usuariosIdUsuarioNew + " already has an item of type Contratos whose usuariosIdUsuario column cannot be null. Please make another selection for the usuariosIdUsuario field.");
-                }
-            }
-            if (illegalOrphanMessages != null) {
-                throw new IllegalOrphanException(illegalOrphanMessages);
-            }
             if (idContratoEstadoFkNew != null) {
                 idContratoEstadoFkNew = em.getReference(idContratoEstadoFkNew.getClass(), idContratoEstadoFkNew.getIdContratoEstado());
                 contratos.setIdContratoEstadoFk(idContratoEstadoFkNew);
             }
-            if (empresasIdEmpresaNew != null) {
-                empresasIdEmpresaNew = em.getReference(empresasIdEmpresaNew.getClass(), empresasIdEmpresaNew.getIdEmpresa());
-                contratos.setEmpresasIdEmpresa(empresasIdEmpresaNew);
-            }
             if (pagosIdPagoNew != null) {
                 pagosIdPagoNew = em.getReference(pagosIdPagoNew.getClass(), pagosIdPagoNew.getIdPago());
                 contratos.setPagosIdPago(pagosIdPagoNew);
-            }
-            if (usuariosIdUsuarioNew != null) {
-                usuariosIdUsuarioNew = em.getReference(usuariosIdUsuarioNew.getClass(), usuariosIdUsuarioNew.getIdUsuario());
-                contratos.setUsuariosIdUsuario(usuariosIdUsuarioNew);
             }
             contratos = em.merge(contratos);
             if (idContratoEstadoFkOld != null && !idContratoEstadoFkOld.equals(idContratoEstadoFkNew)) {
@@ -198,29 +105,18 @@ public class ContratosJpaController implements Serializable {
                 idContratoEstadoFkNew.getContratosCollection().add(contratos);
                 idContratoEstadoFkNew = em.merge(idContratoEstadoFkNew);
             }
-            if (empresasIdEmpresaOld != null && !empresasIdEmpresaOld.equals(empresasIdEmpresaNew)) {
-                empresasIdEmpresaOld.setContratos(null);
-                empresasIdEmpresaOld = em.merge(empresasIdEmpresaOld);
-            }
-            if (empresasIdEmpresaNew != null && !empresasIdEmpresaNew.equals(empresasIdEmpresaOld)) {
-                empresasIdEmpresaNew.setContratos(contratos);
-                empresasIdEmpresaNew = em.merge(empresasIdEmpresaNew);
-            }
             if (pagosIdPagoOld != null && !pagosIdPagoOld.equals(pagosIdPagoNew)) {
                 pagosIdPagoOld.setContratos(null);
                 pagosIdPagoOld = em.merge(pagosIdPagoOld);
             }
             if (pagosIdPagoNew != null && !pagosIdPagoNew.equals(pagosIdPagoOld)) {
+                Contratos oldContratosOfPagosIdPago = pagosIdPagoNew.getContratos();
+                if (oldContratosOfPagosIdPago != null) {
+                    oldContratosOfPagosIdPago.setPagosIdPago(null);
+                    oldContratosOfPagosIdPago = em.merge(oldContratosOfPagosIdPago);
+                }
                 pagosIdPagoNew.setContratos(contratos);
                 pagosIdPagoNew = em.merge(pagosIdPagoNew);
-            }
-            if (usuariosIdUsuarioOld != null && !usuariosIdUsuarioOld.equals(usuariosIdUsuarioNew)) {
-                usuariosIdUsuarioOld.setContratos(null);
-                usuariosIdUsuarioOld = em.merge(usuariosIdUsuarioOld);
-            }
-            if (usuariosIdUsuarioNew != null && !usuariosIdUsuarioNew.equals(usuariosIdUsuarioOld)) {
-                usuariosIdUsuarioNew.setContratos(contratos);
-                usuariosIdUsuarioNew = em.merge(usuariosIdUsuarioNew);
             }
             em.getTransaction().commit();
         } catch (Exception ex) {
@@ -256,20 +152,10 @@ public class ContratosJpaController implements Serializable {
                 idContratoEstadoFk.getContratosCollection().remove(contratos);
                 idContratoEstadoFk = em.merge(idContratoEstadoFk);
             }
-            Empresas empresasIdEmpresa = contratos.getEmpresasIdEmpresa();
-            if (empresasIdEmpresa != null) {
-                empresasIdEmpresa.setContratos(null);
-                empresasIdEmpresa = em.merge(empresasIdEmpresa);
-            }
             Pagos pagosIdPago = contratos.getPagosIdPago();
             if (pagosIdPago != null) {
                 pagosIdPago.setContratos(null);
                 pagosIdPago = em.merge(pagosIdPago);
-            }
-            Usuarios usuariosIdUsuario = contratos.getUsuariosIdUsuario();
-            if (usuariosIdUsuario != null) {
-                usuariosIdUsuario.setContratos(null);
-                usuariosIdUsuario = em.merge(usuariosIdUsuario);
             }
             em.remove(contratos);
             em.getTransaction().commit();
@@ -303,6 +189,15 @@ public class ContratosJpaController implements Serializable {
             em.close();
         }
     }
+    
+    public List<Contratos> buscarContrato(String rutCliente){
+        EntityManager em = getEntityManager();
+        Query query = em.createNamedQuery("Contratos.findByRutCliente");
+        query.setParameter("rutCliente", rutCliente);
+        List<Contratos> lista = query.getResultList();
+        return lista;
+    }
+    
 
     public Contratos findContratos(BigDecimal id) {
         EntityManager em = getEntityManager();
@@ -312,7 +207,7 @@ public class ContratosJpaController implements Serializable {
             em.close();
         }
     }
-
+    
     public int getContratosCount() {
         EntityManager em = getEntityManager();
         try {

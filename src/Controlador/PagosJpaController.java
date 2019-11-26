@@ -5,7 +5,6 @@
  */
 package Controlador;
 
-import Controlador.exceptions.IllegalOrphanException;
 import Controlador.exceptions.NonexistentEntityException;
 import Controlador.exceptions.PreexistingEntityException;
 import java.io.Serializable;
@@ -23,6 +22,7 @@ import java.util.Collection;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 /**
  *
@@ -30,8 +30,8 @@ import javax.persistence.EntityManagerFactory;
  */
 public class PagosJpaController implements Serializable {
 
-    public PagosJpaController(EntityManagerFactory emf) {
-        this.emf = emf;
+    public PagosJpaController() {
+        this.emf = Persistence.createEntityManagerFactory("NoMasAccidentesPU");
     }
     private EntityManagerFactory emf = null;
 
@@ -99,7 +99,7 @@ public class PagosJpaController implements Serializable {
         }
     }
 
-    public void edit(Pagos pagos) throws IllegalOrphanException, NonexistentEntityException, Exception {
+    public void edit(Pagos pagos) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -111,16 +111,6 @@ public class PagosJpaController implements Serializable {
             FormaPago formaPagoIdFormaPagoNew = pagos.getFormaPagoIdFormaPago();
             Collection<CargoExtra> cargoExtraCollectionOld = persistentPagos.getCargoExtraCollection();
             Collection<CargoExtra> cargoExtraCollectionNew = pagos.getCargoExtraCollection();
-            List<String> illegalOrphanMessages = null;
-            if (contratosOld != null && !contratosOld.equals(contratosNew)) {
-                if (illegalOrphanMessages == null) {
-                    illegalOrphanMessages = new ArrayList<String>();
-                }
-                illegalOrphanMessages.add("You must retain Contratos " + contratosOld + " since its pagosIdPago field is not nullable.");
-            }
-            if (illegalOrphanMessages != null) {
-                throw new IllegalOrphanException(illegalOrphanMessages);
-            }
             if (contratosNew != null) {
                 contratosNew = em.getReference(contratosNew.getClass(), contratosNew.getIdContrato());
                 pagos.setContratos(contratosNew);
@@ -137,6 +127,10 @@ public class PagosJpaController implements Serializable {
             cargoExtraCollectionNew = attachedCargoExtraCollectionNew;
             pagos.setCargoExtraCollection(cargoExtraCollectionNew);
             pagos = em.merge(pagos);
+            if (contratosOld != null && !contratosOld.equals(contratosNew)) {
+                contratosOld.setPagosIdPago(null);
+                contratosOld = em.merge(contratosOld);
+            }
             if (contratosNew != null && !contratosNew.equals(contratosOld)) {
                 Pagos oldPagosIdPagoOfContratos = contratosNew.getPagosIdPago();
                 if (oldPagosIdPagoOfContratos != null) {
@@ -188,7 +182,7 @@ public class PagosJpaController implements Serializable {
         }
     }
 
-    public void destroy(BigDecimal id) throws IllegalOrphanException, NonexistentEntityException {
+    public void destroy(BigDecimal id) throws NonexistentEntityException {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -200,16 +194,10 @@ public class PagosJpaController implements Serializable {
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The pagos with id " + id + " no longer exists.", enfe);
             }
-            List<String> illegalOrphanMessages = null;
-            Contratos contratosOrphanCheck = pagos.getContratos();
-            if (contratosOrphanCheck != null) {
-                if (illegalOrphanMessages == null) {
-                    illegalOrphanMessages = new ArrayList<String>();
-                }
-                illegalOrphanMessages.add("This Pagos (" + pagos + ") cannot be destroyed since the Contratos " + contratosOrphanCheck + " in its contratos field has a non-nullable pagosIdPago field.");
-            }
-            if (illegalOrphanMessages != null) {
-                throw new IllegalOrphanException(illegalOrphanMessages);
+            Contratos contratos = pagos.getContratos();
+            if (contratos != null) {
+                contratos.setPagosIdPago(null);
+                contratos = em.merge(contratos);
             }
             FormaPago formaPagoIdFormaPago = pagos.getFormaPagoIdFormaPago();
             if (formaPagoIdFormaPago != null) {
@@ -274,6 +262,27 @@ public class PagosJpaController implements Serializable {
         } finally {
             em.close();
         }
+    }
+    public boolean buscarCodigo(BigDecimal idPago) {
+        EntityManager em = getEntityManager();
+        boolean valor;
+        try {
+//            SELECT p FROM Pagos p WHERE p.idPago = :idPago
+            Query query = em.createNamedQuery("Pagos.findByIdPago");
+            query.setParameter("idPago", idPago);
+            
+            List rs = query.getResultList();
+            if (!rs.isEmpty()) {
+                valor = true;
+            } else {
+                valor = false;
+            }
+        } catch (Exception e) {
+            valor = false;
+            e.getMessage();
+        }
+        return valor;
+
     }
     
 }

@@ -18,7 +18,6 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -66,13 +65,10 @@ public class Empresas implements Serializable {
     @Column(name = "MODIFICADO")
     @Temporal(TemporalType.TIMESTAMP)
     private Date modificado;
-    @Basic(optional = false)
     @Column(name = "CONTRATOS_ID_CONTRATO")
     private BigInteger contratosIdContrato;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "empresasIdEmpresa")
     private Collection<Checklist> checklistCollection;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "empresasIdEmpresa")
-    private Contratos contratos;
 
     public Empresas() {
     }
@@ -81,11 +77,10 @@ public class Empresas implements Serializable {
         this.idEmpresa = idEmpresa;
     }
 
-    public Empresas(BigDecimal idEmpresa, String nombre, Date creado, BigInteger contratosIdContrato) {
+    public Empresas(BigDecimal idEmpresa, String nombre, Date creado) {
         this.idEmpresa = idEmpresa;
         this.nombre = nombre;
         this.creado = creado;
-        this.contratosIdContrato = contratosIdContrato;
     }
 
     public BigDecimal getIdEmpresa() {
@@ -159,14 +154,6 @@ public class Empresas implements Serializable {
 
     public void setChecklistCollection(Collection<Checklist> checklistCollection) {
         this.checklistCollection = checklistCollection;
-    }
-
-    public Contratos getContratos() {
-        return contratos;
-    }
-
-    public void setContratos(Contratos contratos) {
-        this.contratos = contratos;
     }
 
     @Override

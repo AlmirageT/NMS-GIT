@@ -13,7 +13,6 @@ import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import Modelo.Contratos;
 import Modelo.Checklist;
 import Modelo.Empresas;
 import java.math.BigDecimal;
@@ -22,6 +21,7 @@ import java.util.Collection;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 /**
  *
@@ -29,8 +29,8 @@ import javax.persistence.EntityManagerFactory;
  */
 public class EmpresasJpaController implements Serializable {
 
-    public EmpresasJpaController(EntityManagerFactory emf) {
-        this.emf = emf;
+    public EmpresasJpaController() {
+        this.emf = Persistence.createEntityManagerFactory("NoMasAccidentesPU");
     }
     private EntityManagerFactory emf = null;
 
@@ -46,11 +46,6 @@ public class EmpresasJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Contratos contratos = empresas.getContratos();
-            if (contratos != null) {
-                contratos = em.getReference(contratos.getClass(), contratos.getIdContrato());
-                empresas.setContratos(contratos);
-            }
             Collection<Checklist> attachedChecklistCollection = new ArrayList<Checklist>();
             for (Checklist checklistCollectionChecklistToAttach : empresas.getChecklistCollection()) {
                 checklistCollectionChecklistToAttach = em.getReference(checklistCollectionChecklistToAttach.getClass(), checklistCollectionChecklistToAttach.getIdChecklist());
@@ -58,15 +53,6 @@ public class EmpresasJpaController implements Serializable {
             }
             empresas.setChecklistCollection(attachedChecklistCollection);
             em.persist(empresas);
-            if (contratos != null) {
-                Empresas oldEmpresasIdEmpresaOfContratos = contratos.getEmpresasIdEmpresa();
-                if (oldEmpresasIdEmpresaOfContratos != null) {
-                    oldEmpresasIdEmpresaOfContratos.setContratos(null);
-                    oldEmpresasIdEmpresaOfContratos = em.merge(oldEmpresasIdEmpresaOfContratos);
-                }
-                contratos.setEmpresasIdEmpresa(empresas);
-                contratos = em.merge(contratos);
-            }
             for (Checklist checklistCollectionChecklist : empresas.getChecklistCollection()) {
                 Empresas oldEmpresasIdEmpresaOfChecklistCollectionChecklist = checklistCollectionChecklist.getEmpresasIdEmpresa();
                 checklistCollectionChecklist.setEmpresasIdEmpresa(empresas);
@@ -95,17 +81,9 @@ public class EmpresasJpaController implements Serializable {
             em = getEntityManager();
             em.getTransaction().begin();
             Empresas persistentEmpresas = em.find(Empresas.class, empresas.getIdEmpresa());
-            Contratos contratosOld = persistentEmpresas.getContratos();
-            Contratos contratosNew = empresas.getContratos();
             Collection<Checklist> checklistCollectionOld = persistentEmpresas.getChecklistCollection();
             Collection<Checklist> checklistCollectionNew = empresas.getChecklistCollection();
             List<String> illegalOrphanMessages = null;
-            if (contratosOld != null && !contratosOld.equals(contratosNew)) {
-                if (illegalOrphanMessages == null) {
-                    illegalOrphanMessages = new ArrayList<String>();
-                }
-                illegalOrphanMessages.add("You must retain Contratos " + contratosOld + " since its empresasIdEmpresa field is not nullable.");
-            }
             for (Checklist checklistCollectionOldChecklist : checklistCollectionOld) {
                 if (!checklistCollectionNew.contains(checklistCollectionOldChecklist)) {
                     if (illegalOrphanMessages == null) {
@@ -117,10 +95,6 @@ public class EmpresasJpaController implements Serializable {
             if (illegalOrphanMessages != null) {
                 throw new IllegalOrphanException(illegalOrphanMessages);
             }
-            if (contratosNew != null) {
-                contratosNew = em.getReference(contratosNew.getClass(), contratosNew.getIdContrato());
-                empresas.setContratos(contratosNew);
-            }
             Collection<Checklist> attachedChecklistCollectionNew = new ArrayList<Checklist>();
             for (Checklist checklistCollectionNewChecklistToAttach : checklistCollectionNew) {
                 checklistCollectionNewChecklistToAttach = em.getReference(checklistCollectionNewChecklistToAttach.getClass(), checklistCollectionNewChecklistToAttach.getIdChecklist());
@@ -129,15 +103,6 @@ public class EmpresasJpaController implements Serializable {
             checklistCollectionNew = attachedChecklistCollectionNew;
             empresas.setChecklistCollection(checklistCollectionNew);
             empresas = em.merge(empresas);
-            if (contratosNew != null && !contratosNew.equals(contratosOld)) {
-                Empresas oldEmpresasIdEmpresaOfContratos = contratosNew.getEmpresasIdEmpresa();
-                if (oldEmpresasIdEmpresaOfContratos != null) {
-                    oldEmpresasIdEmpresaOfContratos.setContratos(null);
-                    oldEmpresasIdEmpresaOfContratos = em.merge(oldEmpresasIdEmpresaOfContratos);
-                }
-                contratosNew.setEmpresasIdEmpresa(empresas);
-                contratosNew = em.merge(contratosNew);
-            }
             for (Checklist checklistCollectionNewChecklist : checklistCollectionNew) {
                 if (!checklistCollectionOld.contains(checklistCollectionNewChecklist)) {
                     Empresas oldEmpresasIdEmpresaOfChecklistCollectionNewChecklist = checklistCollectionNewChecklist.getEmpresasIdEmpresa();
@@ -179,13 +144,6 @@ public class EmpresasJpaController implements Serializable {
                 throw new NonexistentEntityException("The empresas with id " + id + " no longer exists.", enfe);
             }
             List<String> illegalOrphanMessages = null;
-            Contratos contratosOrphanCheck = empresas.getContratos();
-            if (contratosOrphanCheck != null) {
-                if (illegalOrphanMessages == null) {
-                    illegalOrphanMessages = new ArrayList<String>();
-                }
-                illegalOrphanMessages.add("This Empresas (" + empresas + ") cannot be destroyed since the Contratos " + contratosOrphanCheck + " in its contratos field has a non-nullable empresasIdEmpresa field.");
-            }
             Collection<Checklist> checklistCollectionOrphanCheck = empresas.getChecklistCollection();
             for (Checklist checklistCollectionOrphanCheckChecklist : checklistCollectionOrphanCheck) {
                 if (illegalOrphanMessages == null) {

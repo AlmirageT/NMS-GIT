@@ -36,7 +36,10 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Contratos.findByFechaTermino", query = "SELECT c FROM Contratos c WHERE c.fechaTermino = :fechaTermino")
     , @NamedQuery(name = "Contratos.findByCreado", query = "SELECT c FROM Contratos c WHERE c.creado = :creado")
     , @NamedQuery(name = "Contratos.findByModificado", query = "SELECT c FROM Contratos c WHERE c.modificado = :modificado")
-    , @NamedQuery(name = "Contratos.findByMonto", query = "SELECT c FROM Contratos c WHERE c.monto = :monto")})
+    , @NamedQuery(name = "Contratos.findByMonto", query = "SELECT c FROM Contratos c WHERE c.monto = :monto")
+    , @NamedQuery(name = "Contratos.findByRutCliente", query = "SELECT c FROM Contratos c WHERE c.rutCliente = :rutCliente")
+    , @NamedQuery(name = "Contratos.findByRazonSocial", query = "SELECT c FROM Contratos c WHERE c.razonSocial = :razonSocial")
+    , @NamedQuery(name = "Contratos.updateByIdContrato", query = "UPDATE Contratos c SET c.idContratoEstadoFk = :idContratoEstadoFk WHERE c.idContrato = :idContrato")})
 public class Contratos implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -63,18 +66,16 @@ public class Contratos implements Serializable {
     @Basic(optional = false)
     @Column(name = "MONTO")
     private long monto;
+    @Column(name = "RUT_CLIENTE")
+    private String rutCliente;
+    @Column(name = "RAZON_SOCIAL")
+    private String razonSocial;
     @JoinColumn(name = "ID_CONTRATO_ESTADO_FK", referencedColumnName = "ID_CONTRATO_ESTADO")
     @ManyToOne(optional = false)
     private ContratoEstados idContratoEstadoFk;
-    @JoinColumn(name = "EMPRESAS_ID_EMPRESA", referencedColumnName = "ID_EMPRESA")
-    @OneToOne(optional = false)
-    private Empresas empresasIdEmpresa;
     @JoinColumn(name = "PAGOS_ID_PAGO", referencedColumnName = "ID_PAGO")
-    @OneToOne(optional = false)
+    @OneToOne
     private Pagos pagosIdPago;
-    @JoinColumn(name = "USUARIOS_ID_USUARIO", referencedColumnName = "ID_USUARIO")
-    @OneToOne(optional = false)
-    private Usuarios usuariosIdUsuario;
 
     public Contratos() {
     }
@@ -139,6 +140,21 @@ public class Contratos implements Serializable {
         this.monto = monto;
     }
 
+    public String getRutCliente() {
+        return rutCliente;
+    }
+
+    public void setRutCliente(String rutCliente) {
+        this.rutCliente = rutCliente;
+    }
+
+    public String getRazonSocial() {
+        return razonSocial;
+    }
+
+    public void setRazonSocial(String razonSocial) {
+        this.razonSocial = razonSocial;
+    }
 
     public ContratoEstados getIdContratoEstadoFk() {
         return idContratoEstadoFk;
@@ -148,28 +164,12 @@ public class Contratos implements Serializable {
         this.idContratoEstadoFk = idContratoEstadoFk;
     }
 
-    public Empresas getEmpresasIdEmpresa() {
-        return empresasIdEmpresa;
-    }
-
-    public void setEmpresasIdEmpresa(Empresas empresasIdEmpresa) {
-        this.empresasIdEmpresa = empresasIdEmpresa;
-    }
-
     public Pagos getPagosIdPago() {
         return pagosIdPago;
     }
 
     public void setPagosIdPago(Pagos pagosIdPago) {
         this.pagosIdPago = pagosIdPago;
-    }
-
-    public Usuarios getUsuariosIdUsuario() {
-        return usuariosIdUsuario;
-    }
-
-    public void setUsuariosIdUsuario(Usuarios usuariosIdUsuario) {
-        this.usuariosIdUsuario = usuariosIdUsuario;
     }
 
     @Override
