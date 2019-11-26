@@ -1,20 +1,12 @@
-<<<<<<< HEAD
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-=======
-
->>>>>>> master
 package Vista;
 
 import Controlador.UsuariosJpaController;
 import Modelo.Roles;
-<<<<<<< HEAD
-=======
-import Modelo.Usuarios;
->>>>>>> master
 import java.math.BigDecimal;
 import javax.swing.JOptionPane;
 
@@ -23,18 +15,10 @@ import javax.swing.JOptionPane;
  * @author ivans
  */
 public class login extends javax.swing.JFrame {
-<<<<<<< HEAD
 
     private UsuariosJpaController controller;
     int mousepX;
     int mousepY;
-=======
-    
-    private UsuariosJpaController controller;
-    int mousepX;
-    int mousepY;
-    
->>>>>>> master
     public login() {
         initComponents();
         controller = new UsuariosJpaController();
@@ -114,11 +98,7 @@ public class login extends javax.swing.JFrame {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-<<<<<<< HEAD
                 .addContainerGap(222, Short.MAX_VALUE))
-=======
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
->>>>>>> master
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -187,11 +167,7 @@ public class login extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-<<<<<<< HEAD
                 .addGap(0, 0, Short.MAX_VALUE)
-=======
-                .addGap(0, 113, Short.MAX_VALUE)
->>>>>>> master
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -200,11 +176,7 @@ public class login extends javax.swing.JFrame {
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-<<<<<<< HEAD
                         .addGap(39, 39, 39))
-=======
-                        .addGap(65, 65, 65))
->>>>>>> master
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(146, 146, 146))))
@@ -279,11 +251,7 @@ public class login extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-<<<<<<< HEAD
                 .addComponent(lblWarning, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
-=======
-                .addComponent(lblWarning, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
->>>>>>> master
                 .addGap(18, 18, 18)
                 .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29))
@@ -307,30 +275,11 @@ public class login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-<<<<<<< HEAD
-=======
-    private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
-        int coordenadaX = evt.getXOnScreen();
-        int coordenadaY = evt.getYOnScreen();
-        this.setLocation(coordenadaX-mousepX, coordenadaY-mousepY);
-    }//GEN-LAST:event_formMouseDragged
-
-    private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
-        mousepX = evt.getX();
-        mousepY = evt.getY();
-    }//GEN-LAST:event_formMousePressed
-
-    private void jLabel8MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MousePressed
-        dispose();
-    }//GEN-LAST:event_jLabel8MousePressed
-
->>>>>>> master
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
         String email = txtCorreo.getText();
         String pass = txtPass.getText();
         String rol = cbRol.getSelectedItem().toString();
         int idRol = cbRol.getSelectedIndex();
-<<<<<<< HEAD
 
         if (email.equals("") || pass.equals("") || rol.equals("Seleccione")) {
             JOptionPane.showMessageDialog(null, "Los campos estan vacios");
@@ -342,19 +291,6 @@ public class login extends javax.swing.JFrame {
             if (valor == true) {
                 if (rol.equals("Admin")) {
                     inicioAdmin admin = new inicioAdmin();
-=======
-        
-        if (email.equals("") || pass.equals("") || rol.equals("Seleccione")) {
-            JOptionPane.showMessageDialog(null, "Los campos estan vacios");
-        }else{
-            
-            Roles rolex = new Roles(BigDecimal.valueOf(idRol), rol);
-            
-            boolean valor = controller.login(email, pass, rolex);
-            if (valor == true) {
-                if (rol.equals("Admin")) {
-                    Inicio admin = new Inicio();
->>>>>>> master
                     admin.setVisible(true);
                     this.dispose();
                 }
@@ -369,7 +305,6 @@ public class login extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnIngresarActionPerformed
 
-<<<<<<< HEAD
     private void jLabel8MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MousePressed
         System.exit(0);
     }//GEN-LAST:event_jLabel8MousePressed
@@ -385,8 +320,6 @@ public class login extends javax.swing.JFrame {
         mousepY = evt.getY();
     }//GEN-LAST:event_formMousePressed
 
-=======
->>>>>>> master
     /**
      * @param args the command line arguments
      */

@@ -321,13 +321,13 @@ public class listaProfesional extends javax.swing.JFrame {
                 usuario.setFechaModificacion(fecha);
                 usuario.getRolesIdRol();
                 controller.edit(usuario);
-                JOptionPane.showMessageDialog(this, "Se ha Desactivado el Usuario", "Confirmación", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Se ha Desactivado el Contrato", "Confirmación", JOptionPane.INFORMATION_MESSAGE);
                 cargarTabla();
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this, ex.getMessage(), "Validación", 0);
             }
         } else {
-            JOptionPane.showMessageDialog(this, "Favor seleccionar la fila que desea desactivar", "Validación", 0);
+            JOptionPane.showMessageDialog(this, "Favor seleccionar la fila que desea re activar", "Validación", 0);
         }
     }//GEN-LAST:event_btnBajaActionPerformed
 
@@ -355,7 +355,7 @@ public class listaProfesional extends javax.swing.JFrame {
                 usuario.setFechaModificacion(fecha);
                 usuario.getRolesIdRol();
                 controller.edit(usuario);
-                JOptionPane.showMessageDialog(this, "Se ha Activado el Usuario", "Confirmación", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Se ha Desactivado el Contrato", "Confirmación", JOptionPane.INFORMATION_MESSAGE);
                 cargarTabla();
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this, ex.getMessage(), "Validación", 0);
