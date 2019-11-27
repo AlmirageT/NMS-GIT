@@ -331,28 +331,14 @@ public class UsuariosJpaController implements Serializable {
         }
     }
 
-    public boolean login(String email, String clave, Roles rolesIdRol) {
+    public List<Usuarios> login(String email, String clave) {
         EntityManager em = getEntityManager();
-        boolean valor;
-        try {
-//            SELECT u FROM Usuarios u WHERE u.email = :email AND u.clave = :clave AND u.rolesIdRol = :rolesIdRol
-            Query query = em.createNamedQuery("Usuarios.findUser");
-            query.setParameter("email", email);
-            query.setParameter("clave", clave);
-            query.setParameter("rolesIdRol", rolesIdRol);
-            
-            List rs = query.getResultList();
-            if (!rs.isEmpty()) {
-                valor = true;
-            } else {
-                valor = false;
-            }
-        } catch (Exception e) {
-            valor = false;
-            e.getMessage();
-        }
-        return valor;
-
+        //SELECT u FROM Usuarios u WHERE u.email = :email AND u.clave = :clave
+        Query query = em.createNamedQuery("Usuarios.findUser");
+        query.setParameter("email", email);
+        query.setParameter("clave", clave);
+        List<Usuarios> lista = query.getResultList();
+        return lista;
     }
     public List<Usuarios> buscarUsuario(String rut){
         EntityManager em = getEntityManager();

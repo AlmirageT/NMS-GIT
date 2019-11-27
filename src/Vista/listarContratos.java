@@ -459,7 +459,7 @@ public class listarContratos extends javax.swing.JFrame {
 
     private void cargarTablarPorCodigo(String rutCliente) {
         cargarColumna();
-        if (!rutCliente.equals("")) {
+        if (!rutCliente.isEmpty() && !rutCliente.trim().equals("")) {
         for (Contratos u : controller.buscarContrato(rutCliente)) {
             String estado = "";
             Date fechaInicio = u.getFechaInicio();

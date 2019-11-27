@@ -436,7 +436,7 @@ public class listaProfesional extends javax.swing.JFrame {
     }
         private void cargarTablarPorCodigo(String rut) {
         cargarColumna();
-        if (!rut.equals("")) {   
+        if (!rut.isEmpty() && !rut.trim().equals("")) {   
         for (Usuarios u : controller.buscarUsuario(rut)) {
             String apellido = u.getPaterno() +" "+ u.getMaterno();
             String estado = "";
