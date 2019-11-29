@@ -19,6 +19,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 /**
  *
@@ -26,8 +27,8 @@ import javax.persistence.EntityManagerFactory;
  */
 public class ChecklistJpaController implements Serializable {
 
-    public ChecklistJpaController(EntityManagerFactory emf) {
-        this.emf = emf;
+    public ChecklistJpaController() {
+        this.emf = Persistence.createEntityManagerFactory("NoMasAccidentesPU");
     }
     private EntityManagerFactory emf = null;
 

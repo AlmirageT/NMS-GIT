@@ -9,8 +9,6 @@ import Controlador.UsuariosJpaController;
 import Modelo.Roles;
 import Modelo.Usuarios;
 import java.math.BigDecimal;
-import java.util.List;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,16 +17,18 @@ import javax.swing.JOptionPane;
 public class login extends javax.swing.JFrame {
 
     private UsuariosJpaController controller;
-    private Usuarios usuario;
-    private Roles rolAdmin, rolProf;
+    private Roles rolAdmin, rolProf, rolCliente;
     int mousepX;
     int mousepY;
-
+    Object nombre;
+    public static String nom = "";
     public login() {
         initComponents();
+        this.setLocationRelativeTo(null);
         controller = new UsuariosJpaController();
         rolAdmin = new Roles(BigDecimal.valueOf(1), "Admin");
         rolProf = new Roles(BigDecimal.valueOf(2), "Profesional");
+        rolCliente = new Roles(BigDecimal.valueOf(3), "Cliente");
     }
 
     /**
@@ -255,16 +255,23 @@ public class login extends javax.swing.JFrame {
         } else {
             for (Usuarios u : controller.login(email, pass)) {
                 if (u.getRolesIdRol().equals(rolAdmin)) {
+                    nombre = u.getNombres();
+                    nom = String.valueOf(nombre);
                     inicioAdmin ia = new inicioAdmin();
                     ia.setVisible(true);
                     this.dispose();
                 } else if (u.getRolesIdRol().equals(rolProf)) {
+                    nombre = u.getNombres();
+                    nom = String.valueOf(nombre);
                     inicioProfesional ip = new inicioProfesional();
                     ip.setVisible(true);
                     this.dispose();
+                } else if(u.getRolesIdRol().equals(rolCliente)){
+                    lblWarning.setText("Usuario y/o Contraseña Equivocados");
                 }
+                
             }
-
+            lblWarning.setText("Usuario y/o Contraseña Equivocados");
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     }

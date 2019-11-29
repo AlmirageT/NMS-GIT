@@ -21,6 +21,7 @@ import java.util.Collection;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 /**
  *
@@ -28,8 +29,8 @@ import javax.persistence.EntityManagerFactory;
  */
 public class TipoReporteJpaController implements Serializable {
 
-    public TipoReporteJpaController(EntityManagerFactory emf) {
-        this.emf = emf;
+    public TipoReporteJpaController() {
+        this.emf = Persistence.createEntityManagerFactory("NoMasAccidentesPU");
     }
     private EntityManagerFactory emf = null;
 

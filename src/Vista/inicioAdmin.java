@@ -18,6 +18,9 @@ public class inicioAdmin extends javax.swing.JFrame {
     int mousepY;
     public inicioAdmin() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        login l = new login();
+        lblUsuario.setText("Bienvenido "+l.nom);
         addCliente.hide();
         listarCliente.hide();
         addProfesional.hide();
@@ -77,6 +80,7 @@ public class inicioAdmin extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         Inicio = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
+        lblUsuario = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
@@ -354,15 +358,24 @@ public class inicioAdmin extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(96, 95, 249));
         jPanel1.setName(""); // NOI18N
 
+        lblUsuario.setFont(new java.awt.Font("Franklin Gothic Book", 0, 36)); // NOI18N
+        lblUsuario.setForeground(new java.awt.Color(0, 0, 0));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 830, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(72, 72, 72)
+                .addComponent(lblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 718, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 150, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addComponent(lblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         bg.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 60, 830, 150));
@@ -805,6 +818,7 @@ public class inicioAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel lblListContrato;
     private javax.swing.JLabel lblListProfesional;
     private javax.swing.JLabel lblPlanificacion;
+    private javax.swing.JLabel lblUsuario;
     private javax.swing.JLabel listarCliente;
     private javax.swing.JLabel listarContratos;
     private javax.swing.JLabel listarProfesional;

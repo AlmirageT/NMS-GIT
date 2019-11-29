@@ -19,6 +19,9 @@ public class inicioProfesional extends javax.swing.JFrame {
      */
     public inicioProfesional() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        login l = new login();
+        lblProfesional.setText("Bienvenido "+l.nom);
         addProfesional.hide();
         lblAddProfesional.hide();
         setColor(panelInicio);
@@ -57,11 +60,13 @@ public class inicioProfesional extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         Inicio = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
+        lblProfesional = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         addProfesional = new javax.swing.JLabel();
         lblAddProfesional = new javax.swing.JLabel();
+        lblUsuario = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -310,15 +315,29 @@ public class inicioProfesional extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(96, 95, 249));
         jPanel1.setName(""); // NOI18N
 
+        lblProfesional.setFont(new java.awt.Font("Franklin Gothic Book", 0, 36)); // NOI18N
+        lblProfesional.setForeground(new java.awt.Color(0, 0, 0));
+        lblProfesional.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 830, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(55, 55, 55)
+                    .addComponent(lblProfesional, javax.swing.GroupLayout.PREFERRED_SIZE, 735, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(40, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 150, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(50, 50, 50)
+                    .addComponent(lblProfesional, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(50, Short.MAX_VALUE)))
         );
 
         bg.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 60, 830, 150));
@@ -360,15 +379,28 @@ public class inicioProfesional extends javax.swing.JFrame {
         lblAddProfesional.setText("Agregar Profesional");
         bg.add(lblAddProfesional, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 400, 160, 20));
 
+        lblUsuario.setFont(new java.awt.Font("Franklin Gothic Book", 0, 36)); // NOI18N
+        lblUsuario.setForeground(new java.awt.Color(0, 0, 0));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(367, 367, 367)
+                    .addComponent(lblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(368, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(275, 275, 275)
+                    .addComponent(lblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(275, Short.MAX_VALUE)))
         );
 
         pack();
@@ -516,6 +548,8 @@ public class inicioProfesional extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblAddProfesional;
+    private javax.swing.JLabel lblProfesional;
+    private javax.swing.JLabel lblUsuario;
     private javax.swing.JPanel panelActividades;
     private javax.swing.JPanel panelCliente;
     private javax.swing.JPanel panelContrato;
