@@ -316,7 +316,7 @@ public class listaUsuario extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, ex.getMessage(), "Validación", 0);
             }
         } else {
-            JOptionPane.showMessageDialog(this, "Favor seleccionar la fila que desea re activar", "Validación", 0);
+            JOptionPane.showMessageDialog(this, "Favor seleccionar la fila que desea desactivar", "Validación", 0);
         }
     }//GEN-LAST:event_btnBajaClienteActionPerformed
 

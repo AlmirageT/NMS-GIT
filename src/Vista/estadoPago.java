@@ -5,6 +5,8 @@
  */
 package Vista;
 
+import Controlador.CargoExtraJpaController;
+import Modelo.CargoExtra;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -15,9 +17,12 @@ public class estadoPago extends javax.swing.JFrame {
 
     int mousepX;
     int mousepY;
-    DefaultTableModel modelo;
+    private CargoExtraJpaController controller;
+    DefaultTableModel modelo, modeloCargo;
     public estadoPago() {
         initComponents();
+        controller = new CargoExtraJpaController();
+        cargarTabla();
     }
 
     /**
@@ -39,6 +44,9 @@ public class estadoPago extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         lstEstadoPago = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblCargoExtra = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -139,6 +147,24 @@ public class estadoPago extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(lstEstadoPago);
 
+        jLabel2.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel2.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setText("Estado de Cargo Extra");
+
+        tblCargoExtra.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(tblCargoExtra);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -153,9 +179,15 @@ public class estadoPago extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel13)
                                 .addContainerGap())))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(156, 156, 156))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1)
+                            .addComponent(jScrollPane2))
                         .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
@@ -166,8 +198,12 @@ public class estadoPago extends javax.swing.JFrame {
                 .addGap(1, 1, 1)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -178,9 +214,7 @@ public class estadoPago extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -241,18 +275,33 @@ public class estadoPago extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable lstEstadoPago;
+    private javax.swing.JTable tblCargoExtra;
     // End of variables declaration//GEN-END:variables
     private void cargarTabla(){
-        
+        cargarColumnaCargoExtra();
+        for (CargoExtra ce : controller.findCargoExtraEntities()) {
+            modeloCargo.addRow(new Object[]{ce.getIdCargoExtra(), ce.getTipo(), ce.getMonto(), ce.getDescripcion(),ce.getPagosIdPago().getIdPago()});
+        }
     }
     private void cargarColumna(){
        modelo = new DefaultTableModel();
        modelo.addColumn("");
+    }
+    private void cargarColumnaCargoExtra(){
+       modeloCargo = new DefaultTableModel();
+       modeloCargo.addColumn("Codigo");
+       modeloCargo.addColumn("Tipo Servicio");
+       modeloCargo.addColumn("Monto");
+       modeloCargo.addColumn("Descripcion");
+       modeloCargo.addColumn("Codigo de Pago");
+       tblCargoExtra.setModel(modeloCargo);
     }
 }
