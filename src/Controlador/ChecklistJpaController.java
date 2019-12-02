@@ -201,5 +201,12 @@ public class ChecklistJpaController implements Serializable {
             em.close();
         }
     }
+    public List<Checklist> findByUser(Usuarios usuariosIdUsuario){
+        EntityManager em = getEntityManager();
+        Query query = em.createNamedQuery("Checklist.findByUsuario");
+        query.setParameter("usuariosIdUsuario", usuariosIdUsuario);
+        List<Checklist> lista = query.getResultList();
+        return lista;
+    }
     
 }

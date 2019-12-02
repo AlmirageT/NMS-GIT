@@ -12,6 +12,7 @@ import Modelo.CargoExtra;
 import Modelo.ContratoEstados;
 import Modelo.Contratos;
 import Modelo.Pagos;
+import java.awt.event.KeyEvent;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Date;
@@ -79,7 +80,7 @@ public class agregarPago extends javax.swing.JFrame {
         btnBuscar = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
         addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
@@ -183,6 +184,12 @@ public class agregarPago extends javax.swing.JFrame {
         jLabel1.setText("Tipo de Servicio:");
 
         jLabel2.setText("Monto a Cancelar:");
+
+        txtMonto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtMontoKeyTyped(evt);
+            }
+        });
 
         jLabel3.setText("Descripcion:");
 
@@ -339,10 +346,11 @@ public class agregarPago extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        String monto = txtMonto.getText();
-        int m = Integer.parseInt(monto);
-        int fila = jtCargoExtra.getSelectedRow();
-        if (fila != -1) {
+        if (!(cbTipo.getSelectedIndex() == 0) && !(txtMonto.getText().equals("")) && !(txtDescripcion.getText().equals(""))) {
+            String monto = txtMonto.getText();
+            int m = Integer.parseInt(monto);
+            int fila = jtCargoExtra.getSelectedRow();
+            if (fila != -1) {
             Object codigo = jtCargoExtra.getValueAt(fila, 0);
             String co = String.valueOf(codigo);
             int c = Integer.parseInt(co);  
@@ -369,7 +377,19 @@ public class agregarPago extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(this, "Favor seleccionar la fila del contrato a adjuntar", "Validación", 0);
         }
+        }else{
+            JOptionPane.showMessageDialog(this, "Favor no dejar datos en blanco", "Validación", 0);
+        }
+        
     }//GEN-LAST:event_btnAgregarActionPerformed
+
+    private void txtMontoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMontoKeyTyped
+        char car = evt.getKeyChar();
+        if ((car<'0' || car>'9')&& car!=(char) KeyEvent.VK_BACK_SPACE) {
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "Solo ingresar numeros", "Validación", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_txtMontoKeyTyped
 
     /**
      * @param args the command line arguments
@@ -458,6 +478,7 @@ public class agregarPago extends javax.swing.JFrame {
         txtBuscador.setText("");
         txtDescripcion.setText("");
         txtMonto.setText("");
+        cbTipo.setSelectedIndex(0);
     }
 
     private void cargarTablarPorCodigo(String rutCliente) {

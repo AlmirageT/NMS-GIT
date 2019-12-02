@@ -9,6 +9,9 @@ import Controlador.UsuariosJpaController;
 import Modelo.Roles;
 import Modelo.Usuarios;
 import java.math.BigDecimal;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,6 +25,11 @@ public class login extends javax.swing.JFrame {
     int mousepY;
     Object nombre;
     public static String nom = "";
+    Object id;
+    String idU = "";
+    int cod = 0;
+    public static BigDecimal codigo;
+
     public login() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -249,31 +257,37 @@ public class login extends javax.swing.JFrame {
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
         String email = txtCorreo.getText();
         String pass = txtPass.getText();
+        if (isEmail(email) && isPass(pass)) {
 
-        if (email.trim().isEmpty() || pass.trim().isEmpty()) {
-            lblWarning.setText("Usuario y/o Contraseña Equivocados");
-        } else {
-            for (Usuarios u : controller.login(email, pass)) {
-                if (u.getRolesIdRol().equals(rolAdmin)) {
-                    nombre = u.getNombres();
-                    nom = String.valueOf(nombre);
-                    inicioAdmin ia = new inicioAdmin();
-                    ia.setVisible(true);
-                    this.dispose();
-                } else if (u.getRolesIdRol().equals(rolProf)) {
-                    nombre = u.getNombres();
-                    nom = String.valueOf(nombre);
-                    inicioProfesional ip = new inicioProfesional();
-                    ip.setVisible(true);
-                    this.dispose();
-                } else if(u.getRolesIdRol().equals(rolCliente)){
-                    lblWarning.setText("Usuario y/o Contraseña Equivocados");
+            if (email.trim().isEmpty() || pass.trim().isEmpty()) {
+                lblWarning.setText("Usuario y/o Contraseña Equivocados");
+            } else {
+                for (Usuarios u : controller.login(email, pass)) {
+                    if (u.getRolesIdRol().equals(rolAdmin)) {
+                        nombre = u.getNombres();
+                        nom = String.valueOf(nombre);
+                        inicioAdmin ia = new inicioAdmin();
+                        ia.setVisible(true);
+                        this.dispose();
+                    } else if (u.getRolesIdRol().equals(rolProf)) {
+                        nombre = u.getNombres();
+                        nom = String.valueOf(nombre);
+                        id = u.getIdUsuario();
+                        idU = String.valueOf(id);
+                        cod = Integer.parseInt(idU);
+                        codigo = BigDecimal.valueOf(cod);
+                        inicioProfesional ip = new inicioProfesional();
+                        ip.setVisible(true);
+                        this.dispose();
+                    } else if (u.getRolesIdRol().equals(rolCliente)) {
+                        lblWarning.setText("Usuario y/o Contraseña Equivocados");
+                    }
                 }
-                
-            }
-            lblWarning.setText("Usuario y/o Contraseña Equivocados");
+                lblWarning.setText("Usuario y/o Contraseña Equivocados");
     }//GEN-LAST:event_btnIngresarActionPerformed
-
+        } else {
+            JOptionPane.showMessageDialog(this, "Ingrese datos reales");
+        }
     }
     private void jLabel8MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MousePressed
         System.exit(0);
@@ -289,6 +303,31 @@ public class login extends javax.swing.JFrame {
         mousepX = evt.getX();
         mousepY = evt.getY();
     }//GEN-LAST:event_formMousePressed
+    public boolean isEmail(String email) {
+        Pattern pat = null;
+        Matcher mat = null;
+        String algo = "^[A-Za-z0-9+_.-]+@(.+)$";
+        pat = Pattern.compile(algo);
+        mat = pat.matcher(email);
+        if (mat.find()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean isPass(String pass) {
+        Pattern pat = null;
+        Matcher mat = null;
+        String algo = "^[A-Za-z0-9+_.-]+$";
+        pat = Pattern.compile(algo);
+        mat = pat.matcher(pass);
+        if (mat.find()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     /**
      * @param args the command line arguments

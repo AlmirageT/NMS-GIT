@@ -16,9 +16,12 @@ import Modelo.FormaPago;
 import Modelo.Pagos;
 import Modelo.Roles;
 import Modelo.Usuarios;
+import java.awt.event.KeyEvent;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 
 /**
@@ -38,6 +41,7 @@ public class agregarUsuario extends javax.swing.JFrame {
     Date fecha = new Date();
     int mousepX;
     int mousepY;
+
     public agregarUsuario() {
         initComponents();
         controller = new UsuariosJpaController();
@@ -108,7 +112,7 @@ public class agregarUsuario extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         txtTelefonoEmpresa = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
         addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
@@ -250,13 +254,49 @@ public class agregarUsuario extends javax.swing.JFrame {
         lblApPat.setText("Apellido Paterno:");
         jPanel2.add(lblApPat, new org.netbeans.lib.awtextra.AbsoluteConstraints(603, 309, 114, 22));
         jPanel2.add(txtRut, new org.netbeans.lib.awtextra.AbsoluteConstraints(415, 269, 154, -1));
+
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreKeyTyped(evt);
+            }
+        });
         jPanel2.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(415, 308, 154, -1));
+
+        txtAppPat.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtAppPatKeyTyped(evt);
+            }
+        });
         jPanel2.add(txtAppPat, new org.netbeans.lib.awtextra.AbsoluteConstraints(723, 308, 154, -1));
+
+        txtAppMat.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtAppMatKeyTyped(evt);
+            }
+        });
         jPanel2.add(txtAppMat, new org.netbeans.lib.awtextra.AbsoluteConstraints(1081, 308, 154, -1));
         jPanel2.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(723, 269, 154, -1));
         jPanel2.add(txtClave, new org.netbeans.lib.awtextra.AbsoluteConstraints(1370, 310, 154, -1));
+
+        txtCelular.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCelularKeyTyped(evt);
+            }
+        });
         jPanel2.add(txtCelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(1370, 270, 154, -1));
+
+        txtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTelefonoKeyTyped(evt);
+            }
+        });
         jPanel2.add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 350, 160, -1));
+
+        txtDireccion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDireccionKeyTyped(evt);
+            }
+        });
         jPanel2.add(txtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 350, 160, -1));
 
         btnAgregar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -285,6 +325,12 @@ public class agregarUsuario extends javax.swing.JFrame {
 
         jLabel2.setText("Monto a Pagar:");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 440, -1, -1));
+
+        txtMontoPagar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtMontoPagarKeyTyped(evt);
+            }
+        });
         jPanel2.add(txtMontoPagar, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 430, 150, -1));
 
         jLabel3.setText("Forma de Pago:");
@@ -313,18 +359,42 @@ public class agregarUsuario extends javax.swing.JFrame {
 
         jLabel6.setText("Nombre Empresa:");
         jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 630, -1, -1));
+
+        txtNombreEmpresa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreEmpresaKeyTyped(evt);
+            }
+        });
         jPanel2.add(txtNombreEmpresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 620, 150, -1));
 
         jLabel7.setText("Razon Social:");
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 630, -1, -1));
+
+        txtRazonSocial.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtRazonSocialKeyTyped(evt);
+            }
+        });
         jPanel2.add(txtRazonSocial, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 620, 150, -1));
 
         jLabel8.setText("Direccion:");
         jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 630, -1, -1));
+
+        txtDireccionEmpresa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDireccionEmpresaKeyTyped(evt);
+            }
+        });
         jPanel2.add(txtDireccionEmpresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 620, 160, -1));
 
         jLabel9.setText("Telefono:");
         jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(1330, 630, -1, -1));
+
+        txtTelefonoEmpresa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTelefonoEmpresaKeyTyped(evt);
+            }
+        });
         jPanel2.add(txtTelefonoEmpresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(1390, 620, 150, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -346,76 +416,80 @@ public class agregarUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel13MousePressed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        Roles rl;
-        rl = new Roles((BigDecimal.valueOf(3)), "Cliente");
-        ContratoEstados ce;
-        ce = new ContratoEstados(BigDecimal.valueOf(1), "En curso");
-        int codigo = 1;
-        boolean valor = false;
-        do {            
-            codigo++;
-            valor = controllerPagos.buscarCodigo(BigDecimal.valueOf(codigo));   
-        } while (valor == true);
-        FormaPago fp = new FormaPago(BigDecimal.valueOf(cbFormaPago.getSelectedIndex()), cbFormaPago.getSelectedItem().toString());
-        try {
-            usuario = new Usuarios();
-            usuario.setRut(txtRut.getText());
-            usuario.setNombres(txtNombre.getText());
-            usuario.setPaterno(txtAppPat.getText());
-            usuario.setMaterno(txtAppMat.getText());
-            usuario.setFechaNacimiento(fechaNacimiento.getDate());
-            usuario.setEmail(txtEmail.getText());
-            usuario.setClave(txtClave.getText());
-            usuario.setCelular(Integer.parseInt(txtCelular.getText()));
-            usuario.setTelefono(Integer.parseInt(txtCelular.getText()));
-            usuario.setDireccion(txtDireccion.getText());
-            usuario.setEstado(Short.parseShort("1"));
-            usuario.setFechaCreacion(fecha);
-            usuario.setFechaModificacion(fecha);
-            usuario.setRolesIdRol(rl);
-            controller.create(usuario);
-            pago = new Pagos();
-            pago.setIdPago(BigDecimal.valueOf(codigo));
-            pago.setFechaHora(dcFechaPago.getDate());
-            pago.setMonto(Long.valueOf(txtMontoPagar.getText()));
-            pago.setCreado(fecha);
-            pago.setModificado(fecha);
-            pago.setFormaPagoIdFormaPago(fp);
-            pago.setContratosIdContrato(BigInteger.valueOf(codigo));
-            controllerPagos.create(pago);
-            contrato = new Contratos();
-            contrato.setIdContrato(BigDecimal.valueOf(codigo));
-            contrato.setFechaInicio(dcFechaInicio.getDate());
-            contrato.setFechaTermino(dcFechaTermino.getDate());
-            contrato.setCreado(fecha);
-            contrato.setModificado(fecha);
-            contrato.setMonto(Long.valueOf(txtMontoPagar.getText()));
-            contrato.setIdContratoEstadoFk(ce);
-            contrato.setPagosIdPago(pago);
-            contrato.setRutCliente(txtRut.getText());
-            contrato.setRazonSocial(txtRazonSocial.getText());
-            controllerContrato.create(contrato);
-            empresa = new Empresas();
-            empresa.setNombre(txtNombreEmpresa.getText());
-            empresa.setRazonSocial(txtRazonSocial.getText());
-            empresa.setDireccion(txtDireccionEmpresa.getText());
-            empresa.setTelefono(Integer.parseInt(txtTelefonoEmpresa.getText()));
-            empresa.setCreado(fecha);
-            empresa.setModificado(fecha);
-            empresa.setContratosIdContrato(BigInteger.valueOf(codigo));
-            controllerEmpresa.create(empresa);
-            limpiar();
-            JOptionPane.showMessageDialog(this, "El usuario de Rut " + usuario.getRut()+ " se creo satisfactoriamente.", "Confirmación", JOptionPane.INFORMATION_MESSAGE);
+        if (isEmail(txtEmail.getText()) && isPass(txtClave.getText())) {
+            Roles rl;
+            rl = new Roles((BigDecimal.valueOf(3)), "Cliente");
+            ContratoEstados ce;
+            ce = new ContratoEstados(BigDecimal.valueOf(1), "En curso");
+            int codigo = 1;
+            boolean valor = false;
+            do {
+                codigo++;
+                valor = controllerPagos.buscarCodigo(BigDecimal.valueOf(codigo));
+            } while (valor == true);
+            FormaPago fp = new FormaPago(BigDecimal.valueOf(cbFormaPago.getSelectedIndex()), cbFormaPago.getSelectedItem().toString());
+            try {
+                usuario = new Usuarios();
+                usuario.setRut(txtRut.getText());
+                usuario.setNombres(txtNombre.getText());
+                usuario.setPaterno(txtAppPat.getText());
+                usuario.setMaterno(txtAppMat.getText());
+                usuario.setFechaNacimiento(fechaNacimiento.getDate());
+                usuario.setEmail(txtEmail.getText());
+                usuario.setClave(txtClave.getText());
+                usuario.setCelular(Integer.parseInt(txtCelular.getText()));
+                usuario.setTelefono(Integer.parseInt(txtCelular.getText()));
+                usuario.setDireccion(txtDireccion.getText());
+                usuario.setEstado(Short.parseShort("1"));
+                usuario.setFechaCreacion(fecha);
+                usuario.setFechaModificacion(fecha);
+                usuario.setRolesIdRol(rl);
+                controller.create(usuario);
+                pago = new Pagos();
+                pago.setIdPago(BigDecimal.valueOf(codigo));
+                pago.setFechaHora(dcFechaPago.getDate());
+                pago.setMonto(Long.valueOf(txtMontoPagar.getText()));
+                pago.setCreado(fecha);
+                pago.setModificado(fecha);
+                pago.setFormaPagoIdFormaPago(fp);
+                pago.setContratosIdContrato(BigInteger.valueOf(codigo));
+                controllerPagos.create(pago);
+                contrato = new Contratos();
+                contrato.setIdContrato(BigDecimal.valueOf(codigo));
+                contrato.setFechaInicio(dcFechaInicio.getDate());
+                contrato.setFechaTermino(dcFechaTermino.getDate());
+                contrato.setCreado(fecha);
+                contrato.setModificado(fecha);
+                contrato.setMonto(Long.valueOf(txtMontoPagar.getText()));
+                contrato.setIdContratoEstadoFk(ce);
+                contrato.setPagosIdPago(pago);
+                contrato.setRutCliente(txtRut.getText());
+                contrato.setRazonSocial(txtRazonSocial.getText());
+                controllerContrato.create(contrato);
+                empresa = new Empresas();
+                empresa.setNombre(txtNombreEmpresa.getText());
+                empresa.setRazonSocial(txtRazonSocial.getText());
+                empresa.setDireccion(txtDireccionEmpresa.getText());
+                empresa.setTelefono(Integer.parseInt(txtTelefonoEmpresa.getText()));
+                empresa.setCreado(fecha);
+                empresa.setModificado(fecha);
+                empresa.setContratosIdContrato(BigInteger.valueOf(codigo));
+                controllerEmpresa.create(empresa);
+                limpiar();
+                JOptionPane.showMessageDialog(this, "El usuario de Rut " + usuario.getRut() + " se creo satisfactoriamente.", "Confirmación", JOptionPane.INFORMATION_MESSAGE);
 
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage(), "Validación", JOptionPane.WARNING_MESSAGE);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Llenar datos solicitados", "Validación", JOptionPane.WARNING_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Ingrese mail con formato ejemplo@ejemplo.com");
         }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
         int coordenadaX = evt.getXOnScreen();
         int coordenadaY = evt.getYOnScreen();
-        this.setLocation(coordenadaX-mousepX, coordenadaY-mousepY);
+        this.setLocation(coordenadaX - mousepX, coordenadaY - mousepY);
     }//GEN-LAST:event_formMouseDragged
 
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
@@ -423,6 +497,119 @@ public class agregarUsuario extends javax.swing.JFrame {
         mousepY = evt.getY();
     }//GEN-LAST:event_formMousePressed
 
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+        char car = evt.getKeyChar();
+        if ((car < 'a' || car > 'z') && (car < 'A' || car > 'Z') && (car != (char) KeyEvent.VK_BACK_SPACE) && (car != (char) KeyEvent.VK_SPACE)) {
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "Ingresar solo letras", "Validación", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_txtNombreKeyTyped
+
+    private void txtNombreEmpresaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreEmpresaKeyTyped
+        char car = evt.getKeyChar();
+        if ((car < 'a' || car > 'z') && (car < 'A' || car > 'Z') && (car != (char) KeyEvent.VK_BACK_SPACE) && (car != (char) KeyEvent.VK_SPACE)) {
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "Ingresar solo letras", "Validación", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_txtNombreEmpresaKeyTyped
+
+    private void txtAppPatKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAppPatKeyTyped
+        char car = evt.getKeyChar();
+        if ((car < 'a' || car > 'z') && (car < 'A' || car > 'Z') && (car != (char) KeyEvent.VK_BACK_SPACE) && (car != (char) KeyEvent.VK_SPACE)) {
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "Ingresar solo letras", "Validación", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_txtAppPatKeyTyped
+
+    private void txtAppMatKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAppMatKeyTyped
+        char car = evt.getKeyChar();
+        if ((car < 'a' || car > 'z') && (car < 'A' || car > 'Z') && (car != (char) KeyEvent.VK_BACK_SPACE) && (car != (char) KeyEvent.VK_SPACE)) {
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "Ingresar solo letras", "Validación", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_txtAppMatKeyTyped
+
+    private void txtCelularKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCelularKeyTyped
+        char car = evt.getKeyChar();
+        if ((car < '0' || car > '9') && car != (char) KeyEvent.VK_BACK_SPACE) {
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "Ingresar solo numeros", "Validación", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_txtCelularKeyTyped
+
+    private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
+        char car = evt.getKeyChar();
+        if ((car < '0' || car > '9') && car != (char) KeyEvent.VK_BACK_SPACE) {
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "Ingresar solo numeros", "Validación", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_txtTelefonoKeyTyped
+
+    private void txtTelefonoEmpresaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoEmpresaKeyTyped
+        char car = evt.getKeyChar();
+        if ((car < '0' || car > '9') && car != (char) KeyEvent.VK_BACK_SPACE) {
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "Ingresar solo numeros", "Validación", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_txtTelefonoEmpresaKeyTyped
+
+    private void txtRazonSocialKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRazonSocialKeyTyped
+        char car = evt.getKeyChar();
+        if ((car < '0' || car > '9') && car != (char) KeyEvent.VK_BACK_SPACE) {
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "Ingresar solo numeros", "Validación", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_txtRazonSocialKeyTyped
+
+    private void txtMontoPagarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMontoPagarKeyTyped
+        char car = evt.getKeyChar();
+        if ((car < '0' || car > '9') && car != (char) KeyEvent.VK_BACK_SPACE) {
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "Ingresar solo numeros", "Validación", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_txtMontoPagarKeyTyped
+
+    private void txtDireccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDireccionKeyTyped
+        char car = evt.getKeyChar();
+        if ((car < 'a' || car > 'z') && (car < 'A' || car > 'Z') && (car < '0' || car > '9') && (car != (char) KeyEvent.VK_BACK_SPACE) && (car != (char) KeyEvent.VK_SPACE)) {
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "Ingresar letras y numeros", "Validación", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_txtDireccionKeyTyped
+
+    private void txtDireccionEmpresaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDireccionEmpresaKeyTyped
+        char car = evt.getKeyChar();
+        if ((car < 'a' || car > 'z') && (car < 'A' || car > 'Z') && (car < '0' || car > '9') && (car != (char) KeyEvent.VK_BACK_SPACE) && (car != (char) KeyEvent.VK_SPACE)) {
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "Ingresar letras y numeros", "Validación", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_txtDireccionEmpresaKeyTyped
+
+    public boolean isEmail(String email) {
+        Pattern pat = null;
+        Matcher mat = null;
+        String algo = "^[A-Za-z0-9+_.-]+@(.+)$";
+        pat = Pattern.compile(algo);
+        mat = pat.matcher(email);
+        if (mat.find()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean isPass(String pass) {
+        Pattern pat = null;
+        Matcher mat = null;
+        String algo = "^[A-Za-z0-9+_.-]+$";
+        pat = Pattern.compile(algo);
+        mat = pat.matcher(pass);
+        if (mat.find()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -512,7 +699,7 @@ public class agregarUsuario extends javax.swing.JFrame {
     private javax.swing.JTextField txtTelefono;
     private javax.swing.JTextField txtTelefonoEmpresa;
     // End of variables declaration//GEN-END:variables
-    private void limpiar(){
+    private void limpiar() {
         txtTelefonoEmpresa.setText("");
         txtTelefono.setText("");
         txtRut.setText("");

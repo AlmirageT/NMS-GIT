@@ -38,7 +38,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Checklist.findByItem4", query = "SELECT c FROM Checklist c WHERE c.item4 = :item4")
     , @NamedQuery(name = "Checklist.findByAprovado4", query = "SELECT c FROM Checklist c WHERE c.aprovado4 = :aprovado4")
     , @NamedQuery(name = "Checklist.findByItem5", query = "SELECT c FROM Checklist c WHERE c.item5 = :item5")
-    , @NamedQuery(name = "Checklist.findByAprovado5", query = "SELECT c FROM Checklist c WHERE c.aprovado5 = :aprovado5")})
+    , @NamedQuery(name = "Checklist.findByAprovado5", query = "SELECT c FROM Checklist c WHERE c.aprovado5 = :aprovado5")
+    ,@NamedQuery(name = "Checklist.findByUsuario", query = "SELECT c FROM Checklist c WHERE c.usuariosIdUsuario = :usuariosIdUsuario")})
 public class Checklist implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -103,6 +104,13 @@ public class Checklist implements Serializable {
         this.aprovado4 = aprovado4;
         this.item5 = item5;
         this.aprovado5 = aprovado5;
+    }
+    public Checklist(String item1,String item2, String item3, String item4, String item5) {
+        this.item1 = item1;
+        this.item2 = item2;
+        this.item3 = item3;
+        this.item4 = item4;
+        this.item5 = item5;
     }
 
     public BigDecimal getIdChecklist() {

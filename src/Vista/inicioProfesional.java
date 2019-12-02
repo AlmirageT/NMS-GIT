@@ -6,6 +6,7 @@
 package Vista;
 
 import java.awt.Color;
+import java.math.BigDecimal;
 import javax.swing.JPanel;
 
 /**
@@ -14,16 +15,25 @@ import javax.swing.JPanel;
  */
 public class inicioProfesional extends javax.swing.JFrame {
 
-    /**
-     * Creates new form inicioProfesional
-     */
+    int mousepX;
+    int mousepY;
+    login l = new login();
+    BigDecimal int1 = l.codigo;
+    public static BigDecimal cod;
     public inicioProfesional() {
         initComponents();
-        this.setLocationRelativeTo(null);
-        login l = new login();
+        this.setLocationRelativeTo(null);        
         lblProfesional.setText("Bienvenido "+l.nom);
-        addProfesional.hide();
-        lblAddProfesional.hide();
+        addChecklist.hide();
+        lblAprobarChk.hide();
+        lstChecklist.hide();
+        lblAddChecklist1.hide();
+        lblAReportCapac.hide();
+        lblReportChk.hide();
+        lblReportVisitas.hide();
+        reportCapacitaciones.hide();
+        reportChecklist1.hide();
+        reportVisitas.hide();
         setColor(panelInicio);
     }
 
@@ -38,19 +48,19 @@ public class inicioProfesional extends javax.swing.JFrame {
 
         bg = new javax.swing.JPanel();
         sidepane = new javax.swing.JPanel();
-        panelContrato = new javax.swing.JPanel();
+        panelVisita = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        panelProfesional = new javax.swing.JPanel();
+        panelReporte = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        panelCliente = new javax.swing.JPanel();
+        panelChecklist = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        panelPagos = new javax.swing.JPanel();
+        panelCapacitacion = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        panelActividades = new javax.swing.JPanel();
+        panelContacto = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -64,12 +74,29 @@ public class inicioProfesional extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        addProfesional = new javax.swing.JLabel();
-        lblAddProfesional = new javax.swing.JLabel();
-        lblUsuario = new javax.swing.JLabel();
+        addChecklist = new javax.swing.JLabel();
+        lblAprobarChk = new javax.swing.JLabel();
+        lstChecklist = new javax.swing.JLabel();
+        lblAddChecklist1 = new javax.swing.JLabel();
+        reportCapacitaciones = new javax.swing.JLabel();
+        lblAReportCapac = new javax.swing.JLabel();
+        reportChecklist1 = new javax.swing.JLabel();
+        lblReportChk = new javax.swing.JLabel();
+        reportVisitas = new javax.swing.JLabel();
+        lblReportVisitas = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
+        addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                formMouseDragged(evt);
+            }
+        });
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                formMousePressed(evt);
+            }
+        });
 
         bg.setBackground(new java.awt.Color(255, 255, 255));
         bg.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -77,11 +104,11 @@ public class inicioProfesional extends javax.swing.JFrame {
         sidepane.setBackground(new java.awt.Color(15, 14, 140));
         sidepane.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        panelContrato.setBackground(new java.awt.Color(47, 46, 157));
-        panelContrato.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        panelContrato.addMouseListener(new java.awt.event.MouseAdapter() {
+        panelVisita.setBackground(new java.awt.Color(47, 46, 157));
+        panelVisita.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        panelVisita.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                panelContratoMousePressed(evt);
+                panelVisitaMousePressed(evt);
             }
         });
 
@@ -92,33 +119,33 @@ public class inicioProfesional extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(204, 204, 204));
         jLabel2.setText("Visitas Programadas");
 
-        javax.swing.GroupLayout panelContratoLayout = new javax.swing.GroupLayout(panelContrato);
-        panelContrato.setLayout(panelContratoLayout);
-        panelContratoLayout.setHorizontalGroup(
-            panelContratoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelContratoLayout.createSequentialGroup()
+        javax.swing.GroupLayout panelVisitaLayout = new javax.swing.GroupLayout(panelVisita);
+        panelVisita.setLayout(panelVisitaLayout);
+        panelVisitaLayout.setHorizontalGroup(
+            panelVisitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelVisitaLayout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(91, Short.MAX_VALUE))
         );
-        panelContratoLayout.setVerticalGroup(
-            panelContratoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panelVisitaLayout.setVerticalGroup(
+            panelVisitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelContratoLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelVisitaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        sidepane.add(panelContrato, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 310, 50));
+        sidepane.add(panelVisita, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 310, 50));
 
-        panelProfesional.setBackground(new java.awt.Color(47, 46, 157));
-        panelProfesional.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        panelProfesional.addMouseListener(new java.awt.event.MouseAdapter() {
+        panelReporte.setBackground(new java.awt.Color(47, 46, 157));
+        panelReporte.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        panelReporte.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                panelProfesionalMousePressed(evt);
+                panelReporteMousePressed(evt);
             }
         });
 
@@ -129,33 +156,33 @@ public class inicioProfesional extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(204, 204, 204));
         jLabel4.setText("Generar Reporte");
 
-        javax.swing.GroupLayout panelProfesionalLayout = new javax.swing.GroupLayout(panelProfesional);
-        panelProfesional.setLayout(panelProfesionalLayout);
-        panelProfesionalLayout.setHorizontalGroup(
-            panelProfesionalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelProfesionalLayout.createSequentialGroup()
+        javax.swing.GroupLayout panelReporteLayout = new javax.swing.GroupLayout(panelReporte);
+        panelReporte.setLayout(panelReporteLayout);
+        panelReporteLayout.setHorizontalGroup(
+            panelReporteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelReporteLayout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(91, Short.MAX_VALUE))
         );
-        panelProfesionalLayout.setVerticalGroup(
-            panelProfesionalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panelReporteLayout.setVerticalGroup(
+            panelReporteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelProfesionalLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelReporteLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        sidepane.add(panelProfesional, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, -1, 50));
+        sidepane.add(panelReporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, -1, 50));
 
-        panelCliente.setBackground(new java.awt.Color(47, 46, 157));
-        panelCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        panelCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+        panelChecklist.setBackground(new java.awt.Color(47, 46, 157));
+        panelChecklist.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        panelChecklist.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                panelClienteMousePressed(evt);
+                panelChecklistMousePressed(evt);
             }
         });
 
@@ -166,33 +193,33 @@ public class inicioProfesional extends javax.swing.JFrame {
         jLabel10.setForeground(new java.awt.Color(204, 204, 204));
         jLabel10.setText("Checklist");
 
-        javax.swing.GroupLayout panelClienteLayout = new javax.swing.GroupLayout(panelCliente);
-        panelCliente.setLayout(panelClienteLayout);
-        panelClienteLayout.setHorizontalGroup(
-            panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelClienteLayout.createSequentialGroup()
+        javax.swing.GroupLayout panelChecklistLayout = new javax.swing.GroupLayout(panelChecklist);
+        panelChecklist.setLayout(panelChecklistLayout);
+        panelChecklistLayout.setHorizontalGroup(
+            panelChecklistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelChecklistLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(89, Short.MAX_VALUE))
         );
-        panelClienteLayout.setVerticalGroup(
-            panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panelChecklistLayout.setVerticalGroup(
+            panelChecklistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelClienteLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelChecklistLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        sidepane.add(panelCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 310, 50));
+        sidepane.add(panelChecklist, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 310, 50));
 
-        panelPagos.setBackground(new java.awt.Color(47, 46, 157));
-        panelPagos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        panelPagos.addMouseListener(new java.awt.event.MouseAdapter() {
+        panelCapacitacion.setBackground(new java.awt.Color(47, 46, 157));
+        panelCapacitacion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        panelCapacitacion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                panelPagosMousePressed(evt);
+                panelCapacitacionMousePressed(evt);
             }
         });
 
@@ -203,33 +230,33 @@ public class inicioProfesional extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(204, 204, 204));
         jLabel8.setText("Capacitaciones");
 
-        javax.swing.GroupLayout panelPagosLayout = new javax.swing.GroupLayout(panelPagos);
-        panelPagos.setLayout(panelPagosLayout);
-        panelPagosLayout.setHorizontalGroup(
-            panelPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelPagosLayout.createSequentialGroup()
+        javax.swing.GroupLayout panelCapacitacionLayout = new javax.swing.GroupLayout(panelCapacitacion);
+        panelCapacitacion.setLayout(panelCapacitacionLayout);
+        panelCapacitacionLayout.setHorizontalGroup(
+            panelCapacitacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelCapacitacionLayout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(91, Short.MAX_VALUE))
         );
-        panelPagosLayout.setVerticalGroup(
-            panelPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panelCapacitacionLayout.setVerticalGroup(
+            panelCapacitacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPagosLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCapacitacionLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        sidepane.add(panelPagos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, 310, 50));
+        sidepane.add(panelCapacitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, 310, 50));
 
-        panelActividades.setBackground(new java.awt.Color(47, 46, 157));
-        panelActividades.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        panelActividades.addMouseListener(new java.awt.event.MouseAdapter() {
+        panelContacto.setBackground(new java.awt.Color(47, 46, 157));
+        panelContacto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        panelContacto.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                panelActividadesMousePressed(evt);
+                panelContactoMousePressed(evt);
             }
         });
 
@@ -240,27 +267,27 @@ public class inicioProfesional extends javax.swing.JFrame {
         jLabel12.setForeground(new java.awt.Color(204, 204, 204));
         jLabel12.setText("Sistema de Contacto");
 
-        javax.swing.GroupLayout panelActividadesLayout = new javax.swing.GroupLayout(panelActividades);
-        panelActividades.setLayout(panelActividadesLayout);
-        panelActividadesLayout.setHorizontalGroup(
-            panelActividadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelActividadesLayout.createSequentialGroup()
+        javax.swing.GroupLayout panelContactoLayout = new javax.swing.GroupLayout(panelContacto);
+        panelContacto.setLayout(panelContactoLayout);
+        panelContactoLayout.setHorizontalGroup(
+            panelContactoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelContactoLayout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(52, Short.MAX_VALUE))
         );
-        panelActividadesLayout.setVerticalGroup(
-            panelActividadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panelContactoLayout.setVerticalGroup(
+            panelContactoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelActividadesLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelContactoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        sidepane.add(panelActividades, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 390, 310, 50));
+        sidepane.add(panelContacto, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 390, 310, 50));
         sidepane.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 250, 20));
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -363,44 +390,95 @@ public class inicioProfesional extends javax.swing.JFrame {
         jLabel17.setText("No Mas Accidentes");
         bg.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, 200, 20));
 
-        addProfesional.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        addProfesional.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/69f041d8-194f-40b5-94c4-c504ea20d1b2.png"))); // NOI18N
-        addProfesional.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        addProfesional.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        addProfesional.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                addProfesionalMousePressed(evt);
+        addChecklist.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        addChecklist.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/54e5ce28-c16f-4e2a-8682-4424e257fbbf.png"))); // NOI18N
+        addChecklist.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        addChecklist.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        addChecklist.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addChecklistMouseClicked(evt);
             }
         });
-        bg.add(addProfesional, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 240, 160, 160));
+        bg.add(addChecklist, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 260, 160, 160));
 
-        lblAddProfesional.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        lblAddProfesional.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblAddProfesional.setText("Agregar Profesional");
-        bg.add(lblAddProfesional, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 400, 160, 20));
+        lblAprobarChk.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblAprobarChk.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblAprobarChk.setText("Aprobar Formulario");
+        bg.add(lblAprobarChk, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 420, 160, 20));
 
-        lblUsuario.setFont(new java.awt.Font("Franklin Gothic Book", 0, 36)); // NOI18N
-        lblUsuario.setForeground(new java.awt.Color(0, 0, 0));
+        lstChecklist.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lstChecklist.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/54e5ce28-c16f-4e2a-8682-4424e257fbbf.png"))); // NOI18N
+        lstChecklist.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        lstChecklist.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lstChecklist.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lstChecklistMouseClicked(evt);
+            }
+        });
+        bg.add(lstChecklist, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 260, 160, 160));
+
+        lblAddChecklist1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblAddChecklist1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblAddChecklist1.setText("Generar Formulario");
+        bg.add(lblAddChecklist1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 420, 160, 20));
+
+        reportCapacitaciones.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        reportCapacitaciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/52d1617b-0f47-4a12-93a7-d90fef62681d.png"))); // NOI18N
+        reportCapacitaciones.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        reportCapacitaciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        reportCapacitaciones.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                reportCapacitacionesMouseClicked(evt);
+            }
+        });
+        bg.add(reportCapacitaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 260, 160, 160));
+
+        lblAReportCapac.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblAReportCapac.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblAReportCapac.setText("Reporte Capacitaciones");
+        bg.add(lblAReportCapac, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 420, 170, 20));
+
+        reportChecklist1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        reportChecklist1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/52d1617b-0f47-4a12-93a7-d90fef62681d.png"))); // NOI18N
+        reportChecklist1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        reportChecklist1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        reportChecklist1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                reportChecklist1MouseClicked(evt);
+            }
+        });
+        bg.add(reportChecklist1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 260, 160, 160));
+
+        lblReportChk.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblReportChk.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblReportChk.setText("Reporte Checklist");
+        bg.add(lblReportChk, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 420, 160, 20));
+
+        reportVisitas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        reportVisitas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/52d1617b-0f47-4a12-93a7-d90fef62681d.png"))); // NOI18N
+        reportVisitas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        reportVisitas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        reportVisitas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                reportVisitasMouseClicked(evt);
+            }
+        });
+        bg.add(reportVisitas, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 260, 160, 160));
+
+        lblReportVisitas.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblReportVisitas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblReportVisitas.setText("Reporte Visitas");
+        bg.add(lblReportVisitas, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 420, 160, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(367, 367, 367)
-                    .addComponent(lblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(368, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(275, 275, 275)
-                    .addComponent(lblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(275, Short.MAX_VALUE)))
         );
 
         pack();
@@ -413,70 +491,127 @@ public class inicioProfesional extends javax.swing.JFrame {
     private void resetColor(JPanel panel) {
         panel.setBackground(new Color(47, 46, 157));
     }
-    private void panelContratoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelContratoMousePressed
-        addProfesional.hide();
-        lblAddProfesional.hide();
-        setColor(panelContrato);
-        resetColor(panelCliente);
-        resetColor(panelProfesional);
-        resetColor(panelPagos);
-        resetColor(panelActividades);
+    private void panelVisitaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelVisitaMousePressed
+        addChecklist.hide();
+        lblAprobarChk.hide();
+        lstChecklist.hide();
+        lblAddChecklist1.hide();
+        lblAReportCapac.hide();
+        lblReportChk.hide();
+        lblReportVisitas.hide();
+        reportCapacitaciones.hide();
+        reportChecklist1.hide();
+        reportVisitas.hide();
+        setColor(panelVisita);
+        resetColor(panelChecklist);
+        resetColor(panelReporte);
+        resetColor(panelCapacitacion);
+        resetColor(panelContacto);
         resetColor(panelInicio);
-    }//GEN-LAST:event_panelContratoMousePressed
+    }//GEN-LAST:event_panelVisitaMousePressed
 
-    private void panelProfesionalMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelProfesionalMousePressed
-        addProfesional.show();
-        lblAddProfesional.show();
-        setColor(panelProfesional);
-        resetColor(panelCliente);
-        resetColor(panelContrato);
-        resetColor(panelPagos);
-        resetColor(panelActividades);
+    private void panelReporteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelReporteMousePressed
+        addChecklist.hide();
+        lblAprobarChk.hide();
+        lstChecklist.hide();
+        lblAddChecklist1.hide();
+        lblAReportCapac.show();
+        lblReportChk.show();
+        lblReportVisitas.show();
+        reportCapacitaciones.show();
+        reportChecklist1.show();
+        reportVisitas.show();
+        setColor(panelReporte);
+        resetColor(panelChecklist);
+        resetColor(panelVisita);
+        resetColor(panelCapacitacion);
+        resetColor(panelContacto);
         resetColor(panelInicio);
-    }//GEN-LAST:event_panelProfesionalMousePressed
+    }//GEN-LAST:event_panelReporteMousePressed
 
-    private void panelClienteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelClienteMousePressed
-        addProfesional.hide();
-        lblAddProfesional.hide();
-        setColor(panelCliente);
-        resetColor(panelProfesional);
-        resetColor(panelContrato);
-        resetColor(panelPagos);
-        resetColor(panelActividades);
+    private void panelChecklistMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelChecklistMousePressed
+        addChecklist.show();
+        lblAprobarChk.show();
+        lstChecklist.show();
+        addChecklist.show();
+        lblAprobarChk.show();
+        lstChecklist.show();
+        lblAddChecklist1.show();
+        lblAReportCapac.hide();
+        lblReportChk.hide();
+        lblReportVisitas.hide();
+        reportCapacitaciones.hide();
+        reportChecklist1.hide();
+        reportVisitas.hide();
+        setColor(panelChecklist);
+        resetColor(panelReporte);
+        resetColor(panelVisita);
+        resetColor(panelCapacitacion);
+        resetColor(panelContacto);
         resetColor(panelInicio);
-    }//GEN-LAST:event_panelClienteMousePressed
+    }//GEN-LAST:event_panelChecklistMousePressed
 
-    private void panelPagosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelPagosMousePressed
-        addProfesional.hide();
-        lblAddProfesional.hide();
-        setColor(panelPagos);
-        resetColor(panelCliente);
-        resetColor(panelProfesional);
-        resetColor(panelContrato);
-        resetColor(panelActividades);
+    private void panelCapacitacionMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelCapacitacionMousePressed
+        addChecklist.hide();
+        lblAprobarChk.hide();
+        addChecklist.hide();
+        lblAprobarChk.hide();
+        lstChecklist.hide();
+        lblAddChecklist1.hide();
+        lblAReportCapac.hide();
+        lblReportChk.hide();
+        lblReportVisitas.hide();
+        reportCapacitaciones.hide();
+        reportChecklist1.hide();
+        reportVisitas.hide();
+        setColor(panelCapacitacion);
+        resetColor(panelChecklist);
+        resetColor(panelReporte);
+        resetColor(panelVisita);
+        resetColor(panelContacto);
         resetColor(panelInicio);
-    }//GEN-LAST:event_panelPagosMousePressed
+    }//GEN-LAST:event_panelCapacitacionMousePressed
 
-    private void panelActividadesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelActividadesMousePressed
-        addProfesional.hide();
-        lblAddProfesional.hide();
-        setColor(panelActividades);
-        resetColor(panelCliente);
-        resetColor(panelProfesional);
-        resetColor(panelContrato);
-        resetColor(panelPagos);
+    private void panelContactoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelContactoMousePressed
+        addChecklist.hide();
+        lblAprobarChk.hide();
+        addChecklist.hide();
+        lblAprobarChk.hide();
+        lstChecklist.hide();
+        lblAddChecklist1.hide();
+        lblAReportCapac.hide();
+        lblReportChk.hide();
+        lblReportVisitas.hide();
+        reportCapacitaciones.hide();
+        reportChecklist1.hide();
+        reportVisitas.hide();
+        setColor(panelContacto);
+        resetColor(panelChecklist);
+        resetColor(panelReporte);
+        resetColor(panelVisita);
+        resetColor(panelCapacitacion);
         resetColor(panelInicio);
-    }//GEN-LAST:event_panelActividadesMousePressed
+    }//GEN-LAST:event_panelContactoMousePressed
 
     private void panelInicioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelInicioMousePressed
-        addProfesional.hide();
-        lblAddProfesional.hide();
+        addChecklist.hide();
+        lblAprobarChk.hide();
+        addChecklist.hide();
+        lblAprobarChk.hide();
+        lstChecklist.hide();
+        lblAddChecklist1.hide();
+        lblAReportCapac.hide();
+        lblReportChk.hide();
+        lblReportVisitas.hide();
+        reportCapacitaciones.hide();
+        reportChecklist1.hide();
+        reportVisitas.hide();
         setColor(panelInicio);
-        resetColor(panelCliente);
-        resetColor(panelProfesional);
-        resetColor(panelContrato);
-        resetColor(panelPagos);
-        resetColor(panelActividades);
+        resetColor(panelChecklist);
+        resetColor(panelReporte);
+        resetColor(panelVisita);
+        resetColor(panelCapacitacion);
+        resetColor(panelContacto);
     }//GEN-LAST:event_panelInicioMousePressed
 
     private void jLabel13MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MousePressed
@@ -485,10 +620,42 @@ public class inicioProfesional extends javax.swing.JFrame {
         lg.setVisible(true);
     }//GEN-LAST:event_jLabel13MousePressed
 
-    private void addProfesionalMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addProfesionalMousePressed
-        agregarProfesional profesional = new agregarProfesional();
-        profesional.setVisible(true);
-    }//GEN-LAST:event_addProfesionalMousePressed
+    private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
+        mousepX = evt.getX();
+        mousepY = evt.getY();
+    }//GEN-LAST:event_formMousePressed
+
+    private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
+        int coordenadaX = evt.getXOnScreen();
+        int coordenadaY = evt.getYOnScreen();
+        this.setLocation(coordenadaX-mousepX, coordenadaY-mousepY);
+    }//GEN-LAST:event_formMouseDragged
+
+    private void addChecklistMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addChecklistMouseClicked
+        cod = int1;
+        checklist chk = new checklist();
+        chk.setVisible(true);
+    }//GEN-LAST:event_addChecklistMouseClicked
+
+    private void lstChecklistMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lstChecklistMouseClicked
+        cod = int1;
+        aprobarFormulario aF = new aprobarFormulario();
+        aF.setVisible(true);
+    }//GEN-LAST:event_lstChecklistMouseClicked
+
+    private void reportCapacitacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reportCapacitacionesMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_reportCapacitacionesMouseClicked
+
+    private void reportChecklist1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reportChecklist1MouseClicked
+        cod = int1;
+        reporteCheckList rC = new reporteCheckList();
+        rC.setVisible(true);
+    }//GEN-LAST:event_reportChecklist1MouseClicked
+
+    private void reportVisitasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reportVisitasMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_reportVisitasMouseClicked
 
     /**
      * @param args the command line arguments
@@ -527,7 +694,7 @@ public class inicioProfesional extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Inicio;
-    private javax.swing.JLabel addProfesional;
+    private javax.swing.JLabel addChecklist;
     private javax.swing.JPanel bg;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -547,15 +714,22 @@ public class inicioProfesional extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JLabel lblAddProfesional;
+    private javax.swing.JLabel lblAReportCapac;
+    private javax.swing.JLabel lblAddChecklist1;
+    private javax.swing.JLabel lblAprobarChk;
     private javax.swing.JLabel lblProfesional;
-    private javax.swing.JLabel lblUsuario;
-    private javax.swing.JPanel panelActividades;
-    private javax.swing.JPanel panelCliente;
-    private javax.swing.JPanel panelContrato;
+    private javax.swing.JLabel lblReportChk;
+    private javax.swing.JLabel lblReportVisitas;
+    private javax.swing.JLabel lstChecklist;
+    private javax.swing.JPanel panelCapacitacion;
+    private javax.swing.JPanel panelChecklist;
+    private javax.swing.JPanel panelContacto;
     private javax.swing.JPanel panelInicio;
-    private javax.swing.JPanel panelPagos;
-    private javax.swing.JPanel panelProfesional;
+    private javax.swing.JPanel panelReporte;
+    private javax.swing.JPanel panelVisita;
+    private javax.swing.JLabel reportCapacitaciones;
+    private javax.swing.JLabel reportChecklist1;
+    private javax.swing.JLabel reportVisitas;
     private javax.swing.JPanel sidepane;
     // End of variables declaration//GEN-END:variables
 }

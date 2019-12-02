@@ -16,10 +16,10 @@ public class inicioAdmin extends javax.swing.JFrame {
 
     int mousepX;
     int mousepY;
+    login l = new login();
     public inicioAdmin() {
         initComponents();
-        this.setLocationRelativeTo(null);
-        login l = new login();
+        this.setLocationRelativeTo(null);        
         lblUsuario.setText("Bienvenido "+l.nom);
         addCliente.hide();
         listarCliente.hide();
@@ -101,7 +101,7 @@ public class inicioAdmin extends javax.swing.JFrame {
         lblEstadoPago = new javax.swing.JLabel();
         lblCargoExtra = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
         addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {

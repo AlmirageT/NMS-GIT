@@ -8,8 +8,11 @@ package Vista;
 import Controlador.UsuariosJpaController;
 import Modelo.Roles;
 import Modelo.Usuarios;
+import java.awt.event.KeyEvent;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 
 /**
@@ -23,6 +26,7 @@ public class agregarProfesional extends javax.swing.JFrame {
     Date fecha = new Date();
     int mousepX;
     int mousepY;
+
     public agregarProfesional() {
         initComponents();
         controller = new UsuariosJpaController();
@@ -68,7 +72,7 @@ public class agregarProfesional extends javax.swing.JFrame {
         fechaNacimiento = new com.toedter.calendar.JDateChooser();
         jLabel13 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
         addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
@@ -158,11 +162,29 @@ public class agregarProfesional extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel1.setText("Rut:");
 
+        txtNombreProfesional.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreProfesionalKeyTyped(evt);
+            }
+        });
+
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setText("Nombre:");
 
+        txtAppPatProfesional.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtAppPatProfesionalKeyTyped(evt);
+            }
+        });
+
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setText("Fecha Nacimiento:");
+
+        txtAppMatProfesional.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtAppMatProfesionalKeyTyped(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel5.setText("Apellido Materno:");
@@ -173,11 +195,29 @@ public class agregarProfesional extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel7.setText("Email:");
 
+        txtCelularProfesional.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCelularProfesionalKeyTyped(evt);
+            }
+        });
+
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel8.setText("Direccion:");
 
+        txtTelefonoProfesional.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTelefonoProfesionalKeyTyped(evt);
+            }
+        });
+
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel9.setText("Celular:");
+
+        txtDireccionProfesional.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDireccionProfesionalKeyTyped(evt);
+            }
+        });
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel10.setText("Telefono:");
@@ -319,30 +359,34 @@ public class agregarProfesional extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarProfesionalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProfesionalActionPerformed
-        Roles xl;
-        xl = new Roles((BigDecimal.valueOf(2)), "Profesional");
-        try {
-            usuario = new Usuarios();
-            usuario.setRut(txtRutProfesional.getText());
-            usuario.setNombres(txtNombreProfesional.getText());
-            usuario.setPaterno(txtAppPatProfesional.getText());
-            usuario.setMaterno(txtAppMatProfesional.getText());
-            usuario.setFechaNacimiento(fechaNacimiento.getDate());
-            usuario.setEmail(txtEmailProfesional.getText());
-            usuario.setClave(txtClaveProfesional.getText());
-            usuario.setCelular(Integer.parseInt(txtCelularProfesional.getText()));
-            usuario.setTelefono(Integer.parseInt(txtCelularProfesional.getText()));
-            usuario.setDireccion(txtDireccionProfesional.getText());
-            usuario.setEstado(Short.parseShort("1"));
-            usuario.setFechaCreacion(fecha);
-            usuario.setFechaModificacion(fecha);
-            usuario.setRolesIdRol(xl);
-            controller.create(usuario);
-            limpiar();
-            JOptionPane.showMessageDialog(this, "El profesional código " + usuario.getRut()+ " se ha creado satisfactoriamente.", "Confirmación", JOptionPane.INFORMATION_MESSAGE);
+        if (isEmail(txtEmailProfesional.getText()) && isPass(txtClaveProfesional.getText())) {
+            Roles xl;
+            xl = new Roles((BigDecimal.valueOf(2)), "Profesional");
+            try {
+                usuario = new Usuarios();
+                usuario.setRut(txtRutProfesional.getText());
+                usuario.setNombres(txtNombreProfesional.getText());
+                usuario.setPaterno(txtAppPatProfesional.getText());
+                usuario.setMaterno(txtAppMatProfesional.getText());
+                usuario.setFechaNacimiento(fechaNacimiento.getDate());
+                usuario.setEmail(txtEmailProfesional.getText());
+                usuario.setClave(txtClaveProfesional.getText());
+                usuario.setCelular(Integer.parseInt(txtCelularProfesional.getText()));
+                usuario.setTelefono(Integer.parseInt(txtCelularProfesional.getText()));
+                usuario.setDireccion(txtDireccionProfesional.getText());
+                usuario.setEstado(Short.parseShort("1"));
+                usuario.setFechaCreacion(fecha);
+                usuario.setFechaModificacion(fecha);
+                usuario.setRolesIdRol(xl);
+                controller.create(usuario);
+                limpiar();
+                JOptionPane.showMessageDialog(this, "El profesional código " + usuario.getRut() + " se ha creado satisfactoriamente.", "Confirmación", JOptionPane.INFORMATION_MESSAGE);
 
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage(), "Validación", JOptionPane.INFORMATION_MESSAGE);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Llenar datos solicitados", "Validación", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Ingrese mail con formato ejemplo@ejemplo.com");
         }
     }//GEN-LAST:event_btnAgregarProfesionalActionPerformed
 
@@ -353,7 +397,7 @@ public class agregarProfesional extends javax.swing.JFrame {
     private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
         int coordenadaX = evt.getXOnScreen();
         int coordenadaY = evt.getYOnScreen();
-        this.setLocation(coordenadaX-mousepX, coordenadaY-mousepY);
+        this.setLocation(coordenadaX - mousepX, coordenadaY - mousepY);
     }//GEN-LAST:event_formMouseDragged
 
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
@@ -361,6 +405,79 @@ public class agregarProfesional extends javax.swing.JFrame {
         mousepY = evt.getY();
     }//GEN-LAST:event_formMousePressed
 
+    private void txtNombreProfesionalKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreProfesionalKeyTyped
+        char car = evt.getKeyChar();
+        if ((car < 'a' || car > 'z') && (car < 'A' || car > 'Z') && (car != (char) KeyEvent.VK_BACK_SPACE) && (car != (char) KeyEvent.VK_SPACE)) {
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "Ingresar solo letras", "Validación", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_txtNombreProfesionalKeyTyped
+
+    private void txtAppPatProfesionalKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAppPatProfesionalKeyTyped
+        char car = evt.getKeyChar();
+        if ((car < 'a' || car > 'z') && (car < 'A' || car > 'Z') && (car != (char) KeyEvent.VK_BACK_SPACE) && (car != (char) KeyEvent.VK_SPACE)) {
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "Ingresar solo letras", "Validación", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_txtAppPatProfesionalKeyTyped
+
+    private void txtAppMatProfesionalKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAppMatProfesionalKeyTyped
+        char car = evt.getKeyChar();
+        if ((car < 'a' || car > 'z') && (car < 'A' || car > 'Z') && (car != (char) KeyEvent.VK_BACK_SPACE) && (car != (char) KeyEvent.VK_SPACE)) {
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "Ingresar solo letras", "Validación", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_txtAppMatProfesionalKeyTyped
+
+    private void txtCelularProfesionalKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCelularProfesionalKeyTyped
+        char car = evt.getKeyChar();
+        if ((car < '0' || car > '9') && (car != (char) KeyEvent.VK_BACK_SPACE)) {
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "Ingresar solo numeros", "Validación", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_txtCelularProfesionalKeyTyped
+
+    private void txtTelefonoProfesionalKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoProfesionalKeyTyped
+        char car = evt.getKeyChar();
+        if ((car < '0' || car > '9') && car != (char) KeyEvent.VK_BACK_SPACE) {
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "Ingresar solo numeros", "Validación", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_txtTelefonoProfesionalKeyTyped
+
+    private void txtDireccionProfesionalKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDireccionProfesionalKeyTyped
+        char car = evt.getKeyChar();
+        if ((car < 'a' || car > 'z') && (car < 'A' || car > 'Z') && (car < '0' || car > '9') && (car != (char) KeyEvent.VK_BACK_SPACE) && (car != (char) KeyEvent.VK_SPACE)) {
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "Ingresar letras y numeros", "Validación", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_txtDireccionProfesionalKeyTyped
+
+    public boolean isEmail(String email) {
+        Pattern pat = null;
+        Matcher mat = null;
+        String algo = "^[A-Za-z0-9+_.-]+@(.+)$";
+        pat = Pattern.compile(algo);
+        mat = pat.matcher(email);
+        if (mat.find()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean isPass(String pass) {
+        Pattern pat = null;
+        Matcher mat = null;
+        String algo = "^[A-Za-z0-9+_.-]+$";
+        pat = Pattern.compile(algo);
+        mat = pat.matcher(pass);
+        if (mat.find()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -428,7 +545,7 @@ public class agregarProfesional extends javax.swing.JFrame {
     private javax.swing.JTextField txtTelefonoProfesional;
     private javax.swing.JLabel xd;
     // End of variables declaration//GEN-END:variables
-    private void limpiar(){
+    private void limpiar() {
         txtRutProfesional.setText("");
         txtTelefonoProfesional.setText("");
         txtNombreProfesional.setText("");
@@ -439,5 +556,5 @@ public class agregarProfesional extends javax.swing.JFrame {
         txtAppPatProfesional.setText("");
         txtAppMatProfesional.setText("");
         fechaNacimiento.setDate(null);
-   }
+    }
 }

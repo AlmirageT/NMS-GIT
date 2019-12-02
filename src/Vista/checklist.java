@@ -5,16 +5,41 @@
  */
 package Vista;
 
+import Controlador.ChecklistJpaController;
+import Controlador.EmpresasJpaController;
+import Controlador.UsuariosJpaController;
+import Modelo.Checklist;
+import Modelo.Empresas;
+import Modelo.Usuarios;
+import java.math.BigDecimal;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author ivans
  */
-public class planificacionCapacitacion extends javax.swing.JFrame {
+public class checklist extends javax.swing.JFrame {
 
     int mousepX;
     int mousepY;
-    public planificacionCapacitacion() {
+    DefaultTableModel modelo;
+    private EmpresasJpaController controllerEmpresa;
+    private ChecklistJpaController controller;
+    private UsuariosJpaController controllerUser;
+    private Checklist checklist;
+    private Usuarios user;
+    private Empresas emp;
+    inicioProfesional iP = new inicioProfesional();
+    BigDecimal usuariosIdUsuario = iP.cod;
+    public checklist() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        controllerEmpresa = new EmpresasJpaController();
+        controller = new ChecklistJpaController();
+        controllerUser = new UsuariosJpaController();
+        cargarTabla();
+        
     }
 
     /**
@@ -32,10 +57,22 @@ public class planificacionCapacitacion extends javax.swing.JFrame {
         jLabel37 = new javax.swing.JLabel();
         jLabel38 = new javax.swing.JLabel();
         jPanel12 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
+        lbltitulo = new javax.swing.JLabel();
         jLabel39 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jtProfesionales = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        tblEmpresa = new javax.swing.JTable();
+        btnAgregar = new javax.swing.JButton();
+        txtPregunta1 = new javax.swing.JTextField();
+        txtPregunta2 = new javax.swing.JTextField();
+        txtPregunta3 = new javax.swing.JTextField();
+        txtPregunta4 = new javax.swing.JTextField();
+        txtPregunta5 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -51,6 +88,7 @@ public class planificacionCapacitacion extends javax.swing.JFrame {
         });
 
         jPanel10.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel11.setBackground(new java.awt.Color(15, 14, 140));
 
@@ -89,12 +127,14 @@ public class planificacionCapacitacion extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jPanel10.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 848));
+
         jPanel12.setBackground(new java.awt.Color(96, 95, 249));
 
-        jLabel5.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel5.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel5.setText("Capacitaciones ");
+        lbltitulo.setBackground(new java.awt.Color(0, 0, 0));
+        lbltitulo.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        lbltitulo.setForeground(new java.awt.Color(0, 0, 0));
+        lbltitulo.setText("Crear Checklist");
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
@@ -104,7 +144,7 @@ public class planificacionCapacitacion extends javax.swing.JFrame {
             .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel12Layout.createSequentialGroup()
                     .addGap(218, 218, 218)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbltitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(240, Short.MAX_VALUE)))
         );
         jPanel12Layout.setVerticalGroup(
@@ -113,9 +153,11 @@ public class planificacionCapacitacion extends javax.swing.JFrame {
             .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel12Layout.createSequentialGroup()
                     .addGap(45, 45, 45)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbltitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(46, Short.MAX_VALUE)))
         );
+
+        jPanel10.add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(297, 49, -1, -1));
 
         jLabel39.setBackground(new java.awt.Color(255, 255, 255));
         jLabel39.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
@@ -126,8 +168,27 @@ public class planificacionCapacitacion extends javax.swing.JFrame {
                 jLabel39MousePressed(evt);
             }
         });
+        jPanel10.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(1106, 0, -1, -1));
 
-        jtProfesionales.setModel(new javax.swing.table.DefaultTableModel(
+        jLabel1.setText("Pregunta 1:");
+        jPanel10.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 206, -1, -1));
+
+        jLabel2.setText("Pregunta 2:");
+        jPanel10.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 290, -1, -1));
+
+        jLabel3.setText("Pregunta 3:");
+        jPanel10.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(605, 206, -1, -1));
+
+        jLabel4.setText("Pregunta 4:");
+        jPanel10.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 290, -1, -1));
+
+        jLabel6.setText("Pregunta 5:");
+        jPanel10.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 206, -1, -1));
+
+        jLabel7.setText("Empresa a Cual Auditar:");
+        jPanel10.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 350, -1, -1));
+
+        tblEmpresa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -138,38 +199,22 @@ public class planificacionCapacitacion extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jtProfesionales);
+        jScrollPane6.setViewportView(tblEmpresa);
 
-        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
-        jPanel10.setLayout(jPanel10Layout);
-        jPanel10Layout.setHorizontalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel10Layout.createSequentialGroup()
-                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
-                                .addComponent(jLabel39)
-                                .addContainerGap())
-                            .addComponent(jPanel12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1)
-                        .addContainerGap())))
-        );
-        jPanel10Layout.setVerticalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel10Layout.createSequentialGroup()
-                .addComponent(jLabel39)
-                .addGap(1, 1, 1)
-                .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(71, Short.MAX_VALUE))
-            .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        jPanel10.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 370, 821, 213));
+
+        btnAgregar.setText("Agregar");
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarActionPerformed(evt);
+            }
+        });
+        jPanel10.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 620, 142, -1));
+        jPanel10.add(txtPregunta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 230, 239, -1));
+        jPanel10.add(txtPregunta2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 310, 239, -1));
+        jPanel10.add(txtPregunta3, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 230, 240, -1));
+        jPanel10.add(txtPregunta4, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 310, 240, -1));
+        jPanel10.add(txtPregunta5, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 230, 240, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -179,9 +224,7 @@ public class planificacionCapacitacion extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 679, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -191,16 +234,45 @@ public class planificacionCapacitacion extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jLabel39MousePressed
 
+    private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
+        int coordenadaX = evt.getXOnScreen();
+        int coordenadaY = evt.getYOnScreen();
+        this.setLocation(coordenadaX - mousepX, coordenadaY - mousepY);
+    }//GEN-LAST:event_formMouseDragged
+
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
         mousepX = evt.getX();
         mousepY = evt.getY();
     }//GEN-LAST:event_formMousePressed
 
-    private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
-        int coordenadaX = evt.getXOnScreen();
-        int coordenadaY = evt.getYOnScreen();
-        this.setLocation(coordenadaX-mousepX, coordenadaY-mousepY);
-    }//GEN-LAST:event_formMouseDragged
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+        int fila = tblEmpresa.getSelectedRow();
+        if (fila != -1) {
+            Object codigo = tblEmpresa.getValueAt(fila, 0);
+            String cod = String.valueOf(codigo);
+            int codigoC = Integer.parseInt(cod);
+            BigDecimal codEmpresa = BigDecimal.valueOf(codigoC);
+            try {
+                user = controllerUser.findUsuarios(usuariosIdUsuario);
+                emp = controllerEmpresa.findEmpresas(codEmpresa);
+                checklist = new Checklist();
+                checklist.setItem1(txtPregunta1.getText());
+                checklist.setItem2(txtPregunta2.getText());
+                checklist.setItem3(txtPregunta3.getText());
+                checklist.setItem4(txtPregunta4.getText());
+                checklist.setItem5(txtPregunta5.getText());
+                checklist.setEmpresasIdEmpresa(emp);
+                checklist.setUsuariosIdUsuario(user);
+                controller.create(checklist);
+                JOptionPane.showMessageDialog(this, "Se ha Agregado con Exito", "Confirmación", JOptionPane.INFORMATION_MESSAGE);
+                cargarTabla();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, e.getMessage(), "Validación", 0);
+            }
+        }else{
+            JOptionPane.showMessageDialog(this, "Favor seleccionar la fila que desea finalizar", "Validación", 0);
+        }
+    }//GEN-LAST:event_btnAgregarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -219,34 +291,62 @@ public class planificacionCapacitacion extends javax.swing.JFrame {
 //                }
 //            }
 //        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(planificacionCapacitacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(checklist.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(planificacionCapacitacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(checklist.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(planificacionCapacitacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(checklist.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(planificacionCapacitacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(checklist.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        }
 //        //</editor-fold>
 //
 //        /* Create and display the form */
 //        java.awt.EventQueue.invokeLater(new Runnable() {
 //            public void run() {
-//                new planificacionCapacitacion().setVisible(true);
+//                new checklist().setVisible(true);
 //            }
 //        });
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAgregar;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel39;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JSeparator jSeparator4;
-    private javax.swing.JTable jtProfesionales;
+    private javax.swing.JLabel lbltitulo;
+    private javax.swing.JTable tblEmpresa;
+    private javax.swing.JTextField txtPregunta1;
+    private javax.swing.JTextField txtPregunta2;
+    private javax.swing.JTextField txtPregunta3;
+    private javax.swing.JTextField txtPregunta4;
+    private javax.swing.JTextField txtPregunta5;
     // End of variables declaration//GEN-END:variables
+    private void cargarTabla() {
+        cargarColumnas();
+        for (Empresas emp : controllerEmpresa.findEmpresasEntities()) {
+            modelo.addRow(new Object[]{emp.getIdEmpresa(), emp.getNombre(), emp.getRazonSocial(), emp.getDireccion(), emp.getTelefono()});
+        }
+    }
+
+    private void cargarColumnas() {
+        modelo = new DefaultTableModel();
+        modelo.addColumn("Codigo");
+        modelo.addColumn("Nombre Empresa");
+        modelo.addColumn("Razon Social");
+        modelo.addColumn("Direccion");
+        modelo.addColumn("Telefono");
+        tblEmpresa.setModel(modelo);
+    }
 }
