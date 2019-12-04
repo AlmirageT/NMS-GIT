@@ -372,7 +372,7 @@ public class agregarProfesional extends javax.swing.JFrame {
                 usuario.setEmail(txtEmailProfesional.getText());
                 usuario.setClave(txtClaveProfesional.getText());
                 usuario.setCelular(Integer.parseInt(txtCelularProfesional.getText()));
-                usuario.setTelefono(Integer.parseInt(txtCelularProfesional.getText()));
+                usuario.setTelefono(Integer.parseInt(txtTelefonoProfesional.getText()));
                 usuario.setDireccion(txtDireccionProfesional.getText());
                 usuario.setEstado(Short.parseShort("1"));
                 usuario.setFechaCreacion(fecha);

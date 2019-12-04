@@ -6,6 +6,7 @@
 package Vista;
 
 import Controlador.UsuariosJpaController;
+import Modelo.Roles;
 import Modelo.Usuarios;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
@@ -21,6 +22,7 @@ public class listaUsuario extends javax.swing.JFrame {
 
     
     private UsuariosJpaController controller;
+    private Roles rolesIdRol;
     private Usuarios usuario;
     DefaultTableModel modelo;
     Date fecha = new Date();
@@ -30,6 +32,7 @@ public class listaUsuario extends javax.swing.JFrame {
         initComponents();
         controller = new UsuariosJpaController();
         cargarTabla();
+        rolesIdRol = new Roles(BigDecimal.valueOf(3), "Cliente");
     }
 
     /**
@@ -254,8 +257,8 @@ public class listaUsuario extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
         );
 
         pack();
@@ -283,7 +286,7 @@ public class listaUsuario extends javax.swing.JFrame {
 
     private void btnBuscadorContratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscadorContratoActionPerformed
         String rut = txtBuscadorProfesional.getText();
-        cargarTablarPorCodigo(rut);
+        cargarTablarPorCodigo(rut, rolesIdRol);
     }//GEN-LAST:event_btnBuscadorContratoActionPerformed
 
     private void btnBajaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBajaClienteActionPerformed
@@ -422,10 +425,10 @@ public class listaUsuario extends javax.swing.JFrame {
             modelo.addRow(new Object[]{u.getIdUsuario(), u.getRut(),u.getNombres(), apellido, fechaTexto, u.getEmail(), u.getCelular(),u.getTelefono(), u.getDireccion(), estado});
         }
     }
-    private void cargarTablarPorCodigo(String rut) {
+    private void cargarTablarPorCodigo(String rut, Roles rolesIdRol) {
         cargarColumna();
         if (!rut.isEmpty() && !rut.trim().equals("")) {       
-        for (Usuarios u : controller.buscarUsuario(rut)) {
+        for (Usuarios u : controller.buscarUsuario(rut, rolesIdRol)) {
             String apellido = u.getPaterno() +" "+ u.getMaterno();
             String estado = "";
             Date fecha = u.getFechaNacimiento();

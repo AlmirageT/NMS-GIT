@@ -340,10 +340,11 @@ public class UsuariosJpaController implements Serializable {
         List<Usuarios> lista = query.getResultList();
         return lista;
     }
-    public List<Usuarios> buscarUsuario(String rut){
+    public List<Usuarios> buscarUsuario(String rut, Roles rolesIdRol){
         EntityManager em = getEntityManager();
-        Query query = em.createNamedQuery("Usuarios.findByRut");
+        Query query = em.createNamedQuery("Usuarios.findByRutId");
         query.setParameter("rut", rut);
+        query.setParameter("rolesIdRol", rolesIdRol);
         List<Usuarios> lista = query.getResultList();
         return lista;
     }

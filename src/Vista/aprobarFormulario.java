@@ -5,7 +5,14 @@
  */
 package Vista;
 
+import Controlador.ChecklistJpaController;
+import Controlador.UsuariosJpaController;
+import Modelo.Checklist;
+import Modelo.Usuarios;
 import java.math.BigDecimal;
+import java.math.BigInteger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -15,9 +22,27 @@ public class aprobarFormulario extends javax.swing.JFrame {
 
     inicioProfesional iP = new inicioProfesional();
     BigDecimal usuariosIdUsuario = iP.cod;
+    DefaultTableModel modelo;
+    private ChecklistJpaController controller;
+    private UsuariosJpaController controllerUser;
+    private Checklist chk;
+    private Usuarios user;
     public aprobarFormulario() {
         initComponents();
         this.setLocationRelativeTo(null);
+        bgChk1.add(rbChkNo1);
+        bgChk1.add(rbChkSi1);
+        bgChk2.add(rbChkNo2);
+        bgChk2.add(rbChkSi2);
+        bgChk3.add(rbChkNo3);
+        bgChk3.add(rbChkSi3);
+        bgChk4.add(rbChkNo4);
+        bgChk4.add(rbChkSi4);
+        bgChk5.add(rbChkNo5);
+        bgChk5.add(rbChkSi5);
+        controller = new ChecklistJpaController();
+        controllerUser = new UsuariosJpaController();
+        cargarTabla();
     }
 
     /**
@@ -29,11 +54,11 @@ public class aprobarFormulario extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
-        buttonGroup2 = new javax.swing.ButtonGroup();
-        buttonGroup3 = new javax.swing.ButtonGroup();
-        buttonGroup4 = new javax.swing.ButtonGroup();
-        buttonGroup5 = new javax.swing.ButtonGroup();
+        bgChk1 = new javax.swing.ButtonGroup();
+        bgChk2 = new javax.swing.ButtonGroup();
+        bgChk3 = new javax.swing.ButtonGroup();
+        bgChk4 = new javax.swing.ButtonGroup();
+        bgChk5 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -44,22 +69,22 @@ public class aprobarFormulario extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblChk = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
-        jRadioButton5 = new javax.swing.JRadioButton();
-        jRadioButton6 = new javax.swing.JRadioButton();
-        jRadioButton7 = new javax.swing.JRadioButton();
-        jRadioButton8 = new javax.swing.JRadioButton();
-        jRadioButton9 = new javax.swing.JRadioButton();
-        jRadioButton10 = new javax.swing.JRadioButton();
+        rbChkSi1 = new javax.swing.JRadioButton();
+        rbChkNo1 = new javax.swing.JRadioButton();
+        rbChkNo2 = new javax.swing.JRadioButton();
+        rbChkSi2 = new javax.swing.JRadioButton();
+        rbChkNo3 = new javax.swing.JRadioButton();
+        rbChkSi3 = new javax.swing.JRadioButton();
+        rbChkNo4 = new javax.swing.JRadioButton();
+        rbChkSi4 = new javax.swing.JRadioButton();
+        rbChkNo5 = new javax.swing.JRadioButton();
+        rbChkSi5 = new javax.swing.JRadioButton();
         btnAgregar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -140,7 +165,7 @@ public class aprobarFormulario extends javax.swing.JFrame {
 
         jLabel1.setText("Seleccionar Checklist a Aprobar:");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblChk.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -151,7 +176,7 @@ public class aprobarFormulario extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblChk);
 
         jLabel2.setText("Check 1:");
 
@@ -163,28 +188,33 @@ public class aprobarFormulario extends javax.swing.JFrame {
 
         jLabel6.setText("Check 5:");
 
-        jRadioButton1.setText("Si");
+        rbChkSi1.setText("Si");
 
-        jRadioButton2.setText("No");
+        rbChkNo1.setText("No");
 
-        jRadioButton3.setText("No");
+        rbChkNo2.setText("No");
 
-        jRadioButton4.setText("Si");
+        rbChkSi2.setText("Si");
 
-        jRadioButton5.setText("No");
+        rbChkNo3.setText("No");
 
-        jRadioButton6.setText("Si");
+        rbChkSi3.setText("Si");
 
-        jRadioButton7.setText("No");
+        rbChkNo4.setText("No");
 
-        jRadioButton8.setText("Si");
+        rbChkSi4.setText("Si");
 
-        jRadioButton9.setText("No");
+        rbChkNo5.setText("No");
 
-        jRadioButton10.setText("Si");
+        rbChkSi5.setText("Si");
 
         btnAgregar.setText("Agregar");
         btnAgregar.setToolTipText("");
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -211,20 +241,20 @@ public class aprobarFormulario extends javax.swing.JFrame {
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel2)
                                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                .addComponent(jRadioButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(jRadioButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                                .addComponent(rbChkSi1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(rbChkNo1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                         .addGap(61, 61, 61)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel3)
                                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                .addComponent(jRadioButton4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(jRadioButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                                .addComponent(rbChkSi2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(rbChkNo2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                         .addGap(62, 62, 62)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel4)
                                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                .addComponent(jRadioButton6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(jRadioButton5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                                .addComponent(rbChkSi3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(rbChkNo3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                         .addGap(61, 61, 61)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -233,12 +263,12 @@ public class aprobarFormulario extends javax.swing.JFrame {
                                                 .addComponent(jLabel6))
                                             .addGroup(jPanel1Layout.createSequentialGroup()
                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                    .addComponent(jRadioButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addComponent(jRadioButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                    .addComponent(rbChkNo4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(rbChkSi4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                                 .addGap(65, 65, 65)
                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                    .addComponent(jRadioButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addComponent(jRadioButton10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                                                    .addComponent(rbChkNo5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(rbChkSi5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -267,25 +297,25 @@ public class aprobarFormulario extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jRadioButton1)
+                        .addComponent(rbChkSi1)
                         .addGap(0, 0, 0)
-                        .addComponent(jRadioButton2))
+                        .addComponent(rbChkNo1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jRadioButton4)
+                        .addComponent(rbChkSi2)
                         .addGap(0, 0, 0)
-                        .addComponent(jRadioButton3))
+                        .addComponent(rbChkNo2))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jRadioButton6)
+                        .addComponent(rbChkSi3)
                         .addGap(0, 0, 0)
-                        .addComponent(jRadioButton5))
+                        .addComponent(rbChkNo3))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jRadioButton8)
+                        .addComponent(rbChkSi4)
                         .addGap(0, 0, 0)
-                        .addComponent(jRadioButton7))
+                        .addComponent(rbChkNo4))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jRadioButton10)
+                        .addComponent(rbChkSi5)
                         .addGap(0, 0, 0)
-                        .addComponent(jRadioButton9)))
+                        .addComponent(rbChkNo5)))
                 .addGap(66, 66, 66)
                 .addComponent(btnAgregar)
                 .addContainerGap(77, Short.MAX_VALUE))
@@ -308,6 +338,64 @@ public class aprobarFormulario extends javax.swing.JFrame {
     private void jLabel13MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MousePressed
         dispose();
     }//GEN-LAST:event_jLabel13MousePressed
+
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+        int fila = tblChk.getSelectedRow();
+        if (fila != -1) {
+            Object codigo = tblChk.getValueAt(fila, 0);
+            String cod = String.valueOf(codigo);
+            int codigoC = Integer.parseInt(cod);
+            int aprobado1=0,aprobado2=0,aprobado3=0,aprobado4=0,aprobado5=0;
+            if (rbChkNo1.isSelected()) {
+                aprobado1 = 0;
+            }else if (rbChkSi1.isSelected()){
+                aprobado1 = 1;
+            }
+            if (rbChkNo2.isSelected()) {
+                aprobado2 =0;
+            }else if(rbChkSi2.isSelected()){
+                aprobado2 = 1;
+            }
+            if (rbChkNo3.isSelected()) {
+                aprobado3 = 0;
+            }else if(rbChkSi3.isSelected()){
+                aprobado3 = 1;
+            }
+            if (rbChkNo4.isSelected()) {
+                aprobado4 = 0;
+            }else if(rbChkSi4.isSelected()){
+                aprobado4 = 1;
+            }
+            if (rbChkNo5.isSelected()) {
+                aprobado5 = 0;
+            }else if(rbChkSi5.isSelected()){
+                aprobado4 = 1;
+            }
+            try {
+                chk = controller.findChecklist(BigDecimal.valueOf(codigoC));
+                chk.getIdChecklist();
+                chk.getItem1();
+                chk.setAprovado1(BigInteger.valueOf(aprobado1));
+                chk.getItem2();
+                chk.setAprovado2(BigInteger.valueOf(aprobado2));
+                chk.getItem3();
+                chk.setAprovado3(BigInteger.valueOf(aprobado3));
+                chk.getItem4();
+                chk.setAprovado4(BigInteger.valueOf(aprobado4));
+                chk.getItem5();
+                chk.setAprovado5(BigInteger.valueOf(aprobado5));
+                chk.getUsuariosIdUsuario();
+                chk.getEmpresasIdEmpresa();
+                controller.edit(chk);
+                JOptionPane.showMessageDialog(this, "Se ha Actualizado el CheckList", "Confirmación", JOptionPane.INFORMATION_MESSAGE);
+                cargarTabla();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, e.getMessage(), "Validación", 0);
+            }
+        }else{
+            JOptionPane.showMessageDialog(this, "Favor seleccionar la fila que desea desactivar", "Validación", 0);
+        }
+    }//GEN-LAST:event_btnAgregarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -345,12 +433,12 @@ public class aprobarFormulario extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup bgChk1;
+    private javax.swing.ButtonGroup bgChk2;
+    private javax.swing.ButtonGroup bgChk3;
+    private javax.swing.ButtonGroup bgChk4;
+    private javax.swing.ButtonGroup bgChk5;
     private javax.swing.JButton btnAgregar;
-    private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.ButtonGroup buttonGroup2;
-    private javax.swing.ButtonGroup buttonGroup3;
-    private javax.swing.ButtonGroup buttonGroup4;
-    private javax.swing.ButtonGroup buttonGroup5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -364,18 +452,36 @@ public class aprobarFormulario extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton10;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
-    private javax.swing.JRadioButton jRadioButton5;
-    private javax.swing.JRadioButton jRadioButton6;
-    private javax.swing.JRadioButton jRadioButton7;
-    private javax.swing.JRadioButton jRadioButton8;
-    private javax.swing.JRadioButton jRadioButton9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JRadioButton rbChkNo1;
+    private javax.swing.JRadioButton rbChkNo2;
+    private javax.swing.JRadioButton rbChkNo3;
+    private javax.swing.JRadioButton rbChkNo4;
+    private javax.swing.JRadioButton rbChkNo5;
+    private javax.swing.JRadioButton rbChkSi1;
+    private javax.swing.JRadioButton rbChkSi2;
+    private javax.swing.JRadioButton rbChkSi3;
+    private javax.swing.JRadioButton rbChkSi4;
+    private javax.swing.JRadioButton rbChkSi5;
+    private javax.swing.JTable tblChk;
     // End of variables declaration//GEN-END:variables
+    private void cargarTabla(){
+        cargarColumna();
+        user = controllerUser.findUsuarios(usuariosIdUsuario);
+        for (Checklist c : controller.findByUser(user)) {
+            modelo.addRow(new Object[]{c.getIdChecklist(), c.getItem1(),c.getItem2(),c.getItem3(),c.getItem4(),c.getItem5(),c.getEmpresasIdEmpresa().getNombre() });
+        }
+    }
+    private void cargarColumna(){
+        modelo = new DefaultTableModel();
+        modelo.addColumn("Codigo");
+        modelo.addColumn("Item 1");
+        modelo.addColumn("Item 2");
+        modelo.addColumn("Item 3");
+        modelo.addColumn("Item 4");
+        modelo.addColumn("Item 5");
+        modelo.addColumn("Nombre Empresa");
+        tblChk.setModel(modelo);
+    }
 }

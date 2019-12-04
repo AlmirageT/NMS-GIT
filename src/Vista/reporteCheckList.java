@@ -10,19 +10,8 @@ import Controlador.UsuariosJpaController;
 import Modelo.Checklist;
 import Modelo.Usuarios;
 import java.math.BigDecimal;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.util.JRLoader;
-import net.sf.jasperreports.view.JasperViewer;
+
 
 /**
  *
@@ -35,6 +24,7 @@ public class reporteCheckList extends javax.swing.JFrame {
     private ChecklistJpaController controller;
     private UsuariosJpaController controllerUser;
     private Usuarios user;
+    private Checklist chk;
     inicioProfesional iP = new inicioProfesional();
     BigDecimal usuariosIdUsuario = iP.cod;
     DefaultTableModel modelo;
@@ -67,7 +57,7 @@ public class reporteCheckList extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblChk = new javax.swing.JTable();
-        btnReporte = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -170,11 +160,10 @@ public class reporteCheckList extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblChk);
 
-        btnReporte.setText("Generar Reporte");
-        btnReporte.setToolTipText("");
-        btnReporte.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReporteActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -201,8 +190,8 @@ public class reporteCheckList extends javax.swing.JFrame {
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(324, 324, 324)
-                        .addComponent(btnReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(357, 357, 357)
+                        .addComponent(jButton1)
                         .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
@@ -216,9 +205,9 @@ public class reporteCheckList extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
-                .addComponent(btnReporte)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(36, 36, 36))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -239,34 +228,6 @@ public class reporteCheckList extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jLabel13MousePressed
 
-    private void btnReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteActionPerformed
-        int fila = tblChk.getSelectedRow();
-          
-        if (fila != -1) {
-            Object codigo = tblChk.getValueAt(fila, 0);
-            String cod = String.valueOf(codigo);
-            int codigoC = Integer.parseInt(cod);
-            BigDecimal codChk = BigDecimal.valueOf(codigoC);
-            try {
-                
-                JasperReport reporte;
-                String path = "src\\Reporte\\reportChecklist.jasper";
-                reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
-                Map parameter = new HashMap();
-                parameter.put("id_usuario", codChk);
-                
-                JasperPrint jprint = JasperFillManager.fillReport(reporte, parameter);
-                JasperViewer view = new JasperViewer(jprint, false);
-                view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-                view.setVisible(true);
-            } catch (JRException ex) {
-                Logger.getLogger(reporteCheckList.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }else{
-            JOptionPane.showMessageDialog(this, "Favor seleccionar la fila que desea re activar", "Validación", 0);
-        }
-    }//GEN-LAST:event_btnReporteActionPerformed
-
     private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
         int coordenadaX = evt.getXOnScreen();
         int coordenadaY = evt.getYOnScreen();
@@ -277,6 +238,10 @@ public class reporteCheckList extends javax.swing.JFrame {
         mousepX = evt.getX();
         mousepY = evt.getY();
     }//GEN-LAST:event_formMousePressed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+            
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -314,7 +279,7 @@ public class reporteCheckList extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnReporte;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;

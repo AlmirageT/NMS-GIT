@@ -438,7 +438,7 @@ public class agregarUsuario extends javax.swing.JFrame {
                 usuario.setEmail(txtEmail.getText());
                 usuario.setClave(txtClave.getText());
                 usuario.setCelular(Integer.parseInt(txtCelular.getText()));
-                usuario.setTelefono(Integer.parseInt(txtCelular.getText()));
+                usuario.setTelefono(Integer.parseInt(txtTelefono.getText()));
                 usuario.setDireccion(txtDireccion.getText());
                 usuario.setEstado(Short.parseShort("1"));
                 usuario.setFechaCreacion(fecha);

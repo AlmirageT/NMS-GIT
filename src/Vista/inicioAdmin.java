@@ -37,6 +37,10 @@ public class inicioAdmin extends javax.swing.JFrame {
         lblListContrato.hide();
         lblListProfesional.hide();
         lblPlanificacion.hide();
+        modificarCliente.hide();
+        modificarProfesional.hide();
+        lblModificarCliente.hide();
+        lblModificarProfesional.hide();
         setColor(panelInicio);
     }
 
@@ -100,6 +104,10 @@ public class inicioAdmin extends javax.swing.JFrame {
         lblPlanificacion = new javax.swing.JLabel();
         lblEstadoPago = new javax.swing.JLabel();
         lblCargoExtra = new javax.swing.JLabel();
+        lblModificarCliente = new javax.swing.JLabel();
+        modificarCliente = new javax.swing.JLabel();
+        modificarProfesional = new javax.swing.JLabel();
+        lblModificarProfesional = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -410,7 +418,7 @@ public class inicioAdmin extends javax.swing.JFrame {
                 addProfesionalMousePressed(evt);
             }
         });
-        bg.add(addProfesional, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 240, 160, 160));
+        bg.add(addProfesional, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 240, 160, 160));
 
         listarCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         listarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/54e5ce28-c16f-4e2a-8682-4424e257fbbf.png"))); // NOI18N
@@ -421,7 +429,7 @@ public class inicioAdmin extends javax.swing.JFrame {
                 listarClienteMousePressed(evt);
             }
         });
-        bg.add(listarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 240, 160, 160));
+        bg.add(listarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 240, 160, 160));
 
         addCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         addCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/69f041d8-194f-40b5-94c4-c504ea20d1b2.png"))); // NOI18N
@@ -432,7 +440,7 @@ public class inicioAdmin extends javax.swing.JFrame {
                 addClienteMouseClicked(evt);
             }
         });
-        bg.add(addCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 240, 160, 160));
+        bg.add(addCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 240, 160, 160));
 
         listarProfesional.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         listarProfesional.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/54e5ce28-c16f-4e2a-8682-4424e257fbbf.png"))); // NOI18N
@@ -443,7 +451,7 @@ public class inicioAdmin extends javax.swing.JFrame {
                 listarProfesionalMouseClicked(evt);
             }
         });
-        bg.add(listarProfesional, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 240, 160, 160));
+        bg.add(listarProfesional, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 240, 160, 160));
 
         listarContratos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         listarContratos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/54e5ce28-c16f-4e2a-8682-4424e257fbbf.png"))); // NOI18N
@@ -465,7 +473,7 @@ public class inicioAdmin extends javax.swing.JFrame {
                 estadoPagoMouseClicked(evt);
             }
         });
-        bg.add(estadoPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 240, 160, 160));
+        bg.add(estadoPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 240, 160, 160));
 
         agregarPago.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         agregarPago.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/5170c35e-4e57-41dd-9e5f-9f478c77580d.png"))); // NOI18N
@@ -476,7 +484,7 @@ public class inicioAdmin extends javax.swing.JFrame {
                 agregarPagoMouseClicked(evt);
             }
         });
-        bg.add(agregarPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 240, 160, 160));
+        bg.add(agregarPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 240, 160, 160));
 
         planificacionCapacitacion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         planificacionCapacitacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icons8_calendar_100px_1.png"))); // NOI18N
@@ -492,27 +500,27 @@ public class inicioAdmin extends javax.swing.JFrame {
         lblAddCliente.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblAddCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblAddCliente.setText("Agregar Cliente");
-        bg.add(lblAddCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 400, 160, 20));
+        bg.add(lblAddCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 400, 160, 20));
 
         lblAddProfesional.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblAddProfesional.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblAddProfesional.setText("Agregar Profesional");
-        bg.add(lblAddProfesional, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 400, 160, 20));
+        bg.add(lblAddProfesional, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 400, 160, 20));
 
         lblListCliente.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblListCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblListCliente.setText("Listar Cliente");
-        bg.add(lblListCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 400, 150, 20));
+        bg.add(lblListCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 400, 150, 20));
 
         lblListProfesional.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblListProfesional.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblListProfesional.setText("Listar Profesional");
-        bg.add(lblListProfesional, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 400, 150, 20));
+        bg.add(lblListProfesional, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 400, 150, 20));
 
         lblListContrato.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblListContrato.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblListContrato.setText("Listar Contratos");
-        bg.add(lblListContrato, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 400, 150, 20));
+        bg.add(lblListContrato, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 400, 160, 20));
 
         lblPlanificacion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblPlanificacion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -522,12 +530,44 @@ public class inicioAdmin extends javax.swing.JFrame {
         lblEstadoPago.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblEstadoPago.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblEstadoPago.setText("Estado Pago");
-        bg.add(lblEstadoPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 400, 160, 20));
+        bg.add(lblEstadoPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 400, 160, 20));
 
         lblCargoExtra.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblCargoExtra.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblCargoExtra.setText("Cargo Extra");
-        bg.add(lblCargoExtra, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 400, 160, 20));
+        bg.add(lblCargoExtra, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 400, 160, 20));
+
+        lblModificarCliente.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblModificarCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblModificarCliente.setText("Modificar Cliente");
+        bg.add(lblModificarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 400, 150, 20));
+
+        modificarCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        modificarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/911abdf1-509f-4824-a326-b9c694379435.png"))); // NOI18N
+        modificarCliente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        modificarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        modificarCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                modificarClienteMouseClicked(evt);
+            }
+        });
+        bg.add(modificarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 240, 160, 160));
+
+        modificarProfesional.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        modificarProfesional.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/911abdf1-509f-4824-a326-b9c694379435.png"))); // NOI18N
+        modificarProfesional.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        modificarProfesional.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        modificarProfesional.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                modificarProfesionalMouseClicked(evt);
+            }
+        });
+        bg.add(modificarProfesional, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 240, 160, 160));
+
+        lblModificarProfesional.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblModificarProfesional.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblModificarProfesional.setText("Modificar Profesional");
+        bg.add(lblModificarProfesional, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 400, 160, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -571,6 +611,10 @@ public class inicioAdmin extends javax.swing.JFrame {
         lblListContrato.show();
         lblListProfesional.hide();
         lblPlanificacion.hide();
+        modificarCliente.hide();
+        modificarProfesional.hide();
+        lblModificarCliente.hide();
+        lblModificarProfesional.hide();
         setColor(panelContrato);
         resetColor(panelCliente);
         resetColor(panelProfesional);
@@ -596,6 +640,10 @@ public class inicioAdmin extends javax.swing.JFrame {
         lblListContrato.hide();
         lblListProfesional.show();
         lblPlanificacion.hide();
+        modificarCliente.hide();
+        modificarProfesional.show();
+        lblModificarCliente.hide();
+        lblModificarProfesional.show();
         setColor(panelProfesional);
         resetColor(panelCliente);
         resetColor(panelContrato);
@@ -621,6 +669,10 @@ public class inicioAdmin extends javax.swing.JFrame {
         lblListContrato.hide();
         lblListProfesional.hide();
         lblPlanificacion.hide();
+        modificarCliente.show();
+        modificarProfesional.hide();
+        lblModificarCliente.show();
+        lblModificarProfesional.hide();
         setColor(panelCliente);
         resetColor(panelProfesional);
         resetColor(panelContrato);
@@ -646,6 +698,10 @@ public class inicioAdmin extends javax.swing.JFrame {
         lblListContrato.hide();
         lblListProfesional.hide();
         lblPlanificacion.hide();
+        modificarCliente.hide();
+        modificarProfesional.hide();
+        lblModificarCliente.hide();
+        lblModificarProfesional.hide();
         setColor(panelPagos);
         resetColor(panelCliente);
         resetColor(panelProfesional);
@@ -671,6 +727,10 @@ public class inicioAdmin extends javax.swing.JFrame {
         lblListProfesional.hide();
         lblPlanificacion.show();
         planificacionCapacitacion.show();
+        modificarCliente.hide();
+        modificarProfesional.hide();
+        lblModificarCliente.hide();
+        lblModificarProfesional.hide();
         setColor(panelActividades);
         resetColor(panelCliente);
         resetColor(panelProfesional);
@@ -696,6 +756,10 @@ public class inicioAdmin extends javax.swing.JFrame {
         lblListProfesional.hide();
         lblPlanificacion.hide();
         planificacionCapacitacion.hide();
+        modificarCliente.hide();
+        modificarProfesional.hide();
+        lblModificarCliente.hide();
+        lblModificarProfesional.hide();
         setColor(panelInicio);
         resetColor(panelCliente);
         resetColor(panelProfesional);
@@ -749,6 +813,16 @@ public class inicioAdmin extends javax.swing.JFrame {
         planificacionCapacitacion pc = new planificacionCapacitacion();
         pc.setVisible(true);
     }//GEN-LAST:event_planificacionCapacitacionMouseClicked
+
+    private void modificarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modificarClienteMouseClicked
+        modificarCliente mC = new modificarCliente();
+        mC.setVisible(true);
+    }//GEN-LAST:event_modificarClienteMouseClicked
+
+    private void modificarProfesionalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modificarProfesionalMouseClicked
+        modificarProfesional mP = new modificarProfesional();
+        mP.setVisible(true);
+    }//GEN-LAST:event_modificarProfesionalMouseClicked
 
     /**
      * @param args the command line arguments
@@ -817,11 +891,15 @@ public class inicioAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel lblListCliente;
     private javax.swing.JLabel lblListContrato;
     private javax.swing.JLabel lblListProfesional;
+    private javax.swing.JLabel lblModificarCliente;
+    private javax.swing.JLabel lblModificarProfesional;
     private javax.swing.JLabel lblPlanificacion;
     private javax.swing.JLabel lblUsuario;
     private javax.swing.JLabel listarCliente;
     private javax.swing.JLabel listarContratos;
     private javax.swing.JLabel listarProfesional;
+    private javax.swing.JLabel modificarCliente;
+    private javax.swing.JLabel modificarProfesional;
     private javax.swing.JPanel panelActividades;
     private javax.swing.JPanel panelCliente;
     private javax.swing.JPanel panelContrato;
