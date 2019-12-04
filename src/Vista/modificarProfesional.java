@@ -387,6 +387,7 @@ public class modificarProfesional extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSeleccionarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        if(!txtID.getText().equals("")){
         String cod = txtID.getText();
         int c = Integer.parseInt(cod);
         String Cel = txtCelular.getText();
@@ -413,10 +414,14 @@ public class modificarProfesional extends javax.swing.JFrame {
             user.setRolesIdRol(rolesIdRol);
             controller.edit(user);
             cargarTabla();
+            LimpiarModificar();
             JOptionPane.showMessageDialog(this, "Modificado usuario " + user.getRut(), "Validación", JOptionPane.INFORMATION_MESSAGE);
             
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage(), "Validación", 0);
+        }
+        }else{
+            JOptionPane.showMessageDialog(this, "Seleccione un usuario a modificar", "Validación", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_btnModificarActionPerformed
 
@@ -553,6 +558,18 @@ public class modificarProfesional extends javax.swing.JFrame {
         txtBuscadorProfesional.setText("");
     }
     private void LimpiarModificar(){
-        
+        txtID.setText("");
+        txtRut.setText("");
+        txtPaterno.setText("");
+        txtMaterno.setText("");
+        txtNombre.setText("");
+        fechaNacimiento.setDate(null);
+        txtMail.setText("");
+        txtFechaCreacion.setDate(null);
+        txtClave.setText("");
+        txtCelular.setText("");
+        txtDireccion.setText("");
+        txtEstado.setText("");
+        txtTelefono.setText("");
     }
 }
