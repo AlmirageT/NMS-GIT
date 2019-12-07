@@ -337,13 +337,12 @@ public class inicioProfesional extends javax.swing.JFrame {
 
         sidepane.add(panelInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 310, 50));
 
-        bg.add(sidepane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 600));
+        bg.add(sidepane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 710));
 
-        jPanel1.setBackground(new java.awt.Color(96, 95, 249));
+        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.setName(""); // NOI18N
 
         lblProfesional.setFont(new java.awt.Font("Franklin Gothic Book", 0, 36)); // NOI18N
-        lblProfesional.setForeground(new java.awt.Color(0, 0, 0));
         lblProfesional.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -359,18 +358,18 @@ public class inicioProfesional extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 150, Short.MAX_VALUE)
+            .addGap(0, 113, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(50, 50, 50)
                     .addComponent(lblProfesional, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(50, Short.MAX_VALUE)))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
-        bg.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 60, 830, 150));
+        bg.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 60, 830, 80));
 
         jLabel13.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Arial Narrow", 0, 36)); // NOI18N
         jLabel13.setText("X");
         jLabel13.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel13.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -378,7 +377,7 @@ public class inicioProfesional extends javax.swing.JFrame {
                 jLabel13MousePressed(evt);
             }
         });
-        bg.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(1110, 10, -1, 30));
+        bg.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 10, -1, 30));
 
         jLabel16.setBackground(new java.awt.Color(0, 0, 0));
         jLabel16.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -387,7 +386,7 @@ public class inicioProfesional extends javax.swing.JFrame {
 
         jLabel17.setBackground(new java.awt.Color(255, 255, 255));
         jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel17.setText("No Mas Accidentes");
+        jLabel17.setText("Profesional");
         bg.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, 200, 20));
 
         addChecklist.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -399,12 +398,12 @@ public class inicioProfesional extends javax.swing.JFrame {
                 addChecklistMouseClicked(evt);
             }
         });
-        bg.add(addChecklist, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 260, 160, 160));
+        bg.add(addChecklist, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 210, 160, 160));
 
         lblAprobarChk.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblAprobarChk.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblAprobarChk.setText("Aprobar Formulario");
-        bg.add(lblAprobarChk, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 420, 160, 20));
+        bg.add(lblAprobarChk, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 630, 160, 20));
 
         lstChecklist.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lstChecklist.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/54e5ce28-c16f-4e2a-8682-4424e257fbbf.png"))); // NOI18N
@@ -415,12 +414,12 @@ public class inicioProfesional extends javax.swing.JFrame {
                 lstChecklistMouseClicked(evt);
             }
         });
-        bg.add(lstChecklist, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 260, 160, 160));
+        bg.add(lstChecklist, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 460, 160, 160));
 
         lblAddChecklist1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblAddChecklist1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblAddChecklist1.setText("Generar Formulario");
-        bg.add(lblAddChecklist1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 420, 160, 20));
+        bg.add(lblAddChecklist1, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 380, 160, 20));
 
         reportCapacitaciones.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         reportCapacitaciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/52d1617b-0f47-4a12-93a7-d90fef62681d.png"))); // NOI18N
@@ -431,12 +430,12 @@ public class inicioProfesional extends javax.swing.JFrame {
                 reportCapacitacionesMouseClicked(evt);
             }
         });
-        bg.add(reportCapacitaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 260, 160, 160));
+        bg.add(reportCapacitaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 460, 160, 160));
 
         lblAReportCapac.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblAReportCapac.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblAReportCapac.setText("Reporte Capacitaciones");
-        bg.add(lblAReportCapac, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 420, 170, 20));
+        bg.add(lblAReportCapac, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 630, 170, 20));
 
         reportChecklist1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         reportChecklist1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/52d1617b-0f47-4a12-93a7-d90fef62681d.png"))); // NOI18N
@@ -447,12 +446,12 @@ public class inicioProfesional extends javax.swing.JFrame {
                 reportChecklist1MouseClicked(evt);
             }
         });
-        bg.add(reportChecklist1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 260, 160, 160));
+        bg.add(reportChecklist1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 210, 160, 160));
 
         lblReportChk.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblReportChk.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblReportChk.setText("Reporte Checklist");
-        bg.add(lblReportChk, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 420, 160, 20));
+        bg.add(lblReportChk, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 380, 160, 20));
 
         reportVisitas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         reportVisitas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/52d1617b-0f47-4a12-93a7-d90fef62681d.png"))); // NOI18N
@@ -463,12 +462,12 @@ public class inicioProfesional extends javax.swing.JFrame {
                 reportVisitasMouseClicked(evt);
             }
         });
-        bg.add(reportVisitas, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 260, 160, 160));
+        bg.add(reportVisitas, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 210, 160, 160));
 
         lblReportVisitas.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblReportVisitas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblReportVisitas.setText("Reporte Visitas");
-        bg.add(lblReportVisitas, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 420, 160, 20));
+        bg.add(lblReportVisitas, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 380, 160, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

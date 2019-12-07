@@ -88,26 +88,26 @@ public class inicioAdmin extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        addProfesional = new javax.swing.JLabel();
         listarCliente = new javax.swing.JLabel();
-        addCliente = new javax.swing.JLabel();
         listarProfesional = new javax.swing.JLabel();
         listarContratos = new javax.swing.JLabel();
-        estadoPago = new javax.swing.JLabel();
         agregarPago = new javax.swing.JLabel();
         planificacionCapacitacion = new javax.swing.JLabel();
-        lblAddCliente = new javax.swing.JLabel();
-        lblAddProfesional = new javax.swing.JLabel();
-        lblListCliente = new javax.swing.JLabel();
         lblListProfesional = new javax.swing.JLabel();
         lblListContrato = new javax.swing.JLabel();
         lblPlanificacion = new javax.swing.JLabel();
-        lblEstadoPago = new javax.swing.JLabel();
         lblCargoExtra = new javax.swing.JLabel();
         lblModificarCliente = new javax.swing.JLabel();
         modificarCliente = new javax.swing.JLabel();
         modificarProfesional = new javax.swing.JLabel();
         lblModificarProfesional = new javax.swing.JLabel();
+        addProfesional = new javax.swing.JLabel();
+        lblAddCliente = new javax.swing.JLabel();
+        lblListCliente = new javax.swing.JLabel();
+        addCliente = new javax.swing.JLabel();
+        lblAddProfesional = new javax.swing.JLabel();
+        estadoPago = new javax.swing.JLabel();
+        lblEstadoPago = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -361,35 +361,34 @@ public class inicioAdmin extends javax.swing.JFrame {
 
         sidepane.add(panelInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 310, 50));
 
-        bg.add(sidepane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 600));
+        bg.add(sidepane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 1190));
 
-        jPanel1.setBackground(new java.awt.Color(96, 95, 249));
+        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.setName(""); // NOI18N
 
         lblUsuario.setFont(new java.awt.Font("Franklin Gothic Book", 0, 36)); // NOI18N
-        lblUsuario.setForeground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(72, 72, 72)
+                .addGap(624, 624, 624)
                 .addComponent(lblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 718, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(49, 49, 49)
                 .addComponent(lblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        bg.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 60, 830, 150));
+        bg.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 60, 1060, 80));
 
         jLabel13.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Arial Narrow", 0, 36)); // NOI18N
         jLabel13.setText("X");
         jLabel13.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel13.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -397,7 +396,7 @@ public class inicioAdmin extends javax.swing.JFrame {
                 jLabel13MousePressed(evt);
             }
         });
-        bg.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(1110, 10, -1, 30));
+        bg.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(1330, 10, -1, 30));
 
         jLabel16.setBackground(new java.awt.Color(0, 0, 0));
         jLabel16.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -406,19 +405,8 @@ public class inicioAdmin extends javax.swing.JFrame {
 
         jLabel17.setBackground(new java.awt.Color(255, 255, 255));
         jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel17.setText("No Mas Accidentes");
+        jLabel17.setText("Administrador");
         bg.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, 200, 20));
-
-        addProfesional.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        addProfesional.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/69f041d8-194f-40b5-94c4-c504ea20d1b2.png"))); // NOI18N
-        addProfesional.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        addProfesional.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        addProfesional.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                addProfesionalMousePressed(evt);
-            }
-        });
-        bg.add(addProfesional, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 240, 160, 160));
 
         listarCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         listarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/54e5ce28-c16f-4e2a-8682-4424e257fbbf.png"))); // NOI18N
@@ -429,18 +417,7 @@ public class inicioAdmin extends javax.swing.JFrame {
                 listarClienteMousePressed(evt);
             }
         });
-        bg.add(listarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 240, 160, 160));
-
-        addCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        addCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/69f041d8-194f-40b5-94c4-c504ea20d1b2.png"))); // NOI18N
-        addCliente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        addCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        addCliente.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                addClienteMouseClicked(evt);
-            }
-        });
-        bg.add(addCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 240, 160, 160));
+        bg.add(listarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 440, 160, 160));
 
         listarProfesional.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         listarProfesional.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/54e5ce28-c16f-4e2a-8682-4424e257fbbf.png"))); // NOI18N
@@ -451,7 +428,7 @@ public class inicioAdmin extends javax.swing.JFrame {
                 listarProfesionalMouseClicked(evt);
             }
         });
-        bg.add(listarProfesional, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 240, 160, 160));
+        bg.add(listarProfesional, new org.netbeans.lib.awtextra.AbsoluteConstraints(1140, 440, 160, 160));
 
         listarContratos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         listarContratos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/54e5ce28-c16f-4e2a-8682-4424e257fbbf.png"))); // NOI18N
@@ -462,18 +439,7 @@ public class inicioAdmin extends javax.swing.JFrame {
                 listarContratosMouseClicked(evt);
             }
         });
-        bg.add(listarContratos, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 240, 160, 160));
-
-        estadoPago.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        estadoPago.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icons8_payment_history_80px.png"))); // NOI18N
-        estadoPago.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        estadoPago.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        estadoPago.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                estadoPagoMouseClicked(evt);
-            }
-        });
-        bg.add(estadoPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 240, 160, 160));
+        bg.add(listarContratos, new org.netbeans.lib.awtextra.AbsoluteConstraints(1140, 210, 160, 160));
 
         agregarPago.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         agregarPago.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/5170c35e-4e57-41dd-9e5f-9f478c77580d.png"))); // NOI18N
@@ -484,7 +450,7 @@ public class inicioAdmin extends javax.swing.JFrame {
                 agregarPagoMouseClicked(evt);
             }
         });
-        bg.add(agregarPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 240, 160, 160));
+        bg.add(agregarPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 680, 160, 160));
 
         planificacionCapacitacion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         planificacionCapacitacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icons8_calendar_100px_1.png"))); // NOI18N
@@ -495,52 +461,32 @@ public class inicioAdmin extends javax.swing.JFrame {
                 planificacionCapacitacionMouseClicked(evt);
             }
         });
-        bg.add(planificacionCapacitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 240, 160, 160));
-
-        lblAddCliente.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        lblAddCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblAddCliente.setText("Agregar Cliente");
-        bg.add(lblAddCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 400, 160, 20));
-
-        lblAddProfesional.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        lblAddProfesional.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblAddProfesional.setText("Agregar Profesional");
-        bg.add(lblAddProfesional, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 400, 160, 20));
-
-        lblListCliente.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        lblListCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblListCliente.setText("Listar Cliente");
-        bg.add(lblListCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 400, 150, 20));
+        bg.add(planificacionCapacitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 440, 160, 160));
 
         lblListProfesional.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblListProfesional.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblListProfesional.setText("Listar Profesional");
-        bg.add(lblListProfesional, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 400, 150, 20));
+        bg.add(lblListProfesional, new org.netbeans.lib.awtextra.AbsoluteConstraints(1140, 610, 160, 20));
 
         lblListContrato.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblListContrato.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblListContrato.setText("Listar Contratos");
-        bg.add(lblListContrato, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 400, 160, 20));
+        bg.add(lblListContrato, new org.netbeans.lib.awtextra.AbsoluteConstraints(1140, 380, 160, 20));
 
         lblPlanificacion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblPlanificacion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblPlanificacion.setText("Planificación Capacitaciones ");
-        bg.add(lblPlanificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 400, 210, 20));
-
-        lblEstadoPago.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        lblEstadoPago.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblEstadoPago.setText("Estado Pago");
-        bg.add(lblEstadoPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 400, 160, 20));
+        bg.add(lblPlanificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 610, 210, 20));
 
         lblCargoExtra.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblCargoExtra.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblCargoExtra.setText("Cargo Extra");
-        bg.add(lblCargoExtra, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 400, 160, 20));
+        bg.add(lblCargoExtra, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 850, 160, 20));
 
         lblModificarCliente.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblModificarCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblModificarCliente.setText("Modificar Cliente");
-        bg.add(lblModificarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 400, 150, 20));
+        bg.add(lblModificarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 610, 160, 20));
 
         modificarCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         modificarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/911abdf1-509f-4824-a326-b9c694379435.png"))); // NOI18N
@@ -551,7 +497,7 @@ public class inicioAdmin extends javax.swing.JFrame {
                 modificarClienteMouseClicked(evt);
             }
         });
-        bg.add(modificarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 240, 160, 160));
+        bg.add(modificarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 440, 160, 160));
 
         modificarProfesional.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         modificarProfesional.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/911abdf1-509f-4824-a326-b9c694379435.png"))); // NOI18N
@@ -562,22 +508,77 @@ public class inicioAdmin extends javax.swing.JFrame {
                 modificarProfesionalMouseClicked(evt);
             }
         });
-        bg.add(modificarProfesional, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 240, 160, 160));
+        bg.add(modificarProfesional, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 210, 160, 160));
 
         lblModificarProfesional.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblModificarProfesional.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblModificarProfesional.setText("Modificar Profesional");
-        bg.add(lblModificarProfesional, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 400, 160, 20));
+        bg.add(lblModificarProfesional, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 380, 160, 20));
+
+        addProfesional.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        addProfesional.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/69f041d8-194f-40b5-94c4-c504ea20d1b2.png"))); // NOI18N
+        addProfesional.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        addProfesional.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        addProfesional.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                addProfesionalMousePressed(evt);
+            }
+        });
+        bg.add(addProfesional, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 210, 160, 160));
+
+        lblAddCliente.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblAddCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblAddCliente.setText("Agregar Cliente");
+        bg.add(lblAddCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 380, 160, 20));
+
+        lblListCliente.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblListCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblListCliente.setText("Listar Cliente");
+        bg.add(lblListCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 610, 160, 20));
+
+        addCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        addCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/69f041d8-194f-40b5-94c4-c504ea20d1b2.png"))); // NOI18N
+        addCliente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        addCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        addCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addClienteMouseClicked(evt);
+            }
+        });
+        bg.add(addCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 210, 160, 160));
+
+        lblAddProfesional.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblAddProfesional.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblAddProfesional.setText("Agregar Profesional");
+        bg.add(lblAddProfesional, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 380, 160, 20));
+
+        estadoPago.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        estadoPago.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icons8_payment_history_80px.png"))); // NOI18N
+        estadoPago.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        estadoPago.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        estadoPago.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                estadoPagoMouseClicked(evt);
+            }
+        });
+        bg.add(estadoPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 680, 160, 160));
+
+        lblEstadoPago.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblEstadoPago.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblEstadoPago.setText("Estado Pago");
+        bg.add(lblEstadoPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 850, 160, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(bg, javax.swing.GroupLayout.PREFERRED_SIZE, 1370, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(bg, javax.swing.GroupLayout.PREFERRED_SIZE, 940, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();

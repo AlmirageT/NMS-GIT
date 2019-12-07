@@ -105,62 +105,58 @@ public class checklist extends javax.swing.JFrame {
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel38, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(22, Short.MAX_VALUE))
+                        .addGap(96, 96, 96)
+                        .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel38, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addGap(31, 31, 31)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel38, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel38, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(717, Short.MAX_VALUE))
         );
 
-        jPanel10.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 848));
+        jPanel10.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 240, 848));
 
-        jPanel12.setBackground(new java.awt.Color(96, 95, 249));
+        jPanel12.setBackground(new java.awt.Color(204, 204, 204));
 
         lbltitulo.setBackground(new java.awt.Color(0, 0, 0));
         lbltitulo.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
-        lbltitulo.setForeground(new java.awt.Color(0, 0, 0));
         lbltitulo.setText("Crear Checklist");
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
         jPanel12Layout.setHorizontalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 839, Short.MAX_VALUE)
-            .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel12Layout.createSequentialGroup()
-                    .addGap(218, 218, 218)
-                    .addComponent(lbltitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(240, Short.MAX_VALUE)))
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addGap(286, 286, 286)
+                .addComponent(lbltitulo)
+                .addContainerGap(313, Short.MAX_VALUE))
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 145, Short.MAX_VALUE)
-            .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel12Layout.createSequentialGroup()
-                    .addGap(45, 45, 45)
-                    .addComponent(lbltitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(46, Short.MAX_VALUE)))
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(lbltitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
-        jPanel10.add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(297, 49, -1, -1));
+        jPanel10.add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 50, 860, 110));
 
         jLabel39.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel39.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel39.setFont(new java.awt.Font("Arial Narrow", 0, 36)); // NOI18N
         jLabel39.setText("X");
         jLabel39.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel39.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -168,25 +164,25 @@ public class checklist extends javax.swing.JFrame {
                 jLabel39MousePressed(evt);
             }
         });
-        jPanel10.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(1106, 0, -1, -1));
+        jPanel10.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 10, -1, 30));
 
         jLabel1.setText("Pregunta 1:");
-        jPanel10.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 206, -1, -1));
+        jPanel10.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 210, -1, -1));
 
         jLabel2.setText("Pregunta 2:");
-        jPanel10.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 290, -1, -1));
+        jPanel10.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 290, -1, -1));
 
         jLabel3.setText("Pregunta 3:");
-        jPanel10.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(605, 206, -1, -1));
+        jPanel10.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 210, -1, -1));
 
         jLabel4.setText("Pregunta 4:");
-        jPanel10.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 290, -1, -1));
+        jPanel10.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 290, -1, -1));
 
         jLabel6.setText("Pregunta 5:");
-        jPanel10.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 206, -1, -1));
+        jPanel10.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 210, -1, -1));
 
-        jLabel7.setText("Empresa a Cual Auditar:");
-        jPanel10.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 350, -1, -1));
+        jLabel7.setText("Empresa a Auditar:");
+        jPanel10.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 380, -1, -1));
 
         tblEmpresa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -201,7 +197,7 @@ public class checklist extends javax.swing.JFrame {
         ));
         jScrollPane6.setViewportView(tblEmpresa);
 
-        jPanel10.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 370, 821, 213));
+        jPanel10.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 400, 860, 213));
 
         btnAgregar.setText("Agregar");
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
@@ -209,22 +205,26 @@ public class checklist extends javax.swing.JFrame {
                 btnAgregarActionPerformed(evt);
             }
         });
-        jPanel10.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 620, 142, -1));
-        jPanel10.add(txtPregunta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 230, 239, -1));
-        jPanel10.add(txtPregunta2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 310, 239, -1));
-        jPanel10.add(txtPregunta3, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 230, 240, -1));
-        jPanel10.add(txtPregunta4, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 310, 240, -1));
-        jPanel10.add(txtPregunta5, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 230, 240, -1));
+        jPanel10.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 640, 142, -1));
+        jPanel10.add(txtPregunta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 230, 239, -1));
+        jPanel10.add(txtPregunta2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 310, 239, -1));
+        jPanel10.add(txtPregunta3, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 230, 240, -1));
+        jPanel10.add(txtPregunta4, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 310, 240, -1));
+        jPanel10.add(txtPregunta5, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 230, 240, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 1140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 679, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 693, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
